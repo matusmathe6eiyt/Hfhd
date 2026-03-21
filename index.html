@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vídeos - Lolita x VIP</title>
+    <link rel="icon" type="image/jpeg" href="favicon.jpeg">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        *{margin:0;padding:0;box-sizing:border-box;font-family:'Poppins',sans-serif}
+        body{background-color:#000;color:#fff;min-height:100vh}
+        header{background:rgba(0,0,0,0.95);backdrop-filter:blur(10px);padding:15px 25px;display:flex;align-items:center;justify-content:space-between;border-bottom:2px solid #ff0000;position:sticky;top:0;z-index:1000;box-shadow:0 5px 20px rgba(255,0,0,0.3)}
+        .header-left{display:flex;align-items:center;gap:10px}
+        .header-left h1{font-size:1.3rem;font-weight:700;letter-spacing:1px;text-transform:uppercase}
+        .text-white{color:#fff}.text-red{color:#ff0000}
+        .menu-button{background:linear-gradient(135deg,#ff0000,#cc0000);border:none;color:#fff;width:45px;height:45px;border-radius:10px;cursor:pointer;font-size:1.3rem;display:flex;align-items:center;justify-content:center;transition:all 0.3s ease;box-shadow:0 4px 15px rgba(255,0,0,0.4)}
+        .menu-button:hover{transform:scale(1.1);box-shadow:0 6px 20px rgba(255,0,0,0.6)}
+        .sidebar-overlay{position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.7);z-index:2000;opacity:0;visibility:hidden;transition:all 0.3s ease}
+        .sidebar-overlay.active{opacity:1;visibility:visible}
+        .sidebar{position:fixed;top:0;left:-350px;width:320px;height:100%;background:linear-gradient(180deg,#1a0000 0%,#000 100%);z-index:2001;transition:left 0.4s cubic-bezier(0.4,0,0.2,1);box-shadow:5px 0 30px rgba(255,0,0,0.5);overflow-y:auto}
+        .sidebar.active{left:0}
+        .sidebar-header{background:linear-gradient(135deg,#ff0000,#990000);padding:25px 20px;display:flex;align-items:center;justify-content:space-between;border-bottom:3px solid #ff3333}
+        .sidebar-title{font-size:1.3rem;font-weight:700;text-transform:uppercase;letter-spacing:1px}
+        .sidebar-close{background:rgba(255,255,255,0.2);border:none;color:#fff;width:40px;height:40px;border-radius:50%;cursor:pointer;font-size:1.2rem;display:flex;align-items:center;justify-content:center;transition:all 0.3s ease}
+        .sidebar-close:hover{background:rgba(255,255,255,0.3);transform:rotate(90deg)}
+        .sidebar-menu{padding:20px 0}
+        .menu-item{padding:18px 25px;display:flex;align-items:center;gap:15px;color:#ddd;text-decoration:none;transition:all 0.3s ease;border-left:4px solid transparent;cursor:pointer}
+        .menu-item:hover{background:rgba(255,0,0,0.15);border-left-color:#ff0000;color:#fff;padding-left:30px}
+        .menu-item i{font-size:1.2rem;color:#ff0000;width:25px}
+        .menu-item span{font-size:1rem;font-weight:500}
+        .banner-container{width:100%;padding:25px 20px;background:linear-gradient(180deg,#111 0%,#000 100%)}
+        .banner{width:100%;max-width:1200px;margin:0 auto;border-radius:20px;overflow:hidden;box-shadow:0 10px 40px rgba(255,0,0,0.3);border:3px solid #ff0000;position:relative;cursor:pointer;transition:all 0.3s ease}
+        .banner:hover{transform:scale(1.01);box-shadow:0 15px 50px rgba(255,0,0,0.5)}
+        .banner img{width:100%;height:auto;display:block;transition:transform 0.5s ease}
+        .banner:hover img{transform:scale(1.02)}
+        .banner-play{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:90px;height:90px;background:rgba(255,0,0,0.9);border-radius:50%;display:flex;align-items:center;justify-content:center;border:4px solid #fff;box-shadow:0 5px 30px rgba(0,0,0,0.5)}
+        .banner-play img{width:40px;height:40px;object-fit:contain;margin-left:5px}
+        .videos-container{max-width:1200px;margin:0 auto;padding:40px 20px}
+        .section-title{font-size:1.8rem;font-weight:700;text-transform:uppercase;margin-bottom:30px;text-align:center;background:linear-gradient(135deg,#ff0000,#ff6666);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;letter-spacing:2px;position:relative;padding-bottom:15px}
+        .section-title::after{content:'';position:absolute;bottom:0;left:50%;transform:translateX(-50%);width:100px;height:4px;background:linear-gradient(90deg,#ff0000,transparent);border-radius:2px}
+        .videos-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:25px;margin-top:30px}
+        .video-card{position:relative;border-radius:15px;overflow:hidden;background:#111;border:2px solid #333;transition:all 0.3s ease;cursor:pointer;aspect-ratio:16/9;box-shadow:0 5px 15px rgba(0,0,0,0.5)}
+        .video-card::before{content:'';position:absolute;top:0;left:0;right:0;bottom:0;background:linear-gradient(180deg,transparent 0%,rgba(0,0,0,0.8) 100%);z-index:1;opacity:0;transition:opacity 0.3s ease}
+        .video-card:hover{transform:translateY(-10px);border-color:#ff0000;box-shadow:0 15px 40px rgba(255,0,0,0.4)}
+        .video-card:hover::before{opacity:1}
+        .video-card img{width:100%;height:100%;object-fit:cover;transition:transform 0.3s ease}
+        .video-card:hover img{transform:scale(1.1)}
+        .play-overlay{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);z-index:2;pointer-events:none}
+        .play-button{width:90px;height:90px;background:rgba(255,0,0,0.95);border-radius:50%;display:flex;align-items:center;justify-content:center;box-shadow:0 5px 25px rgba(255,0,0,0.7);border:4px solid #fff;transition:all 0.3s ease}
+        .video-card:hover .play-button{transform:scale(1.15);box-shadow:0 8px 35px rgba(255,0,0,0.9)}
+        .play-button img{width:40px;height:40px;object-fit:contain;margin-left:5px}
+        .video-duration{position:absolute;bottom:10px;right:10px;background:rgba(0,0,0,0.9);color:#fff;padding:6px 12px;border-radius:6px;font-size:0.85rem;font-weight:600;z-index:2;border:1px solid #ff0000;display:flex;align-items:center;gap:5px}
+        .video-duration i{color:#ff0000;font-size:0.75rem}
+        .video-number{position:absolute;top:10px;left:10px;background:rgba(255,0,0,0.95);color:#fff;width:40px;height:40px;border-radius:50%;display:flex;align-items:center;justify-content:center;z-index:2;border:2px solid #fff;font-weight:700;font-size:0.95rem;box-shadow:0 3px 10px rgba(0,0,0,0.5)}
+        .pagination{display:flex;align-items:center;justify-content:center;gap:8px;margin-top:50px;padding:20px;flex-wrap:wrap}
+        .page-item{background:rgba(255,255,255,0.1);color:#fff;padding:12px 18px;border-radius:10px;cursor:pointer;transition:all 0.3s ease;border:2px solid transparent;font-weight:600;min-width:45px;text-align:center}
+        .page-item:hover{background:rgba(255,0,0,0.3);border-color:#ff0000;transform:translateY(-3px)}
+        .page-item.active{background:linear-gradient(135deg,#ff0000,#cc0000);border-color:#ff3333;box-shadow:0 5px 15px rgba(255,0,0,0.4)}
+        .page-item.dots{background:transparent;cursor:default;border:none}
+        .page-item.dots:hover{transform:none;background:transparent}
+        .page-item.total{background:rgba(255,0,0,0.2);border-color:#ff0000;color:#ff6666}
+        .footer{background:#000;border-top:2px solid #ff0000;padding:30px 20px;text-align:center;margin-top:50px}
+        .footer-text{color:#666;font-size:0.9rem}
+        .footer-text span{color:#ff0000;font-weight:600}
+        @media (max-width:968px){.videos-grid{grid-template-columns:repeat(2,1fr);gap:20px}}
+        @media (max-width:640px){header{padding:12px 15px}.header-left h1{font-size:1rem}.menu-button{width:40px;height:40px;font-size:1.1rem}.banner-container{padding:15px}.videos-container{padding:30px 15px}.section-title{font-size:1.4rem}.videos-grid{grid-template-columns:1fr;gap:20px}.play-button{width:80px;height:80px}.play-button img{width:35px;height:35px}.banner-play{width:80px;height:80px}.banner-play img{width:35px;height:35px}.pagination{gap:5px}.page-item{padding:10px 14px;font-size:0.9rem}}
+        @keyframes fadeIn{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+        .video-card{animation:fadeIn 0.6s ease forwards}
+        .video-card:nth-child(1){animation-delay:0.05s}.video-card:nth-child(2){animation-delay:0.1s}.video-card:nth-child(3){animation-delay:0.15s}.video-card:nth-child(4){animation-delay:0.2s}.video-card:nth-child(5){animation-delay:0.25s}.video-card:nth-child(6){animation-delay:0.3s}.video-card:nth-child(7){animation-delay:0.35s}.video-card:nth-child(8){animation-delay:0.4s}.video-card:nth-child(9){animation-delay:0.45s}.video-card:nth-child(10){animation-delay:0.5s}.video-card:nth-child(11){animation-delay:0.55s}.video-card:nth-child(12){animation-delay:0.6s}.video-card:nth-child(13){animation-delay:0.65s}.video-card:nth-child(14){animation-delay:0.7s}.video-card:nth-child(15){animation-delay:0.75s}.video-card:nth-child(16){animation-delay:0.8s}.video-card:nth-child(17){animation-delay:0.85s}
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header-left">
+            <h1><span class="text-white"><i class="fas fa-crown"></i> Login Lolita</span><span class="text-red">x VIP</span></h1>
+        </div>
+        <button class="menu-button" onclick="toggleSidebar()"><i class="fas fa-bars"></i></button>
+    </header>
+    <div class="sidebar-overlay" onclick="toggleSidebar()"></div>
+    <div class="sidebar" id="sidebar">
+        <div class="sidebar-header">
+            <div class="sidebar-title"><i class="fas fa-list"></i> Categorias</div>
+            <button class="sidebar-close" onclick="toggleSidebar()"><i class="fas fa-times"></i></button>
+        </div>
+        <div class="sidebar-menu">
+            <div class="menu-item" onclick="window.location.href='login.html'"><i class="fas fa-fire"></i><span>Mais Quentes</span></div>
+            <div class="menu-item" onclick="window.location.href='login.html'"><i class="fas fa-star"></i><span>Mais Assistidos</span></div>
+            <div class="menu-item" onclick="window.location.href='login.html'"><i class="fas fa-clock"></i><span>Lançamentos</span></div>
+            <div class="menu-item" onclick="window.location.href='login.html'"><i class="fas fa-crown"></i><span>Conteúdo VIP</span></div>
+            <div class="menu-item" onclick="window.location.href='login.html'"><i class="fas fa-gem"></i><span>Cenas Exclusivas</span></div>
+            <div class="menu-item" onclick="window.location.href='login.html'"><i class="fas fa-heart"></i><span>Recomendados</span></div>
+            <div class="menu-item" onclick="window.location.href='login.html'"><i class="fas fa-video"></i><span>Vídeos Novos</span></div>
+            <div class="menu-item" onclick="window.location.href='login.html'"><i class="fas fa-lock"></i><span>Conteúdo Bloqueado</span></div>
+            <div class="menu-item" onclick="window.location.href='login.html'"><i class="fas fa-user-secret"></i><span>Privados</span></div>
+            <div class="menu-item" onclick="window.location.href='login.html'"><i class="fas fa-infinity"></i><span>Ilimitado</span></div>
+        </div>
+    </div>
+    <div class="banner-container">
+        <div class="banner" onclick="window.location.href='login.html'">
+            <img src="banner.jpeg" alt="Banner Principal">
+            <div class="banner-play"><img src="play.webp" alt="Play"></div>
+        </div>
+    </div>
+    <div class="videos-container">
+        <h2 class="section-title"><i class="fas fa-play-circle"></i> Vídeos Disponíveis</h2>
+        <div class="videos-grid">
+            <div class="video-card" onclick="window.location.href='login.html'"><div class="video-number">1</div><img src="1@10.webp" alt="Vídeo 1"><div class="play-overlay"><div class="play-button"><img src="play.webp" alt="Play"></div></div><div class="video-duration"><i class="fas fa-clock"></i><span>12:34</span></div></div>
+            <div class="video-card" onclick="window.location.href='login.html'"><div class="video-number">2</div><img src="2@10.webp" alt="Vídeo 2"><div class="play-overlay"><div class="play-button"><img src="play.webp" alt="Play"></div></div><div class="video-duration"><i class="fas fa-clock"></i><span>08:45</span></div></div>
+            <div class="video-card" onclick="window.location.href='login.html'"><div class="video-number">3</div><img src="3@10.webp" alt="Vídeo 3"><div class="play-overlay"><div class="play-button"><img src="play.webp" alt="Play"></div></div><div class="video-duration"><i class="fas fa-clock"></i><span>15:20</span></div></div>
+            <div class="video-card" onclick="window.location.href='login.html'"><div class="video-number">4</div><img src="4@10.webp" alt="Vídeo 4"><div class="play-overlay"><div class="play-button"><img src="play.webp" alt="Play"></div></div><div class="video-duration"><i class="fas fa-clock"></i><span>10:15</span></div></div>
+            <div class="video-card" onclick="window.location.href='login.html'"><div class="video-number">5</div><img src="5@10.webp" alt="Vídeo 5"><div class="play-overlay"><div class="play-button"><img src="play.webp" alt="Play"></div></div><div class="video-duration"><i class="fas fa-clock"></i><span>18:30</span></div></div>
+            <div class="video-card" onclick="window.location.href='login.html'"><div class="video-number">6</div><img src="6@10.webp" alt="Vídeo 6"><div class="play-overlay"><div class="play-button"><img src="play.webp" alt="Play"></div></div><div class="video-duration"><i class="fas fa-clock"></i><span>22:10</span></div></div>
+            <div class="video-card" onclick="window.location.href='login.html'"><div class="video-number">7</div><img src="7@10.webp" alt="Vídeo 7"><div class="play-overlay"><div class="play-button"><img src="play.webp" alt="Play"></div></div><div class="video-duration"><i class="fas fa-clock"></i><span>14:55</span></div></div>
+            <div class="video-card" onclick="window.location.href='login.html'"><div class="video-number">8</div><img src="8@10.webp" alt="Vídeo 8"><div class="play-overlay"><div class="play-button"><img src="play.webp" alt="Play"></div></div><div class="video-duration"><i class="fas fa-clock"></i><span>09:40</span></div></div>
+            <div class="video-card" onclick="window.location.href='login.html'"><div class="video-number">9</div><img src="9@10.webp" alt="Vídeo 9"><div class="play-overlay"><div class="play-button"><img src="play.webp" alt="Play"></div></div><div class="video-duration"><i class="fas fa-clock"></i><span>16:25</span></div></div>
+            <div class="video-card" onclick="window.location.href='login.html'"><div class="video-number">10</div><img src="10@10.webp" alt="Vídeo 10"><div class="play-overlay"><div class="play-button"><img src="play.webp" alt="Play"></div></div><div class="video-duration"><i class="fas fa-clock"></i><span>11:50</span></div></div>
+            <div class="video-card" onclick="window.location.href='login.html'"><div class="video-number">11</div><img src="11@10.webp" alt="Vídeo 11"><div class="play-overlay"><div class="play-button"><img src="play.webp" alt="Play"></div></div><div class="video-duration"><i class="fas fa-clock"></i><span>20:15</span></div></div>
+            <div class="video-card" onclick="window.location.href='login.html'"><div class="video-number">12</div><img src="12@10.webp" alt="Vídeo 12"><div class="play-overlay"><div class="play-button"><img src="play.webp" alt="Play"></div></div><div class="video-duration"><i class="fas fa-clock"></i><span>13:05</span></div></div>
+            <div class="video-card" onclick="window.location.href='login.html'"><div class="video-number">13</div><img src="13@10.webp" alt="Vídeo 13"><div class="play-overlay"><div class="play-button"><img src="play.webp" alt="Play"></div></div><div class="video-duration"><i class="fas fa-clock"></i><span>17:40</span></div></div>
+            <div class="video-card" onclick="window.location.href='login.html'"><div class="video-number">14</div><img src="14@10.webp" alt="Vídeo 14"><div class="play-overlay"><div class="play-button"><img src="play.webp" alt="Play"></div></div><div class="video-duration"><i class="fas fa-clock"></i><span>19:20</span></div></div>
+            <div class="video-card" onclick="window.location.href='login.html'"><div class="video-number">15</div><img src="15@10.webp" alt="Vídeo 15"><div class="play-overlay"><div class="play-button"><img src="play.webp" alt="Play"></div></div><div class="video-duration"><i class="fas fa-clock"></i><span>21:30</span></div></div>
+            <div class="video-card" onclick="window.location.href='login.html'"><div class="video-number">16</div><img src="16@10.webp" alt="Vídeo 16"><div class="play-overlay"><div class="play-button"><img src="play.webp" alt="Play"></div></div><div class="video-duration"><i class="fas fa-clock"></i><span>07:55</span></div></div>
+            <div class="video-card" onclick="window.location.href='login.html'"><div class="video-number">17</div><img src="17@10.webp" alt="Vídeo 17"><div class="play-overlay"><div class="play-button"><img src="play.webp" alt="Play"></div></div><div class="video-duration"><i class="fas fa-clock"></i><span>25:10</span></div></div>
+        </div>
+        <div class="pagination">
+            <div class="page-item active" onclick="window.location.href='login.html'">1</div>
+            <div class="page-item" onclick="window.location.href='login.html'">2</div>
+            <div class="page-item" onclick="window.location.href='login.html'">3</div>
+            <div class="page-item" onclick="window.location.href='login.html'">4</div>
+            <div class="page-item" onclick="window.location.href='login.html'">5</div>
+            <div class="page-item" onclick="window.location.href='login.html'">6</div>
+            <div class="page-item" onclick="window.location.href='login.html'">7</div>
+            <div class="page-item" onclick="window.location.href='login.html'">8</div>
+            <div class="page-item" onclick="window.location.href='login.html'">9</div>
+            <div class="page-item" onclick="window.location.href='login.html'">10</div>
+            <div class="page-item dots">...</div>
+            <div class="page-item total" onclick="window.location.href='login.html'">+648</div>
+        </div>
+    </div>
+    <footer class="footer"><p class="footer-text"><i class="fas fa-shield-alt"></i> Conteúdo <span>18+</span> | Todos os direitos reservados © 2026</p></footer>
+    <script>
+        function toggleSidebar(){const sidebar=document.getElementById('sidebar');const overlay=document.querySelector('.sidebar-overlay');sidebar.classList.toggle('active');overlay.classList.toggle('active');document.body.style.overflow=sidebar.classList.contains('active')?'hidden':''}
+        document.querySelectorAll('.page-item').forEach(function(item){if(!item.classList.contains('dots')&&!item.classList.contains('total')){item.addEventListener('click',function(e){e.preventDefault();window.location.href='login.html'})}});
+    </script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+<!-- Age Verification Overlay -->
+<div id="ageVerificationOverlay" style="
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.85);
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+    z-index: 999999;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+">
+    <!-- Modal Content -->
+    <div style="
+        background: linear-gradient(135deg, #1e1e1e 0%, #2a2a2a 100%);
+        border-radius: 15px;
+        padding: 40px;
+        text-align: center;
+        box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+        border: 1px solid rgba(255,255,255,0.1);
+        max-width: 90%;
+        width: 450px;
+        animation: modalSlideIn 0.3s ease-out;
+    ">
+        
+        <!-- Imagem -->
+        <div style="margin-bottom: 25px;">
+            <img src="ssnn.webp" alt="18+ Verification" style="
+                max-width: 280px;
+                width: 100%;
+                height: auto;
+                border-radius: 10px;
+                box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+            ">
+        </div>
+
+        <!-- Texto -->
+        <h2 style="
+            color: #ffffff;
+            font-size: 20px;
+            margin-bottom: 30px;
+            font-weight: 600;
+            line-height: 1.4;
+        ">
+            Clique em SIM abaixo se você é maior +18
+        </h2>
+
+        <!-- Botões -->
+        <div style="
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+        ">
+            <button onclick="confirmAge()" style="
+                background: linear-gradient(135deg, #28a745 0%, #20c997 100%);
+                color: white;
+                border: none;
+                padding: 15px 50px;
+                font-size: 16px;
+                font-weight: bold;
+                border-radius: 8px;
+                cursor: pointer;
+                transition: all 0.3s ease;
+                box-shadow: 0 4px 15px rgba(40, 167, 69, 0.3);
+            "
+            onmouseover="this.style.transform='translateY(-2px)'; this.style.boxShadow='0 6px 20px rgba(40, 167, 69, 0.4)'"
+            onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 4px 15px rgba(40, 167, 69, 0.3)'">
+                SIM
+            </button>
+
+            <button onclick="denyAge()" style="
+                background: linear-gradient(135deg, #dc3545 0%, #fd7e14 100%);
+                color: white;
+                border: none;
+                padding: 15px 50px;
+                font-size: 16px;
+                font-weight: bold;
+                border-radius: 8px;
+                cursor: pointer;
+                transition: all 0.3s ease;
+                box-shadow: 0 4px 15px rgba(220, 53, 69, 0.3);
+            "
+            onmouseover="this.style.transform='translateY(-2px)'; this.style.boxShadow='0 6px 20px rgba(220, 53, 69, 0.4)'"
+            onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 4px 15px rgba(220, 53, 69, 0.3)'">
+                NÃO
+            </button>
+        </div>
+    </div>
+</div>
+
+<!-- Mensagem de Saída (oculta inicialmente) -->
+<div id="exitMessage" style="
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.95);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    z-index: 999999;
+    display: none;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+">
+    <div style="
+        background: linear-gradient(135deg, #1e1e1e 0%, #2a2a2a 100%);
+        border-radius: 15px;
+        padding: 50px;
+        border: 1px solid rgba(255,255,255,0.1);
+        box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+        max-width: 90%;
+        width: 450px;
+        animation: modalSlideIn 0.3s ease-out;
+    ">
+        <div style="
+            font-size: 80px;
+            margin-bottom: 20px;
+        ">❓</div>
+        <h2 style="
+            color: #dc3545;
+            font-size: 28px;
+            margin-bottom: 15px;
+            font-weight: bold;
+        ">Atenção!</h2>
+        <p style="
+            color: #ffffff;
+            font-size: 18px;
+            margin-bottom: 10px;
+        ">Você deve sair desta página.</p>
+        <p style="
+            color: #a0a0a0;
+            font-size: 14px;
+            margin-top: 20px;
+        ">Este conteúdo é destinado apenas para maiores de 18 anos.</p>
+        <div style="
+            margin-top: 30px;
+            padding: 15px;
+            background: rgba(220, 53, 69, 0.1);
+            border-radius: 8px;
+            border-left: 4px solid #dc3545;
+        ">
+            <p style="color: #dc3545; margin: 0; font-size: 14px;">
+                Redirecionando em <span id="countdown">5</span> segundos...
+            </p>
+        </div>
+    </div>
+</div>
+
+<style>
+    @keyframes modalSlideIn {
+        from {
+            opacity: 0;
+            transform: translateY(-50px) scale(0.9);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0) scale(1);
+        }
+    }
+
+    /* Previne scroll quando o overlay está ativo */
+    body.overlay-active {
+        overflow: hidden;
+    }
+</style>
+
+<script>
+    // Adiciona classe para prevenir scroll
+    document.body.classList.add('overlay-active');
+
+    function confirmAge() {
+        // Esconde o overlay de verificação
+        document.getElementById('ageVerificationOverlay').style.display = 'none';
+        // Remove a classe que previne scroll
+        document.body.classList.remove('overlay-active');
+        // Opcional: Salva no localStorage para não mostrar novamente
+        localStorage.setItem('ageVerified', 'true');
+    }
+
+    function denyAge() {
+        // Esconde o overlay de verificação
+        document.getElementById('ageVerificationOverlay').style.display = 'none';
+        // Mostra a mensagem de saída
+        document.getElementById('exitMessage').style.display = 'flex';
+        
+        // Countdown
+        let seconds = 5;
+        const countdownEl = document.getElementById('countdown');
+        const timer = setInterval(() => {
+            seconds--;
+            countdownEl.textContent = seconds;
+            if (seconds <= 0) {
+                clearInterval(timer);
+                // Redireciona para página segura
+                window.location.href = 'https://www.google.com';
+            }
+        }, 1000);
+    }
+
+    // Verifica se já foi verificado anteriormente
+    window.addEventListener('load', function() {
+        if (localStorage.getItem('ageVerified') === 'true') {
+            document.getElementById('ageVerificationOverlay').style.display = 'none';
+            document.body.classList.remove('overlay-active');
+        }
+    });
+</script>

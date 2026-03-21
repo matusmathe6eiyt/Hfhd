@@ -1,0 +1,585 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Lolita X VIP</title>
+    <link rel="icon" type="image/jpeg" href="favicon.jpeg">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&display=swap" rel="stylesheet">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #0a0a0a 0%, #1a1a2e 100%);
+            color: #fff;
+            min-height: 100vh;
+        }
+
+        /* Cabeçalho */
+        header {
+            background: linear-gradient(180deg, #000 0%, #1a1a1a 100%);
+            padding: 1rem 0;
+            text-align: center;
+            border-bottom: 3px solid #ff0000;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            font-size: 1.5rem;
+            font-weight: 800;
+            text-transform: uppercase;
+        }
+
+        .logo-crown {
+            font-size: 2rem;
+        }
+
+        .logo-white {
+            color: #fff;
+        }
+
+        .logo-red {
+            color: #ff0000;
+        }
+
+        /* Banner */
+        .banner {
+            width: 100%;
+            height: 180px;
+            background-image: url('b.jpeg');
+            background-size: cover;
+            background-position: center;
+            cursor: pointer;
+            transition: transform 0.3s;
+        }
+
+        .banner:hover {
+            transform: scale(1.02);
+        }
+
+        /* Container */
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 2rem 1rem;
+        }
+
+        /* Seção de Pagamento Compacta */
+        .payment-box {
+            background: linear-gradient(135deg, rgba(30,30,30,0.95) 0%, rgba(20,20,20,0.95) 100%);
+            border-radius: 15px;
+            padding: 2rem;
+            text-align: center;
+            margin-bottom: 2rem;
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .payment-box h2 {
+            color: #ff0000;
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+        }
+
+        .payment-box p {
+            color: rgba(255,255,255,0.8);
+            margin-bottom: 1.5rem;
+            font-size: 0.95rem;
+        }
+
+        .price {
+            background: linear-gradient(135deg, #ff0000 0%, #cc0000 100%);
+            color: #fff;
+            display: inline-block;
+            padding: 1rem 2.5rem;
+            border-radius: 10px;
+            font-size: 2rem;
+            font-weight: 800;
+            margin: 1rem 0;
+            box-shadow: 0 5px 20px rgba(255,0,0,0.4);
+        }
+
+        .price span {
+            display: block;
+            font-size: 0.8rem;
+            font-weight: 400;
+            margin-top: 0.3rem;
+        }
+
+        .btn-buy {
+            background: linear-gradient(135deg, #ff0000 0%, #cc0000 100%);
+            color: #fff;
+            border: none;
+            padding: 1rem 3rem;
+            font-size: 1.1rem;
+            font-weight: 700;
+            border-radius: 25px;
+            cursor: pointer;
+            margin: 1.5rem 0;
+            text-transform: uppercase;
+            box-shadow: 0 5px 20px rgba(255,0,0,0.4);
+            transition: all 0.3s;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .btn-buy:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(255,0,0,0.6);
+        }
+
+        .info-text {
+            color: rgba(255,255,255,0.7);
+            font-size: 0.9rem;
+            font-style: italic;
+        }
+
+        /* Grid de Vídeos */
+        .section-title {
+            color: #ff0000;
+            text-align: center;
+            font-size: 1.8rem;
+            margin: 2rem 0 1.5rem;
+            text-transform: uppercase;
+        }
+
+        .videos-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .video-card {
+            background: rgba(30,30,30,0.9);
+            border-radius: 10px;
+            overflow: hidden;
+            cursor: pointer;
+            transition: all 0.3s;
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .video-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(255,0,0,0.3);
+            border-color: #ff0000;
+        }
+
+        .video-thumb {
+            position: relative;
+            width: 100%;
+            height: 150px;
+            overflow: hidden;
+        }
+
+        .video-thumb img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .badge-private {
+            position: absolute;
+            top: 8px;
+            right: 8px;
+            background: #ff0000;
+            color: #fff;
+            padding: 0.3rem 0.8rem;
+            border-radius: 15px;
+            font-size: 0.7rem;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 0.3rem;
+        }
+
+        .video-overlay {
+            position: absolute;
+            inset: 0;
+            background: rgba(0,0,0,0.7);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            gap: 0.8rem;
+        }
+
+        .lock-icon {
+            color: #ff0000;
+            font-size: 2.5rem;
+        }
+
+        .duration {
+            background: rgba(255,0,0,0.9);
+            color: #fff;
+            padding: 0.4rem 0.8rem;
+            border-radius: 15px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+        }
+
+        .video-info {
+            padding: 1rem;
+        }
+
+        .video-title {
+            font-size: 0.95rem;
+            font-weight: 600;
+            margin-bottom: 0.3rem;
+        }
+
+        .video-desc {
+            font-size: 0.8rem;
+            color: rgba(255,255,255,0.6);
+        }
+
+        /* Notificação Flutuante */
+        .notification {
+            position: fixed;
+            left: -350px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: linear-gradient(135deg, #ff0000 0%, #cc0000 100%);
+            color: #fff;
+            padding: 1.5rem 2rem;
+            border-radius: 0 10px 10px 0;
+            box-shadow: 0 5px 30px rgba(255,0,0,0.5);
+            z-index: 9999;
+            transition: left 0.4s;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .notification.show {
+            left: 0;
+        }
+
+        .notification i {
+            font-size: 1.8rem;
+        }
+
+        .notification strong {
+            display: block;
+            font-size: 1rem;
+        }
+
+        .notification span {
+            font-size: 0.85rem;
+            opacity: 0.9;
+        }
+
+        /* Footer */
+        footer {
+            background: #000;
+            text-align: center;
+            padding: 1.5rem;
+            margin-top: 3rem;
+            border-top: 2px solid #ff0000;
+            color: rgba(255,255,255,0.6);
+            font-size: 0.9rem;
+        }
+
+        /* Responsivo */
+        @media (max-width: 768px) {
+            .logo {
+                font-size: 1.2rem;
+            }
+            
+            .banner {
+                height: 140px;
+            }
+            
+            .videos-grid {
+                grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+                gap: 1rem;
+            }
+            
+            .price {
+                font-size: 1.5rem;
+                padding: 0.8rem 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Cabeçalho -->
+    <header>
+        <div class="logo">
+            <span class="logo-crown">👑</span>
+            <span class="logo-white">LOGIN LOLITA</span>
+            <span class="logo-red">X VIP</span>
+        </div>
+    </header>
+
+    <!-- Banner -->
+    <div class="banner" onclick="window.location.href='index.html'"></div>
+
+    <!-- Conteúdo Principal -->
+    <div class="container">
+        <!-- Seção de Pagamento -->
+        <div class="payment-box">
+            <h2><i class="fas fa-crown"></i> Libere o Acesso Total</h2>
+            <p>Tenha acesso ilimitado a todo o conteúdo exclusivo</p>
+            
+            <div class="price">
+                R$ 50
+                <span>Pagamento único - Acesso permanente</span>
+            </div>
+            
+            <br>
+            
+            <a href="https://sayu.erbystore.com/product/17739773655246861745979801361995" class="btn-buy">
+                <i class="fas fa-unlock-alt"></i> ADQUIRIR CHAVE
+            </a>
+            
+            <p class="info-text">
+                <i class="fas fa-info-circle"></i> Clique no botão e libere todos os conteúdos e muito mais
+            </p>
+        </div>
+
+        <!-- Grid de Vídeos -->
+        <h2 class="section-title"><i class="fas fa-play-circle"></i> Conteúdos Exclusivos</h2>
+        
+        <div class="videos-grid">
+            <!-- Vídeo 1 -->
+            <div class="video-card" onclick="showDenied()">
+                <div class="video-thumb">
+                    <img src="1.jpeg" alt="Vídeo 1">
+                    <div class="badge-private">
+                        <i class="fas fa-lock"></i> PRIVADO
+                    </div>
+                    <div class="video-overlay">
+                        <i class="fas fa-lock lock-icon"></i>
+                        <div class="duration">
+                            <i class="fas fa-clock"></i> 15:30
+                        </div>
+                    </div>
+                </div>
+                <div class="video-info">
+                    <div class="video-title">Conteúdo Exclusivo #1</div>
+                    <div class="video-desc">Técnicas avançadas e segredos exclusivos</div>
+                </div>
+            </div>
+
+            <!-- Vídeo 2 -->
+            <div class="video-card" onclick="showDenied()">
+                <div class="video-thumb">
+                    <img src="2.jpeg" alt="Vídeo 2">
+                    <div class="badge-private">
+                        <i class="fas fa-lock"></i> PRIVADO
+                    </div>
+                    <div class="video-overlay">
+                        <i class="fas fa-lock lock-icon"></i>
+                        <div class="duration">
+                            <i class="fas fa-clock"></i> 22:45
+                        </div>
+                    </div>
+                </div>
+                <div class="video-info">
+                    <div class="video-title">Conteúdo Exclusivo #2</div>
+                    <div class="video-desc">Habilidades essenciais com método exclusivo</div>
+                </div>
+            </div>
+
+            <!-- Vídeo 3 -->
+            <div class="video-card" onclick="showDenied()">
+                <div class="video-thumb">
+                    <img src="3.jpeg" alt="Vídeo 3">
+                    <div class="badge-private">
+                        <i class="fas fa-lock"></i> PRIVADO
+                    </div>
+                    <div class="video-overlay">
+                        <i class="fas fa-lock lock-icon"></i>
+                        <div class="duration">
+                            <i class="fas fa-clock"></i> 18:20
+                        </div>
+                    </div>
+                </div>
+                <div class="video-info">
+                    <div class="video-title">Conteúdo Exclusivo #3</div>
+                    <div class="video-desc">Estratégias comprovadas para resultados</div>
+                </div>
+            </div>
+
+            <!-- Vídeo 4 -->
+            <div class="video-card" onclick="showDenied()">
+                <div class="video-thumb">
+                    <img src="4.jpeg" alt="Vídeo 4">
+                    <div class="badge-private">
+                        <i class="fas fa-lock"></i> PRIVADO
+                    </div>
+                    <div class="video-overlay">
+                        <i class="fas fa-lock lock-icon"></i>
+                        <div class="duration">
+                            <i class="fas fa-clock"></i> 25:10
+                        </div>
+                    </div>
+                </div>
+                <div class="video-info">
+                    <div class="video-title">Conteúdo Exclusivo #4</div>
+                    <div class="video-desc">Técnicas avançadas que poucos conhecem</div>
+                </div>
+            </div>
+
+            <!-- Vídeo 5 -->
+            <div class="video-card" onclick="showDenied()">
+                <div class="video-thumb">
+                    <img src="5.jpeg" alt="Vídeo 5">
+                    <div class="badge-private">
+                        <i class="fas fa-lock"></i> PRIVADO
+                    </div>
+                    <div class="video-overlay">
+                        <i class="fas fa-lock lock-icon"></i>
+                        <div class="duration">
+                            <i class="fas fa-clock"></i> 30:00
+                        </div>
+                    </div>
+                </div>
+                <div class="video-info">
+                    <div class="video-title">Conteúdo Exclusivo #5</div>
+                    <div class="video-desc">Guia completo para iniciantes e avançados</div>
+                </div>
+            </div>
+
+            <!-- Vídeo 6 -->
+            <div class="video-card" onclick="showDenied()">
+                <div class="video-thumb">
+                    <img src="6.jpeg" alt="Vídeo 6">
+                    <div class="badge-private">
+                        <i class="fas fa-lock"></i> PRIVADO
+                    </div>
+                    <div class="video-overlay">
+                        <i class="fas fa-lock lock-icon"></i>
+                        <div class="duration">
+                            <i class="fas fa-clock"></i> 20:15
+                        </div>
+                    </div>
+                </div>
+                <div class="video-info">
+                    <div class="video-title">Conteúdo Exclusivo #6</div>
+                    <div class="video-desc">Segredos dos especialistas</div>
+                </div>
+            </div>
+
+            <!-- Vídeo 7 -->
+            <div class="video-card" onclick="showDenied()">
+                <div class="video-thumb">
+                    <img src="7.jpeg" alt="Vídeo 7">
+                    <div class="badge-private">
+                        <i class="fas fa-lock"></i> PRIVADO
+                    </div>
+                    <div class="video-overlay">
+                        <i class="fas fa-lock lock-icon"></i>
+                        <div class="duration">
+                            <i class="fas fa-clock"></i> 28:40
+                        </div>
+                    </div>
+                </div>
+                <div class="video-info">
+                    <div class="video-title">Conteúdo Exclusivo #7</div>
+                    <div class="video-desc">Método passo a passo para o sucesso</div>
+                </div>
+            </div>
+
+            <!-- Vídeo 8 -->
+            <div class="video-card" onclick="showDenied()">
+                <div class="video-thumb">
+                    <img src="8.jpeg" alt="Vídeo 8">
+                    <div class="badge-private">
+                        <i class="fas fa-lock"></i> PRIVADO
+                    </div>
+                    <div class="video-overlay">
+                        <i class="fas fa-lock lock-icon"></i>
+                        <div class="duration">
+                            <i class="fas fa-clock"></i> 16:55
+                        </div>
+                    </div>
+                </div>
+                <div class="video-info">
+                    <div class="video-title">Conteúdo Exclusivo #8</div>
+                    <div class="video-desc">Dicas práticas e aplicáveis</div>
+                </div>
+            </div>
+
+            <!-- Vídeo 9 -->
+            <div class="video-card" onclick="showDenied()">
+                <div class="video-thumb">
+                    <img src="9.jpeg" alt="Vídeo 9">
+                    <div class="badge-private">
+                        <i class="fas fa-lock"></i> PRIVADO
+                    </div>
+                    <div class="video-overlay">
+                        <i class="fas fa-lock lock-icon"></i>
+                        <div class="duration">
+                            <i class="fas fa-clock"></i> 24:30
+                        </div>
+                    </div>
+                </div>
+                <div class="video-info">
+                    <div class="video-title">Conteúdo Exclusivo #9</div>
+                    <div class="video-desc">Transforme sua abordagem com técnicas</div>
+                </div>
+            </div>
+
+            <!-- Vídeo 10 -->
+            <div class="video-card" onclick="showDenied()">
+                <div class="video-thumb">
+                    <img src="10.jpeg" alt="Vídeo 10">
+                    <div class="badge-private">
+                        <i class="fas fa-lock"></i> PRIVADO
+                    </div>
+                    <div class="video-overlay">
+                        <i class="fas fa-lock lock-icon"></i>
+                        <div class="duration">
+                            <i class="fas fa-clock"></i> 35:00
+                        </div>
+                    </div>
+                </div>
+                <div class="video-info">
+                    <div class="video-title">Conteúdo Exclusivo #10</div>
+                    <div class="video-desc">Conteúdo bônus exclusivo para membros</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Notificação -->
+    <div id="notification" class="notification">
+        <i class="fas fa-exclamation-triangle"></i>
+        <div>
+            <strong>ACESSO NEGADO</strong>
+            <span>Adquira a chave para liberar</span>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2026 Login Lolita X VIP. Todos os direitos reservados.</p>
+    </footer>
+
+    <script>
+        function showDenied() {
+            const notif = document.getElementById('notification');
+            notif.classList.add('show');
+            setTimeout(() => {
+                notif.classList.remove('show');
+            }, 3000);
+        }
+    </script>
+</body>
+</html>

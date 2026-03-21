@@ -1,0 +1,427 @@
+<html lang="pt-br">
+ <head></head>
+ <body>
+  <heasádicos <meta="" charset="UTF-8"> 
+   <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+   <title>Login Lolita x VIP</title> 
+   <link rel="icon" type="image/jpeg" href="favicon.jpeg"> 
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"> 
+   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&amp;display=swap" rel="stylesheet"> 
+   <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            background-color: #000;
+        }
+
+        /* --- BACKGROUND SLIDESHOW --- */
+        #bg-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+        }
+
+        #bg-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: opacity 0.5s ease-in-out;
+            opacity: 0;
+        }
+
+        /* --- CABEÇALHO --- */
+        header {
+            background-color: #000;
+            padding: 15px 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-bottom: 1px solid #333;
+            z-index: 10;
+        }
+
+        header h1 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        .text-white { color: #ffffff; }
+        .text-red { color: #ff0000; }
+
+        /* --- CONTEÚDO PRINCIPAL --- */
+        .main-wrapper {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 40px 20px;
+        }
+
+        /* --- CONTAINER DE LOGIN --- */
+        .login-box {
+            background: rgba(0, 0, 0, 0.65);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            padding: 40px;
+            border-radius: 20px;
+            width: 100%;
+            max-width: 400px;
+            text-align: center;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5);
+            animation: fadeIn 1s ease;
+        }
+
+        .icon-lock {
+            font-size: 3rem;
+            color: #ff0000;
+            margin-bottom: 20px;
+            text-shadow: 0 0 10px rgba(255, 0, 0, 0.5);
+        }
+
+        h2 {
+            color: #fff;
+            margin-bottom: 25px;
+            font-size: 1.5rem;
+        }
+
+        /* --- INPUT E BOTÃO --- */
+        .input-group {
+            position: relative;
+            margin-bottom: 20px;
+        }
+
+        .input-group i {
+            position: absolute;
+            left: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #ccc;
+        }
+
+        input[type="text"] {
+            width: 100%;
+            padding: 15px 15px 15px 45px;
+            border-radius: 50px;
+            border: none;
+            background: rgba(255, 255, 255, 0.1);
+            color: #fff;
+            font-size: 1rem;
+            outline: none;
+            transition: 0.3s;
+            border: 1px solid transparent;
+        }
+
+        input[type="text"]:focus {
+            background: rgba(255, 255, 255, 0.2);
+            border-color: #ff0000;
+        }
+
+        input::placeholder {
+            color: #aaa;
+        }
+
+        button {
+            width: 100%;
+            padding: 15px;
+            border-radius: 50px;
+            border: none;
+            background: linear-gradient(45deg, #ff0000, #990000);
+            color: white;
+            font-weight: 600;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: transform 0.2s, box-shadow 0.2s;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        button:hover {
+            transform: scale(1.02);
+            box-shadow: 0 0 20px rgba(255, 0, 0, 0.6);
+        }
+
+        button:active {
+            transform: scale(0.98);
+        }
+
+        /* --- RODAPÉ DO CONTAINER --- */
+        .footer-link {
+            margin-top: 25px;
+            font-size: 0.9rem;
+            color: #ccc;
+        }
+
+        .footer-link a {
+            color: #ff0000;
+            text-decoration: none;
+            font-weight: 600;
+            display: block;
+            margin-top: 5px;
+        }
+
+        .footer-link a:hover {
+            text-decoration: underline;
+        }
+
+        /* --- MENSAGEM DE ERRO FLUTUANTE --- */
+        .error-toast {
+            position: fixed;
+            top: -100px;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: rgba(180, 0, 0, 0.95);
+            color: white;
+            padding: 15px 30px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            z-index: 100;
+            transition: top 0.5s cubic-bezier(0.68, -0.55, 0.27, 1.55);
+            border-left: 5px solid #fff;
+            min-width: 300px;
+            justify-content: center;
+        }
+
+        .error-toast.show {
+            top: 90px;
+        }
+
+        /* --- RODAPÉ DE CATEGORIAS (FOOTER NORMAL) --- */
+        .categories-footer {
+            background-color: #000;
+            border-top: 2px solid #ff0000;
+            padding: 30px 20px 40px;
+            margin-top: auto;
+        }
+
+        .categories-title {
+            color: #fff;
+            font-size: 1rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 25px;
+            padding-left: 15px;
+            border-left: 4px solid #ff0000;
+        }
+
+        .category-item {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            padding: 15px 0;
+            border-bottom: 1px solid #222;
+        }
+
+        .category-item:last-child {
+            border-bottom: none;
+        }
+
+        .category-circle {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            overflow: hidden;
+            flex-shrink: 0;
+            border: 2px solid #ff0000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #111;
+        }
+
+        .category-circle img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .category-name {
+            color: #eee;
+            font-size: 0.95rem;
+            font-weight: 500;
+            letter-spacing: 0.5px;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @media (max-width: 480px) {
+            header h1 { font-size: 1.2rem; }
+            .login-box { padding: 30px 20px; }
+            .error-toast { width: 90%; min-width: auto; left: 5%; transform: none; }
+            .error-toast.show { top: 80px; }
+            .categories-footer { padding: 25px 15px 35px; }
+            .category-circle { width: 45px; height: 45px; }
+            .category-name { font-size: 0.85rem; }
+        }
+    </style> 
+   <header> 
+    <h1> <span class="text-white"><i class="fas fa-crown"></i> Login Lolita</span> <span class="text-red">x VIP</span> </h1> 
+   </header> 
+   <div id="bg-container"> 
+    <img id="bg-image" src="2.webp" alt="Background" style="opacity: 1;"> 
+   </div> 
+   <div class="main-wrapper"> 
+    <div class="login-box"> 
+     <div class="icon-lock"> 
+      <i class="fas fa-lock"></i> 
+     </div> 
+     <h2>Area Restrita</h2> 
+     <div class="input-group"> 
+      <i class="fas fa-key"></i> 
+      <input type="text" id="tokenInput" placeholder="Digite seu Token VIP" autocomplete="off"> 
+     </div> 
+     <button onclick="verificarToken()"> Acessar Agora <i class="fas fa-arrow-right"></i> </button> 
+     <div class="footer-link">
+       Voce ainda nao tem um token? 
+      <a href="token.html">Adquira o seu aqui</a> 
+     </div> 
+    </div> 
+   </div> 
+   <div id="errorToast" class="error-toast"> 
+    <i class="fas fa-exclamation-circle"></i> 
+    <span id="errorMessage">Token Inválido! Tente novamente.</span> 
+   </div> 
+   <!-- RODAPÉ DE CATEGORIAS --> 
+   <footer class="categories-footer"> 
+    <div class="categories-title">
+     CATEGORIAS DISPONIVEIS NA PLATAFORMA
+    </div> 
+    <div class="category-item"> 
+     <div class="category-circle">
+      <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjp0Hz2xqdD5tu_4JcajBfmbiJyt3zkwGRUYmQRNZT2Ea2Fglt4uPP8Uz60KvCEAwfL7yy_UhrpZpz53yTL1THX81O03hsCQzW0zgc4HSkrVRLPxJRwqbxgq6r1zg13ANoMKbglI-qimogySaZ_CQHpllYYNKO7f7llz55p4LytF7uh4FG30P9APnZjxQyD/s736/a1.webp" alt="Categoria 1">
+     </div> 
+     <span class="category-name">DE 5 A 10 ANOS VIDEO</span> 
+    </div> 
+    <div class="category-item"> 
+     <div class="category-circle">
+      <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhXaxS7VFLMMv26D11_c9JEMQoUgV0SbQjRIBXcz0ikm0SwIWYKmRO-NH1GP704KusT2gXpW2di-pM4CqEg-Wa-Els8PXREvUI7dn7ggQrqcTQ7l0pMgDb8LB_1VlpCdMcnRQYI-nqr6f4nyjVT5mRCEC68e51mEACDDCuuPQcdXH1Lo3hOVzbQjpP_MYIb/s735/s2.webp" alt="Categoria 2">
+     </div> 
+     <span class="category-name">PAI E FILHA MAE E FILHA</span> 
+    </div> 
+    <div class="category-item"> 
+     <div class="category-circle">
+      <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEj_qBIwUcxTg1tRQbU-rAOGzJF1ATph4hkFpTcnNCgRtyaCXHPyO-8gj-HhObARxiKVteFoRUPTn_yM9KsX3gqgeX2fb95eIL3I6eIFdQ3fCG6h9T963ApU_i3-iIr2eHUhcT29AoEECbtCiZho8_YqwjjSxKTwD9X7qxcrAeMtsqdMJz_fge4Sq3tMdOiK/s1308/s3.webp" alt="Categoria 3">
+     </div> 
+     <span class="category-name">MORENAS DE 10 A 18 ANOS</span> 
+    </div> 
+    <div class="category-item"> 
+     <div class="category-circle">
+      <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjeW8gvETHvEYeLBzQ78lSJmGqnnqrX0sxAGIVQqQmFXNZpLl1iUTzCxHCLtb8Eghnh2y30uTLsv0RnG_gpw6boma7wyZsquCWPNDBmlfOxVWvpbweIozceZSzNX7WQqVWPgeKVpHy9LRf2_fkA2Le0YCdl22Vj3yAlTuPFJ_mGMcZ8AnEP0hObaQO0jgkQ/s968/s4.webp" alt="Categoria 4">
+     </div> 
+     <span class="category-name">TORTURA </span> 
+    </div> 
+    <div class="category-item"> 
+     <div class="category-circle">
+      <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjAn21xYZlbI2R82i1piMuzlfQyzGTNaIrnotPEwiyIsISIww9JgBXED7nX7jEd9TZFmlwmSrroNlHK_LSe6GrpJ0eQrCkmAW2n5zZNkb6_goKxm3pKsErztBhzcM4Y_97mxaM5aQIbId7gGtr34eoUXlpZa8T0QvzIN4-Riv7FjLIqr14V_b1KKHctJV7R/s420/s5.webp" alt="Categoria 5">
+     </div> 
+     <span class="category-name">ANIMACOES DE DESENHO</span> 
+    </div> 
+    <div class="category-item"> 
+     <div class="category-circle">
+      <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhA149S1biYWSxYOBNIec2WtyT2JWLJoYN0GqysAkaRZ_IeK8Aw1gZS26cOhyYMqzS2tHXlNCaF-vN_9BCqHdbL8mlgU-zUGPfRQtn32YFVkIJfwgvmVxQMPnivY3-OSDI0Yh6h4KYlEb3lbfm01lL-aE1JtwG3eha7NnwHF4pQCClKOuXOoM0pgk7aPYoj/s1308/s6.webp" alt="Categoria 6">
+     </div> 
+     <span class="category-name">RAPTADA NA RUA</span> 
+    </div> 
+    <div class="category-item"> 
+     <div class="category-circle">
+      <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjRQrv4PLGcqQfMzV_vm_MerlDC6ueud954H4EgUkReht_pI0mPmaPLcplBXQAnCYG-hN-aEzfXhLrWDIfp68QHjJeZkX0-4TqwfPI9a52gk9QonKXK8KqYjAoPds7xID3DWr6c0dwacfuGAKUXbkwQtVm72kyHEdTDPnTaUIjJq1HXEJ_FJtDBCCdepCLT/s663/s7.webp" alt="Categoria 7">
+     </div> 
+     <span class="category-name">MENINOS GAY</span> 
+    </div> 
+    <div class="category-item"> 
+     <div class="category-circle">
+      <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjhyfn3soAeimAIQXnm1SI4ZJPO9GzUdOwF9ZPEzZ7plJ-pU7r4EsfszFbfw1UlMvUG4OXZ9lmlDUUx1HwhGecASIfGGF3xpDdkDkrX0rfTp5vgYztsNecn-RZEhlRpX3FIJ62suIkoswdskIDnzpvY3D9CHFDmz5yHTEu32A_txK88YMxPZVGWAxtr7hjW/s1308/s8.webp" alt="Categoria 8">
+     </div> 
+     <span class="category-name">MANDA TS</span> 
+    </div> 
+    <div class="category-item"> 
+     <div class="category-circle">
+      <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEijH42woRe2JzOBt4L-Em1EbzMAD52cLuN_8as0xW4mpyo_ZXbicxAEjgc6UWVlJSYAua9NZNcgHslmoCKQ8OyyVYNwwbAsmcIyYJhljZpHQMzJn7pJqRyCBk8corlFfBYZYS2em_dRvYjbCW_KOBLR7CO3tsync_JwsNZDv8lIfGU5P4hECaXOzqn9kYwB/s981/s9.webp" alt="Categoria 9">
+     </div> 
+     <span class="category-name">COM ANIMAIS</span> 
+    </div> 
+    <div class="category-item"> 
+     <div class="category-circle">
+      <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiqv5teQQ3dWOXNsDiaFczV4C0qIQusVeEEuX77jBPbnGzlS80tquzGZPGLg1mzS2-w9MMk7-4Gy-BXL8lO6leqvBYCzrSTjktjaLcJvZ9VO2Zr_KYga6nS5fVr7lN-0BRD_z7lgBe5hYcDOxVv1Qe4aKDmRWKS58j7OQz-PSToMl-_FoLX2G4MkMCf4Tfq/s640/s10.webp" alt="Categoria 10">
+     </div> 
+     <span class="category-name">VAZADO NA NET</span> 
+    </div> 
+   </footer> 
+   <script>
+        const images = ['1.webp', '2.webp', '3.webp', '4.webp', '5.webp'];
+        const imgElement = document.getElementById('bg-image');
+        let currentIndex = 0;
+
+        imgElement.style.opacity = 1;
+
+        function changeImage() {
+            imgElement.style.opacity = 0;
+            setTimeout(() => {
+                currentIndex = (currentIndex + 1) % images.length;
+                imgElement.src = images[currentIndex];
+                imgElement.onload = () => {
+                    imgElement.style.opacity = 1;
+                };
+            }, 500);
+        }
+
+        setInterval(changeImage, 3000);
+
+        const tokenCorreto = "L0L1T4_X_v1P";
+
+        function verificarToken() {
+            const inputUsuario = document.getElementById('tokenInput').value.trim();
+            const errorToast = document.getElementById('errorToast');
+            const errorMessage = document.getElementById('errorMessage');
+
+            if (inputUsuario === "") {
+                errorMessage.textContent = "Por favor, digite seu token!";
+                mostrarErro();
+            } else if (inputUsuario !== tokenCorreto) {
+                errorMessage.textContent = "Token Inválido! Tente novamente.";
+                mostrarErro();
+            } else {
+                window.location.href = "video.html";
+            }
+        }
+
+        function mostrarErro() {
+            const errorToast = document.getElementById('errorToast');
+            errorToast.classList.add('show');
+            setTimeout(() => {
+                errorToast.classList.remove('show');
+            }, 3000);
+        }
+
+        document.getElementById('tokenInput').addEventListener('keypress', function (e) {
+            if (e.key === 'Enter') {
+                verificarToken();
+            }
+        });
+
+        console.log(tokenCorreto);
+    </script> 
+  </heasádicos>
+ </body>
+</html>
