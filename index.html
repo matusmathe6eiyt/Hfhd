@@ -2,371 +2,720 @@
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Vídeos - Lolita x VIP</title>
-    <link rel="icon" type="image/jpeg" href="favicon.jpeg">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>VIDEO WEB BLACK CPN ET LOI</title>
+    
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="favicon.webp" type="image/webp">
+
+    <!-- Ícones (FontAwesome) -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+    <!-- Meta Tags de Segurança e SEO -->
+    <meta name="description" content="Plataforma premium de vídeos e conteúdos exclusivos.">
+    <meta name="robots" content="index, follow">
+    <meta name="theme-color" content="#000000">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self' https: 'unsafe-inline';">
+
     <style>
-        *{margin:0;padding:0;box-sizing:border-box;font-family:'Poppins',sans-serif}
-        body{background-color:#000;color:#fff;min-height:100vh}
-        header{background:rgba(0,0,0,0.95);backdrop-filter:blur(10px);padding:15px 25px;display:flex;align-items:center;justify-content:space-between;border-bottom:2px solid #ff0000;position:sticky;top:0;z-index:1000;box-shadow:0 5px 20px rgba(255,0,0,0.3)}
-        .header-left{display:flex;align-items:center;gap:10px}
-        .header-left h1{font-size:1.3rem;font-weight:700;letter-spacing:1px;text-transform:uppercase}
-        .text-white{color:#fff}.text-red{color:#ff0000}
-        .menu-button{background:linear-gradient(135deg,#ff0000,#cc0000);border:none;color:#fff;width:45px;height:45px;border-radius:10px;cursor:pointer;font-size:1.3rem;display:flex;align-items:center;justify-content:center;transition:all 0.3s ease;box-shadow:0 4px 15px rgba(255,0,0,0.4)}
-        .menu-button:hover{transform:scale(1.1);box-shadow:0 6px 20px rgba(255,0,0,0.6)}
-        .sidebar-overlay{position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.7);z-index:2000;opacity:0;visibility:hidden;transition:all 0.3s ease}
-        .sidebar-overlay.active{opacity:1;visibility:visible}
-        .sidebar{position:fixed;top:0;left:-350px;width:320px;height:100%;background:linear-gradient(180deg,#1a0000 0%,#000 100%);z-index:2001;transition:left 0.4s cubic-bezier(0.4,0,0.2,1);box-shadow:5px 0 30px rgba(255,0,0,0.5);overflow-y:auto}
-        .sidebar.active{left:0}
-        .sidebar-header{background:linear-gradient(135deg,#ff0000,#990000);padding:25px 20px;display:flex;align-items:center;justify-content:space-between;border-bottom:3px solid #ff3333}
-        .sidebar-title{font-size:1.3rem;font-weight:700;text-transform:uppercase;letter-spacing:1px}
-        .sidebar-close{background:rgba(255,255,255,0.2);border:none;color:#fff;width:40px;height:40px;border-radius:50%;cursor:pointer;font-size:1.2rem;display:flex;align-items:center;justify-content:center;transition:all 0.3s ease}
-        .sidebar-close:hover{background:rgba(255,255,255,0.3);transform:rotate(90deg)}
-        .sidebar-menu{padding:20px 0}
-        .menu-item{padding:18px 25px;display:flex;align-items:center;gap:15px;color:#ddd;text-decoration:none;transition:all 0.3s ease;border-left:4px solid transparent;cursor:pointer}
-        .menu-item:hover{background:rgba(255,0,0,0.15);border-left-color:#ff0000;color:#fff;padding-left:30px}
-        .menu-item i{font-size:1.2rem;color:#ff0000;width:25px}
-        .menu-item span{font-size:1rem;font-weight:500}
-        .banner-container{width:100%;padding:25px 20px;background:linear-gradient(180deg,#111 0%,#000 100%)}
-        .banner{width:100%;max-width:1200px;margin:0 auto;border-radius:20px;overflow:hidden;box-shadow:0 10px 40px rgba(255,0,0,0.3);border:3px solid #ff0000;position:relative;cursor:pointer;transition:all 0.3s ease}
-        .banner:hover{transform:scale(1.01);box-shadow:0 15px 50px rgba(255,0,0,0.5)}
-        .banner img{width:100%;height:auto;display:block;transition:transform 0.5s ease}
-        .banner:hover img{transform:scale(1.02)}
-        .banner-play{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:90px;height:90px;background:rgba(255,0,0,0.9);border-radius:50%;display:flex;align-items:center;justify-content:center;border:4px solid #fff;box-shadow:0 5px 30px rgba(0,0,0,0.5)}
-        .banner-play img{width:40px;height:40px;object-fit:contain;margin-left:5px}
-        .videos-container{max-width:1200px;margin:0 auto;padding:40px 20px}
-        .section-title{font-size:1.8rem;font-weight:700;text-transform:uppercase;margin-bottom:30px;text-align:center;background:linear-gradient(135deg,#ff0000,#ff6666);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;letter-spacing:2px;position:relative;padding-bottom:15px}
-        .section-title::after{content:'';position:absolute;bottom:0;left:50%;transform:translateX(-50%);width:100px;height:4px;background:linear-gradient(90deg,#ff0000,transparent);border-radius:2px}
-        .videos-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:25px;margin-top:30px}
-        .video-card{position:relative;border-radius:15px;overflow:hidden;background:#111;border:2px solid #333;transition:all 0.3s ease;cursor:pointer;aspect-ratio:16/9;box-shadow:0 5px 15px rgba(0,0,0,0.5)}
-        .video-card::before{content:'';position:absolute;top:0;left:0;right:0;bottom:0;background:linear-gradient(180deg,transparent 0%,rgba(0,0,0,0.8) 100%);z-index:1;opacity:0;transition:opacity 0.3s ease}
-        .video-card:hover{transform:translateY(-10px);border-color:#ff0000;box-shadow:0 15px 40px rgba(255,0,0,0.4)}
-        .video-card:hover::before{opacity:1}
-        .video-card img{width:100%;height:100%;object-fit:cover;transition:transform 0.3s ease}
-        .video-card:hover img{transform:scale(1.1)}
-        .play-overlay{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);z-index:2;pointer-events:none}
-        .play-button{width:90px;height:90px;background:rgba(255,0,0,0.95);border-radius:50%;display:flex;align-items:center;justify-content:center;box-shadow:0 5px 25px rgba(255,0,0,0.7);border:4px solid #fff;transition:all 0.3s ease}
-        .video-card:hover .play-button{transform:scale(1.15);box-shadow:0 8px 35px rgba(255,0,0,0.9)}
-        .play-button img{width:40px;height:40px;object-fit:contain;margin-left:5px}
-        .video-duration{position:absolute;bottom:10px;right:10px;background:rgba(0,0,0,0.9);color:#fff;padding:6px 12px;border-radius:6px;font-size:0.85rem;font-weight:600;z-index:2;border:1px solid #ff0000;display:flex;align-items:center;gap:5px}
-        .video-duration i{color:#ff0000;font-size:0.75rem}
-        .video-number{position:absolute;top:10px;left:10px;background:rgba(255,0,0,0.95);color:#fff;width:40px;height:40px;border-radius:50%;display:flex;align-items:center;justify-content:center;z-index:2;border:2px solid #fff;font-weight:700;font-size:0.95rem;box-shadow:0 3px 10px rgba(0,0,0,0.5)}
-        .pagination{display:flex;align-items:center;justify-content:center;gap:8px;margin-top:50px;padding:20px;flex-wrap:wrap}
-        .page-item{background:rgba(255,255,255,0.1);color:#fff;padding:12px 18px;border-radius:10px;cursor:pointer;transition:all 0.3s ease;border:2px solid transparent;font-weight:600;min-width:45px;text-align:center}
-        .page-item:hover{background:rgba(255,0,0,0.3);border-color:#ff0000;transform:translateY(-3px)}
-        .page-item.active{background:linear-gradient(135deg,#ff0000,#cc0000);border-color:#ff3333;box-shadow:0 5px 15px rgba(255,0,0,0.4)}
-        .page-item.dots{background:transparent;cursor:default;border:none}
-        .page-item.dots:hover{transform:none;background:transparent}
-        .page-item.total{background:rgba(255,0,0,0.2);border-color:#ff0000;color:#ff6666}
-        .footer{background:#000;border-top:2px solid #ff0000;padding:30px 20px;text-align:center;margin-top:50px}
-        .footer-text{color:#666;font-size:0.9rem}
-        .footer-text span{color:#ff0000;font-weight:600}
-        @media (max-width:968px){.videos-grid{grid-template-columns:repeat(2,1fr);gap:20px}}
-        @media (max-width:640px){header{padding:12px 15px}.header-left h1{font-size:1rem}.menu-button{width:40px;height:40px;font-size:1.1rem}.banner-container{padding:15px}.videos-container{padding:30px 15px}.section-title{font-size:1.4rem}.videos-grid{grid-template-columns:1fr;gap:20px}.play-button{width:80px;height:80px}.play-button img{width:35px;height:35px}.banner-play{width:80px;height:80px}.banner-play img{width:35px;height:35px}.pagination{gap:5px}.page-item{padding:10px 14px;font-size:0.9rem}}
-        @keyframes fadeIn{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
-        .video-card{animation:fadeIn 0.6s ease forwards}
-        .video-card:nth-child(1){animation-delay:0.05s}.video-card:nth-child(2){animation-delay:0.1s}.video-card:nth-child(3){animation-delay:0.15s}.video-card:nth-child(4){animation-delay:0.2s}.video-card:nth-child(5){animation-delay:0.25s}.video-card:nth-child(6){animation-delay:0.3s}.video-card:nth-child(7){animation-delay:0.35s}.video-card:nth-child(8){animation-delay:0.4s}.video-card:nth-child(9){animation-delay:0.45s}.video-card:nth-child(10){animation-delay:0.5s}.video-card:nth-child(11){animation-delay:0.55s}.video-card:nth-child(12){animation-delay:0.6s}.video-card:nth-child(13){animation-delay:0.65s}.video-card:nth-child(14){animation-delay:0.7s}.video-card:nth-child(15){animation-delay:0.75s}.video-card:nth-child(16){animation-delay:0.8s}.video-card:nth-child(17){animation-delay:0.85s}
+        /* --- RESET E VARIÁVEIS --- */
+        :root {
+            --bg-color: #1a1a1a; /* Cinza Escuro Padrão */
+            --text-color: #e0e0e0;
+            --header-bg: #000000;
+            --gold: #FFD700;
+            --red: #ff3b3b;
+            --white: #ffffff;
+            --sidebar-bg: #111;
+            --hover-color: #333;
+            --theme-btn-bg: #2a2a2a;
+            --theme-btn-active: #FFD700;
+        }
+
+        /* Classe para o Tema Claro */
+        body.light-mode {
+            --bg-color: #f0f0f0; /* Cinza Claro */
+            --text-color: #111;
+            --sidebar-bg: #fff;
+            --hover-color: #ddd;
+            --theme-btn-bg: #e0e0e0;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            transition: background-color 0.3s ease, color 0.3s ease;
+            overflow-x: hidden;
+        }
+
+        /* --- CABEÇALHO (MAIOR) --- */
+        header {
+            background-color: var(--header-bg);
+            height: 80px;
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            padding: 0 20px;
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.5);
+        }
+
+        .header-left {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            width: 100%;
+        }
+
+        #menu-btn {
+            background: none;
+            border: none;
+            color: var(--white);
+            font-size: 28px;
+            cursor: pointer;
+            padding: 5px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .logo-container {
+            font-weight: 900;
+            font-size: 1.4rem;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            line-height: 1.2;
+        }
+
+        .c-red { color: var(--red); }
+        .c-white { color: var(--white); }
+        .c-gold { color: var(--gold); }
+
+        /* --- MENU LATERAL (SIDEBAR) --- */
+        .sidebar {
+            position: fixed;
+            top: 0;
+            left: -300px;
+            width: 300px;
+            height: 100vh;
+            background-color: var(--sidebar-bg);
+            z-index: 999;
+            padding-top: 20px;
+            transition: left 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 2px 0 15px rgba(0,0,0,0.7);
+            overflow-y: auto;
+            border-right: 1px solid #333;
+            scrollbar-width: thin;
+            scrollbar-color: #444 transparent;
+        }
+
+        .sidebar::-webkit-scrollbar {
+            width: 6px;
+        }
+        .sidebar::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        .sidebar::-webkit-scrollbar-thumb {
+            background-color: #444;
+            border-radius: 3px;
+        }
+
+        .sidebar.active {
+            left: 0;
+        }
+
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.8);
+            z-index: 998;
+            display: none;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        .overlay.active { 
+            display: block; 
+            opacity: 1;
+        }
+
+        .menu-list {
+            list-style: none;
+            padding-bottom: 80px;
+        }
+
+        .menu-item {
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+        }
+
+        .menu-link {
+            display: flex;
+            align-items: center;
+            padding: 18px 25px;
+            color: var(--text-color);
+            text-decoration: none;
+            font-size: 16px;
+            transition: background 0.2s, padding-left 0.2s;
+            cursor: pointer;
+        }
+
+        .menu-link:active {
+            background-color: rgba(255,255,255,0.1);
+        }
+
+        .menu-link i {
+            width: 35px;
+            font-size: 20px;
+            text-align: center;
+            margin-right: 10px;
+        }
+
+        .theme-top-item,
+        .theme-footer-item {
+            background: rgba(255, 255, 255, 0.05);
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+        .theme-top-item i.fa-palette,
+        .theme-footer-item i.fa-palette {
+            color: var(--gold);
+        }
+
+        .theme-selector-container {
+            padding: 15px 25px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+        
+        .theme-selector-title {
+            font-size: 13px;
+            text-transform: uppercase;
+            color: #888;
+            font-weight: 700;
+            letter-spacing: 1px;
+            margin-bottom: 5px;
+        }
+
+        .theme-buttons {
+            display: flex;
+            gap: 8px;
+        }
+
+        .theme-btn {
+            flex: 1;
+            padding: 10px 8px;
+            border: 2px solid transparent;
+            border-radius: 6px;
+            background-color: var(--theme-btn-bg);
+            color: var(--text-color);
+            font-size: 12px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 5px;
+        }
+
+        .theme-btn:hover {
+            transform: translateY(-2px);
+            opacity: 0.9;
+        }
+
+        .theme-btn.active {
+            border-color: var(--gold);
+            box-shadow: 0 0 0 2px rgba(255, 215, 0, 0.3);
+        }
+
+        .theme-btn-dark {
+            background-color: #1a1a1a;
+            color: #fff;
+        }
+
+        .theme-btn-light {
+            background-color: #f0f0f0;
+            color: #111;
+        }
+
+        .section-title {
+            padding: 25px 25px 15px;
+            font-size: 12px;
+            text-transform: uppercase;
+            color: #888;
+            font-weight: 700;
+            letter-spacing: 1.5px;
+        }
+
+        .vip-link i {
+            color: var(--gold);
+        }
+
+        .telegram-link i {
+            color: #0088cc;
+        }
+
+        /* --- CONTEÚDO PRINCIPAL --- */
+        main {
+            margin-top: 80px;
+            width: 100%;
+            min-height: calc(100vh - 80px);
+            background-color: var(--bg-color);
+            padding: 15px;
+        }
+
+        /* --- VPN NOTICE --- */
+        .vpn-notice {
+            background: linear-gradient(135deg, rgba(255,59,59,0.15), rgba(255,215,0,0.1));
+            border: 1px solid var(--red);
+            border-radius: 10px;
+            padding: 15px 20px;
+            margin: 15px 0 20px;
+            text-align: center;
+            box-shadow: 0 4px 15px rgba(255,59,59,0.2);
+        }
+
+        .vpn-notice p {
+            font-size: 14px;
+            color: var(--text-color);
+            margin-bottom: 8px;
+            line-height: 1.4;
+        }
+
+        .vpn-notice a {
+            color: var(--gold);
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 15px;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            transition: opacity 0.2s;
+        }
+
+        .vpn-notice a:hover {
+            opacity: 0.85;
+            text-decoration: underline;
+        }
+
+        .vpn-notice a i {
+            font-size: 16px;
+        }
+
+        /* --- TÍTULO CONTEÚDOS --- */
+        .content-title {
+            text-align: center;
+            padding: 10px 0 20px;
+            font-size: 1.3rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            background: linear-gradient(90deg, var(--red), var(--gold));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        /* --- GRID DE VÍDEOS --- */
+        .video-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 12px;
+            margin-bottom: 25px;
+        }
+
+        .video-card {
+            background: rgba(255,255,255,0.03);
+            border-radius: 12px;
+            overflow: hidden;
+            border: 1px solid rgba(255,255,255,0.08);
+            transition: transform 0.2s, box-shadow 0.2s;
+            cursor: pointer;
+            text-decoration: none;
+            display: block;
+        }
+
+        .video-card:active {
+            transform: scale(0.98);
+        }
+
+        .video-card:hover {
+            box-shadow: 0 8px 25px rgba(255,215,0,0.15);
+            border-color: var(--gold);
+        }
+
+        .video-card img {
+            width: 100%;
+            aspect-ratio: 16/9;
+            object-fit: cover;
+            display: block;
+            background: #000;
+        }
+
+        .video-card .card-title {
+            padding: 12px 10px;
+            font-size: 13px;
+            font-weight: 600;
+            text-align: center;
+            color: var(--text-color);
+            background: rgba(0,0,0,0.2);
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        /* --- PAGINAÇÃO --- */
+        .pagination {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 6px;
+            padding: 20px 10px 40px;
+        }
+
+        .pagination a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-width: 36px;
+            height: 36px;
+            padding: 0 8px;
+            background: rgba(255,255,255,0.08);
+            color: var(--text-color);
+            text-decoration: none;
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: 600;
+            transition: all 0.2s;
+            border: 1px solid transparent;
+        }
+
+        .pagination a:hover,
+        .pagination a:active {
+            background: var(--gold);
+            color: #000;
+            border-color: var(--gold);
+            transform: translateY(-2px);
+        }
+
+        .pagination a.plus {
+            background: linear-gradient(135deg, var(--red), #cc0000);
+            color: #fff;
+        }
+
+        .pagination a.plus:hover {
+            opacity: 0.9;
+        }
+
+        /* Ajustes para Mobile */
+        @media (max-width: 767px) {
+            .sidebar {
+                width: 280px;
+            }
+            .menu-link {
+                padding: 16px 20px;
+                font-size: 15px;
+            }
+            .menu-link i {
+                width: 30px;
+                font-size: 18px;
+            }
+            .menu-list {
+                padding-bottom: 90px;
+            }
+            .video-grid {
+                gap: 10px;
+            }
+            .content-title {
+                font-size: 1.15rem;
+                padding: 5px 0 15px;
+            }
+        }
+
+        @media (min-width: 768px) {
+            .logo-container {
+                font-size: 1.6rem;
+            }
+            .video-grid {
+                gap: 15px;
+                max-width: 900px;
+                margin: 0 auto 25px;
+            }
+            .content-title {
+                font-size: 1.5rem;
+            }
+        }
     </style>
 </head>
 <body>
+
+    <!-- Overlay Escuro -->
+    <div class="overlay" id="overlay" onclick="toggleMenu()"></div>
+
+    <!-- Cabeçalho -->
     <header>
         <div class="header-left">
-            <h1><span class="text-white"><i class="fas fa-crown"></i> Login Lolita</span><span class="text-red">x VIP</span></h1>
+            <button id="menu-btn" onclick="toggleMenu()">
+                <i class="fa-solid fa-bars"></i>
+            </button>
+            <div class="logo-container">
+                <span class="c-red">VIDEO</span> <span class="c-white">WEB</span> <span class="c-gold">BLACK</span> 
+                <span class="c-white">CPN</span> <span class="c-red">ET</span> <span class="c-gold">LOI</span>
+            </div>
         </div>
-        <button class="menu-button" onclick="toggleSidebar()"><i class="fas fa-bars"></i></button>
     </header>
-    <div class="sidebar-overlay" onclick="toggleSidebar()"></div>
-    <div class="sidebar" id="sidebar">
-        <div class="sidebar-header">
-            <div class="sidebar-title"><i class="fas fa-list"></i> Categorias</div>
-            <button class="sidebar-close" onclick="toggleSidebar()"><i class="fas fa-times"></i></button>
+
+    <!-- Menu Lateral Flutuante -->
+    <nav class="sidebar" id="sidebar">
+        <ul class="menu-list">
+            
+            <!-- OPÇÃO DE TEMA NO TOPO -->
+            <li class="menu-item theme-top-item">
+                <div class="menu-link" onclick="toggleTheme()">
+                    <i class="fa-solid fa-palette"></i> 
+                    <span>Alterar Cor de Fundo</span>
+                </div>
+            </li>
+
+            <!-- Canal Telegram -->
+            <li class="menu-item">
+                <a href="Telegram.html" class="menu-link telegram-link">
+                    <i class="fa-brands fa-telegram"></i> Canal Telegram
+                </a>
+            </li>
+
+            <!-- Categorias Grátis -->
+            <li class="section-title">Categorias Grátis</li>
+            
+            <li class="menu-item">
+                <a href="v.html" class="menu-link">
+                    <i class="fa-solid fa-video"></i> Vídeos Grátis
+                </a>
+            </li>
+            <li class="menu-item">
+                <a href="f.html" class="menu-link">
+                    <i class="fa-solid fa-images"></i> Fotos Grátis
+                </a>
+            </li>
+
+            <!-- Categoria Premium -->
+            <li class="section-title">Categoria Premium</li>
+
+            <li class="menu-item">
+                <a href="vip.html" class="menu-link vip-link">
+                    <i class="fa-solid fa-download"></i> Download 4 GB
+                </a>
+            </li>
+            <li class="menu-item">
+                <a href="vip.html" class="menu-link vip-link">
+                    <i class="fa-solid fa-hard-drive"></i> Download 1TB
+                </a>
+            </li>
+            <li class="menu-item">
+                <a href="vip.html" class="menu-link vip-link">
+                    <i class="fa-solid fa-broadcast-tower"></i> Download LIVE 973K
+                </a>
+            </li>
+            <li class="menu-item">
+                <a href="vip.html" class="menu-link vip-link">
+                    <i class="fa-solid fa-eye-slash"></i> Fotos sem censura
+                </a>
+            </li>
+
+            <!-- VIPS com Cadeado -->
+            <li class="menu-item"><a href="vip.html" class="menu-link vip-link"><i class="fa-solid fa-lock"></i>lives de bb </a></li>
+            <li class="menu-item"><a href="vip.html" class="menu-link vip-link"><i class="fa-solid fa-lock"></i>animais bb </a></li>
+            <li class="menu-item"><a href="vip.html" class="menu-link vip-link"><i class="fa-solid fa-lock"></i>garotas </a></li>
+            <li class="menu-item"><a href="vip.html" class="menu-link vip-link"><i class="fa-solid fa-lock"></i>A força</a></li>
+            <li class="menu-item"><a href="vip.html" class="menu-link vip-link"><i class="fa-solid fa-lock"></i>familiares</a></li>
+            <li class="menu-item"><a href="vip.html" class="menu-link vip-link"><i class="fa-solid fa-lock"></i>cenas reais</a></li>
+            
+            <li class="menu-item">
+                <a href="vip.html" class="menu-link vip-link">
+                    <i class="fa-solid fa-list"></i> Veja mais 78+
+                </a>
+            </li>
+
+            <!-- SELETOR DE TEMA NO FINAL DA SIDEBAR -->
+            <li class="menu-item theme-footer-item">
+                <div class="theme-selector-container">
+                    <div class="theme-selector-title">
+                        <i class="fa-solid fa-palette" style="color: var(--gold); margin-right: 5px;"></i>
+                        Cor de Fundo
+                    </div>
+                    <div class="theme-buttons">
+                        <button class="theme-btn theme-btn-dark" id="btn-dark" onclick="setTheme('dark')">
+                            <i class="fa-solid fa-moon"></i> Escuro
+                        </button>
+                        <button class="theme-btn theme-btn-light" id="btn-light" onclick="setTheme('light')">
+                            <i class="fa-solid fa-sun"></i> Claro
+                        </button>
+                    </div>
+                </div>
+            </li>
+
+        </ul>
+    </nav>
+
+    <!-- Conteúdo Principal -->
+    <main id="main-content">
+        
+        <!-- Aviso VPN -->
+        <div class="vpn-notice">
+            <p>🔐 Para sua segurança, é recomendável usar uma VPN ao fazer download.</p>
+            <a href="vpn.html" target="_blank">
+                <i class="fa-solid fa-shield-halved"></i>
+                Clique aqui para baixar VPN
+            </a>
         </div>
-        <div class="sidebar-menu">
-            <div class="menu-item" onclick="window.location.href='login.html'"><i class="fas fa-fire"></i><span>Mais Quentes</span></div>
-            <div class="menu-item" onclick="window.location.href='login.html'"><i class="fas fa-star"></i><span>Mais Assistidos</span></div>
-            <div class="menu-item" onclick="window.location.href='login.html'"><i class="fas fa-clock"></i><span>Lançamentos</span></div>
-            <div class="menu-item" onclick="window.location.href='login.html'"><i class="fas fa-crown"></i><span>Conteúdo VIP</span></div>
-            <div class="menu-item" onclick="window.location.href='login.html'"><i class="fas fa-gem"></i><span>Cenas Exclusivas</span></div>
-            <div class="menu-item" onclick="window.location.href='login.html'"><i class="fas fa-heart"></i><span>Recomendados</span></div>
-            <div class="menu-item" onclick="window.location.href='login.html'"><i class="fas fa-video"></i><span>Vídeos Novos</span></div>
-            <div class="menu-item" onclick="window.location.href='login.html'"><i class="fas fa-lock"></i><span>Conteúdo Bloqueado</span></div>
-            <div class="menu-item" onclick="window.location.href='login.html'"><i class="fas fa-user-secret"></i><span>Privados</span></div>
-            <div class="menu-item" onclick="window.location.href='login.html'"><i class="fas fa-infinity"></i><span>Ilimitado</span></div>
+
+        <!-- Título -->
+        <h1 class="content-title">CONTEÚDOS GRÁTIS Free Download</h1>
+
+        <!-- Grid de Vídeos (10 itens em 2 colunas) -->
+        <div class="video-grid">
+            <!-- Item 1 -->
+            <a href="1.html" class="video-card">
+                <img src="https://i.postimg.cc/kMVt2ky4/1.jpg" alt="Vídeo 1" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22225%22 viewBox=%220 0 400 225%22%3E%3Crect fill=%22%231a1a1a%22 width=%22400%22 height=%22225%22/%3E%3Ctext fill=%22%23666%22 font-family=%22sans-serif%22 font-size=%2218%22 x=%2250%25%22 y=%2250%25%22 text-anchor=%22middle%22 dominant-baseline=%22middle%22%3E1.jpg%3C/text%3E%3C/svg%3E'">
+                <div class="card-title">só tem 8 anos</div>
+            </a>
+            <!-- Item 2 -->
+            <a href="2.html" class="video-card">
+                <img src="https://i.postimg.cc/CLsM5N9R/2.jpg" alt="Vídeo 2" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22225%22 viewBox=%220 0 400 225%22%3E%3Crect fill=%22%231a1a1a%22 width=%22400%22 height=%22225%22/%3E%3Ctext fill=%22%23666%22 font-family=%22sans-serif%22 font-size=%2218%22 x=%2250%25%22 y=%2250%25%22 text-anchor=%22middle%22 dominant-baseline=%22middle%22%3E2.jpg%3C/text%3E%3C/svg%3E'">
+                <div class="card-title">a faxineira pega na banana</div>
+            </a>
+            <!-- Item 3 -->
+            <a href="3.html" class="video-card">
+                <img src="https://i.postimg.cc/3NH7J4By/3.jpg" alt="Vídeo 3" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22225%22 viewBox=%220 0 400 225%22%3E%3Crect fill=%22%231a1a1a%22 width=%22400%22 height=%22225%22/%3E%3Ctext fill=%22%23666%22 font-family=%22sans-serif%22 font-size=%2218%22 x=%2250%25%22 y=%2250%25%22 text-anchor=%22middle%22 dominant-baseline=%22middle%22%3E3.jpg%3C/text%3E%3C/svg%3E'">
+                <div class="card-title">ela só tem 3 anos mas já tá assim</div>
+            </a>
+            <!-- Item 4 -->
+            <a href="4.html" class="video-card">
+                <img src="https://i.postimg.cc/HsdHqMn2/4.jpg" alt="Vídeo 4" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22225%22 viewBox=%220 0 400 225%22%3E%3Crect fill=%22%231a1a1a%22 width=%22400%22 height=%22225%22/%3E%3Ctext fill=%22%23666%22 font-family=%22sans-serif%22 font-size=%2218%22 x=%2250%25%22 y=%2250%25%22 text-anchor=%22middle%22 dominant-baseline=%22middle%22%3E4.jpg%3C/text%3E%3C/svg%3E'">
+                <div class="card-title">padrasto chama ela</div>
+            </a>
+            <!-- Item 5 -->
+            <a href="5.html" class="video-card">
+                <img src="https://i.postimg.cc/wBCY0ySg/5.jpg" alt="Vídeo 5" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22225%22 viewBox=%220 0 400 225%22%3E%3Crect fill=%22%231a1a1a%22 width=%22400%22 height=%22225%22/%3E%3Ctext fill=%22%23666%22 font-family=%22sans-serif%22 font-size=%2218%22 x=%2250%25%22 y=%2250%25%22 text-anchor=%22middle%22 dominant-baseline=%22middle%22%3E5.jpg%3C/text%3E%3C/svg%3E'">
+                <div class="card-title">dois meninos de 10 anos</div>
+            </a>
+            <!-- Item 6 -->
+            <a href="6.html" class="video-card">
+                <img src="https://i.postimg.cc/jdx0grkL/6.jpg" alt="Vídeo 6" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22225%22 viewBox=%220 0 400 225%22%3E%3Crect fill=%22%231a1a1a%22 width=%22400%22 height=%22225%22/%3E%3Ctext fill=%22%23666%22 font-family=%22sans-serif%22 font-size=%2218%22 x=%2250%25%22 y=%2250%25%22 text-anchor=%22middle%22 dominant-baseline=%22middle%22%3E6.jpg%3C/text%3E%3C/svg%3E'">
+                <div class="card-title">pensei que ela não ia aguenta</div>
+            </a>
+            <!-- Item 7 -->
+            <a href="7.html" class="video-card">
+                <img src="https://i.postimg.cc/DZkRqVXk/7.jpg" alt="Vídeo 7" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22225%22 viewBox=%220 0 400 225%22%3E%3Crect fill=%22%231a1a1a%22 width=%22400%22 height=%22225%22/%3E%3Ctext fill=%22%23666%22 font-family=%22sans-serif%22 font-size=%2218%22 x=%2250%25%22 y=%2250%25%22 text-anchor=%22middle%22 dominant-baseline=%22middle%22%3E7.jpg%3C/text%3E%3C/svg%3E'">
+                <div class="card-title">chamei o banheiro</div>
+            </a>
+            <!-- Item 8 -->
+            <a href="8.html" class="video-card">
+                <img src="https://i.postimg.cc/nhXWgVKn/8.jpg" alt="Vídeo 8" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22225%22 viewBox=%220 0 400 225%22%3E%3Crect fill=%22%231a1a1a%22 width=%22400%22 height=%22225%22/%3E%3Ctext fill=%22%23666%22 font-family=%22sans-serif%22 font-size=%2218%22 x=%2250%25%22 y=%2250%25%22 text-anchor=%22middle%22 dominant-baseline=%22middle%22%3E8.jpg%3C/text%3E%3C/svg%3E'">
+                <div class="card-title">tem 14 mas dança bem</div>
+            </a>
+            <!-- Item 9 -->
+            <a href="9.html" class="video-card">
+                <img src="https://i.postimg.cc/85mXM7GK/9.jpg" alt="Vídeo 9" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22225%22 viewBox=%220 0 400 225%22%3E%3Crect fill=%22%231a1a1a%22 width=%22400%22 height=%22225%22/%3E%3Ctext fill=%22%23666%22 font-family=%22sans-serif%22 font-size=%2218%22 x=%2250%25%22 y=%2250%25%22 text-anchor=%22middle%22 dominant-baseline=%22middle%22%3E9.jpg%3C/text%3E%3C/svg%3E'">
+                <div class="card-title">na beirada do Rio</div>
+            </a>
+            <!-- Item 10 -->
+            <a href="10.html" class="video-card">
+                <img src="https://i.postimg.cc/PxyKN0bY/10.jpg" alt="Vídeo 10" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22225%22 viewBox=%220 0 400 225%22%3E%3Crect fill=%22%231a1a1a%22 width=%22400%22 height=%22225%22/%3E%3Ctext fill=%22%23666%22 font-family=%22sans-serif%22 font-size=%2218%22 x=%2250%25%22 y=%2250%25%22 text-anchor=%22middle%22 dominant-baseline=%22middle%22%3E10.jpg%3C/text%3E%3C/svg%3E'">
+                <div class="card-title">ela chorou não aguentou</div>
+            </a>
         </div>
-    </div>
-    <div class="banner-container">
-        <div class="banner" onclick="window.location.href='login.html'">
-            <img src="banner.jpeg" alt="Banner Principal">
-            <div class="banner-play"><img src="play.webp" alt="Play"></div>
-        </div>
-    </div>
-    <div class="videos-container">
-        <h2 class="section-title"><i class="fas fa-play-circle"></i> Vídeos Disponíveis</h2>
-        <div class="videos-grid">
-            <div class="video-card" onclick="window.location.href='login.html'"><div class="video-number">1</div><img src="1@10.webp" alt="Vídeo 1"><div class="play-overlay"><div class="play-button"><img src="play.webp" alt="Play"></div></div><div class="video-duration"><i class="fas fa-clock"></i><span>12:34</span></div></div>
-            <div class="video-card" onclick="window.location.href='login.html'"><div class="video-number">2</div><img src="2@10.webp" alt="Vídeo 2"><div class="play-overlay"><div class="play-button"><img src="play.webp" alt="Play"></div></div><div class="video-duration"><i class="fas fa-clock"></i><span>08:45</span></div></div>
-            <div class="video-card" onclick="window.location.href='login.html'"><div class="video-number">3</div><img src="3@10.webp" alt="Vídeo 3"><div class="play-overlay"><div class="play-button"><img src="play.webp" alt="Play"></div></div><div class="video-duration"><i class="fas fa-clock"></i><span>15:20</span></div></div>
-            <div class="video-card" onclick="window.location.href='login.html'"><div class="video-number">4</div><img src="4@10.webp" alt="Vídeo 4"><div class="play-overlay"><div class="play-button"><img src="play.webp" alt="Play"></div></div><div class="video-duration"><i class="fas fa-clock"></i><span>10:15</span></div></div>
-            <div class="video-card" onclick="window.location.href='login.html'"><div class="video-number">5</div><img src="5@10.webp" alt="Vídeo 5"><div class="play-overlay"><div class="play-button"><img src="play.webp" alt="Play"></div></div><div class="video-duration"><i class="fas fa-clock"></i><span>18:30</span></div></div>
-            <div class="video-card" onclick="window.location.href='login.html'"><div class="video-number">6</div><img src="6@10.webp" alt="Vídeo 6"><div class="play-overlay"><div class="play-button"><img src="play.webp" alt="Play"></div></div><div class="video-duration"><i class="fas fa-clock"></i><span>22:10</span></div></div>
-            <div class="video-card" onclick="window.location.href='login.html'"><div class="video-number">7</div><img src="7@10.webp" alt="Vídeo 7"><div class="play-overlay"><div class="play-button"><img src="play.webp" alt="Play"></div></div><div class="video-duration"><i class="fas fa-clock"></i><span>14:55</span></div></div>
-            <div class="video-card" onclick="window.location.href='login.html'"><div class="video-number">8</div><img src="8@10.webp" alt="Vídeo 8"><div class="play-overlay"><div class="play-button"><img src="play.webp" alt="Play"></div></div><div class="video-duration"><i class="fas fa-clock"></i><span>09:40</span></div></div>
-            <div class="video-card" onclick="window.location.href='login.html'"><div class="video-number">9</div><img src="9@10.webp" alt="Vídeo 9"><div class="play-overlay"><div class="play-button"><img src="play.webp" alt="Play"></div></div><div class="video-duration"><i class="fas fa-clock"></i><span>16:25</span></div></div>
-            <div class="video-card" onclick="window.location.href='login.html'"><div class="video-number">10</div><img src="10@10.webp" alt="Vídeo 10"><div class="play-overlay"><div class="play-button"><img src="play.webp" alt="Play"></div></div><div class="video-duration"><i class="fas fa-clock"></i><span>11:50</span></div></div>
-            <div class="video-card" onclick="window.location.href='login.html'"><div class="video-number">11</div><img src="11@10.webp" alt="Vídeo 11"><div class="play-overlay"><div class="play-button"><img src="play.webp" alt="Play"></div></div><div class="video-duration"><i class="fas fa-clock"></i><span>20:15</span></div></div>
-            <div class="video-card" onclick="window.location.href='login.html'"><div class="video-number">12</div><img src="12@10.webp" alt="Vídeo 12"><div class="play-overlay"><div class="play-button"><img src="play.webp" alt="Play"></div></div><div class="video-duration"><i class="fas fa-clock"></i><span>13:05</span></div></div>
-            <div class="video-card" onclick="window.location.href='login.html'"><div class="video-number">13</div><img src="13@10.webp" alt="Vídeo 13"><div class="play-overlay"><div class="play-button"><img src="play.webp" alt="Play"></div></div><div class="video-duration"><i class="fas fa-clock"></i><span>17:40</span></div></div>
-            <div class="video-card" onclick="window.location.href='login.html'"><div class="video-number">14</div><img src="14@10.webp" alt="Vídeo 14"><div class="play-overlay"><div class="play-button"><img src="play.webp" alt="Play"></div></div><div class="video-duration"><i class="fas fa-clock"></i><span>19:20</span></div></div>
-            <div class="video-card" onclick="window.location.href='login.html'"><div class="video-number">15</div><img src="15@10.webp" alt="Vídeo 15"><div class="play-overlay"><div class="play-button"><img src="play.webp" alt="Play"></div></div><div class="video-duration"><i class="fas fa-clock"></i><span>21:30</span></div></div>
-            <div class="video-card" onclick="window.location.href='login.html'"><div class="video-number">16</div><img src="16@10.webp" alt="Vídeo 16"><div class="play-overlay"><div class="play-button"><img src="play.webp" alt="Play"></div></div><div class="video-duration"><i class="fas fa-clock"></i><span>07:55</span></div></div>
-            <div class="video-card" onclick="window.location.href='login.html'"><div class="video-number">17</div><img src="17@10.webp" alt="Vídeo 17"><div class="play-overlay"><div class="play-button"><img src="play.webp" alt="Play"></div></div><div class="video-duration"><i class="fas fa-clock"></i><span>25:10</span></div></div>
-        </div>
+
+        <!-- Paginação -->
         <div class="pagination">
-            <div class="page-item active" onclick="window.location.href='login.html'">1</div>
-            <div class="page-item" onclick="window.location.href='login.html'">2</div>
-            <div class="page-item" onclick="window.location.href='login.html'">3</div>
-            <div class="page-item" onclick="window.location.href='login.html'">4</div>
-            <div class="page-item" onclick="window.location.href='login.html'">5</div>
-            <div class="page-item" onclick="window.location.href='login.html'">6</div>
-            <div class="page-item" onclick="window.location.href='login.html'">7</div>
-            <div class="page-item" onclick="window.location.href='login.html'">8</div>
-            <div class="page-item" onclick="window.location.href='login.html'">9</div>
-            <div class="page-item" onclick="window.location.href='login.html'">10</div>
-            <div class="page-item dots">...</div>
-            <div class="page-item total" onclick="window.location.href='login.html'">+648</div>
+            <a href="vip.html">1</a>
+            <a href="vip.html">2</a>
+            <a href="vip.html">3</a>
+            <a href="vip.html">4</a>
+            <a href="vip.html">5</a>
+            <a href="vip.html">6</a>
+            <a href="vip.html">7</a>
+            <a href="vip.html">8</a>
+            <a href="vip.html">9</a>
+            <a href="vip.html">10</a>
+            <a href="vip.html">11</a>
+            <a href="vip.html" class="plus">873+</a>
         </div>
-    </div>
-    <footer class="footer"><p class="footer-text"><i class="fas fa-shield-alt"></i> Conteúdo <span>18+</span> | Todos os direitos reservados © 2026</p></footer>
+
+    </main>
+
+    <!-- Scripts de Funcionalidade -->
     <script>
-        function toggleSidebar(){const sidebar=document.getElementById('sidebar');const overlay=document.querySelector('.sidebar-overlay');sidebar.classList.toggle('active');overlay.classList.toggle('active');document.body.style.overflow=sidebar.classList.contains('active')?'hidden':''}
-        document.querySelectorAll('.page-item').forEach(function(item){if(!item.classList.contains('dots')&&!item.classList.contains('total')){item.addEventListener('click',function(e){e.preventDefault();window.location.href='login.html'})}});
+        // Função para abrir/fechar o menu lateral
+        function toggleMenu() {
+            const sidebar = document.getElementById('sidebar');
+            const overlay = document.getElementById('overlay');
+            sidebar.classList.toggle('active');
+            overlay.classList.toggle('active');
+        }
+
+        // Função para definir o tema explicitamente
+        function setTheme(theme) {
+            const body = document.body;
+            const btnDark = document.getElementById('btn-dark');
+            const btnLight = document.getElementById('btn-light');
+            
+            if (theme === 'light') {
+                body.classList.add('light-mode');
+                btnLight.classList.add('active');
+                btnDark.classList.remove('active');
+            } else {
+                body.classList.remove('light-mode');
+                btnDark.classList.add('active');
+                btnLight.classList.remove('active');
+            }
+            
+            // Salvar preferência
+            localStorage.setItem('theme', theme);
+        }
+
+        // Função de toggle (mantida para compatibilidade com o botão do topo)
+        function toggleTheme() {
+            const isLight = document.body.classList.contains('light-mode');
+            setTheme(isLight ? 'dark' : 'light');
+        }
+
+        // Atualizar botões ao carregar a página
+        function updateThemeButtons() {
+            const savedTheme = localStorage.getItem('theme') || 'dark';
+            const btnDark = document.getElementById('btn-dark');
+            const btnLight = document.getElementById('btn-light');
+            
+            if (savedTheme === 'light') {
+                document.body.classList.add('light-mode');
+                btnLight?.classList.add('active');
+                btnDark?.classList.remove('active');
+            } else {
+                document.body.classList.remove('light-mode');
+                btnDark?.classList.add('active');
+                btnLight?.classList.remove('active');
+            }
+        }
+
+        // Carregar tema salvo ao iniciar
+        window.addEventListener('load', updateThemeButtons);
     </script>
+
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-<!-- Age Verification Overlay -->
-<div id="ageVerificationOverlay" style="
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.85);
-    backdrop-filter: blur(5px);
-    -webkit-backdrop-filter: blur(5px);
-    z-index: 999999;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    overflow: hidden;
-">
-    <!-- Modal Content -->
-    <div style="
-        background: linear-gradient(135deg, #1e1e1e 0%, #2a2a2a 100%);
-        border-radius: 15px;
-        padding: 40px;
-        text-align: center;
-        box-shadow: 0 20px 60px rgba(0,0,0,0.5);
-        border: 1px solid rgba(255,255,255,0.1);
-        max-width: 90%;
-        width: 450px;
-        animation: modalSlideIn 0.3s ease-out;
-    ">
-        
-        <!-- Imagem -->
-        <div style="margin-bottom: 25px;">
-            <img src="ssnn.webp" alt="18+ Verification" style="
-                max-width: 280px;
-                width: 100%;
-                height: auto;
-                border-radius: 10px;
-                box-shadow: 0 4px 15px rgba(0,0,0,0.3);
-            ">
-        </div>
-
-        <!-- Texto -->
-        <h2 style="
-            color: #ffffff;
-            font-size: 20px;
-            margin-bottom: 30px;
-            font-weight: 600;
-            line-height: 1.4;
-        ">
-            Clique em SIM abaixo se você é maior +18
-        </h2>
-
-        <!-- Botões -->
-        <div style="
-            display: flex;
-            gap: 20px;
-            justify-content: center;
-            flex-wrap: wrap;
-        ">
-            <button onclick="confirmAge()" style="
-                background: linear-gradient(135deg, #28a745 0%, #20c997 100%);
-                color: white;
-                border: none;
-                padding: 15px 50px;
-                font-size: 16px;
-                font-weight: bold;
-                border-radius: 8px;
-                cursor: pointer;
-                transition: all 0.3s ease;
-                box-shadow: 0 4px 15px rgba(40, 167, 69, 0.3);
-            "
-            onmouseover="this.style.transform='translateY(-2px)'; this.style.boxShadow='0 6px 20px rgba(40, 167, 69, 0.4)'"
-            onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 4px 15px rgba(40, 167, 69, 0.3)'">
-                SIM
-            </button>
-
-            <button onclick="denyAge()" style="
-                background: linear-gradient(135deg, #dc3545 0%, #fd7e14 100%);
-                color: white;
-                border: none;
-                padding: 15px 50px;
-                font-size: 16px;
-                font-weight: bold;
-                border-radius: 8px;
-                cursor: pointer;
-                transition: all 0.3s ease;
-                box-shadow: 0 4px 15px rgba(220, 53, 69, 0.3);
-            "
-            onmouseover="this.style.transform='translateY(-2px)'; this.style.boxShadow='0 6px 20px rgba(220, 53, 69, 0.4)'"
-            onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 4px 15px rgba(220, 53, 69, 0.3)'">
-                NÃO
-            </button>
-        </div>
-    </div>
-</div>
-
-<!-- Mensagem de Saída (oculta inicialmente) -->
-<div id="exitMessage" style="
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.95);
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
-    z-index: 999999;
-    display: none;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-">
-    <div style="
-        background: linear-gradient(135deg, #1e1e1e 0%, #2a2a2a 100%);
-        border-radius: 15px;
-        padding: 50px;
-        border: 1px solid rgba(255,255,255,0.1);
-        box-shadow: 0 20px 60px rgba(0,0,0,0.5);
-        max-width: 90%;
-        width: 450px;
-        animation: modalSlideIn 0.3s ease-out;
-    ">
-        <div style="
-            font-size: 80px;
-            margin-bottom: 20px;
-        ">❓</div>
-        <h2 style="
-            color: #dc3545;
-            font-size: 28px;
-            margin-bottom: 15px;
-            font-weight: bold;
-        ">Atenção!</h2>
-        <p style="
-            color: #ffffff;
-            font-size: 18px;
-            margin-bottom: 10px;
-        ">Você deve sair desta página.</p>
-        <p style="
-            color: #a0a0a0;
-            font-size: 14px;
-            margin-top: 20px;
-        ">Este conteúdo é destinado apenas para maiores de 18 anos.</p>
-        <div style="
-            margin-top: 30px;
-            padding: 15px;
-            background: rgba(220, 53, 69, 0.1);
-            border-radius: 8px;
-            border-left: 4px solid #dc3545;
-        ">
-            <p style="color: #dc3545; margin: 0; font-size: 14px;">
-                Redirecionando em <span id="countdown">5</span> segundos...
-            </p>
-        </div>
-    </div>
-</div>
-
-<style>
-    @keyframes modalSlideIn {
-        from {
-            opacity: 0;
-            transform: translateY(-50px) scale(0.9);
-        }
-        to {
-            opacity: 1;
-            transform: translateY(0) scale(1);
-        }
-    }
-
-    /* Previne scroll quando o overlay está ativo */
-    body.overlay-active {
-        overflow: hidden;
-    }
-</style>
-
-<script>
-    // Adiciona classe para prevenir scroll
-    document.body.classList.add('overlay-active');
-
-    function confirmAge() {
-        // Esconde o overlay de verificação
-        document.getElementById('ageVerificationOverlay').style.display = 'none';
-        // Remove a classe que previne scroll
-        document.body.classList.remove('overlay-active');
-        // Opcional: Salva no localStorage para não mostrar novamente
-        localStorage.setItem('ageVerified', 'true');
-    }
-
-    function denyAge() {
-        // Esconde o overlay de verificação
-        document.getElementById('ageVerificationOverlay').style.display = 'none';
-        // Mostra a mensagem de saída
-        document.getElementById('exitMessage').style.display = 'flex';
-        
-        // Countdown
-        let seconds = 5;
-        const countdownEl = document.getElementById('countdown');
-        const timer = setInterval(() => {
-            seconds--;
-            countdownEl.textContent = seconds;
-            if (seconds <= 0) {
-                clearInterval(timer);
-                // Redireciona para página segura
-                window.location.href = 'https://www.google.com';
-            }
-        }, 1000);
-    }
-
-    // Verifica se já foi verificado anteriormente
-    window.addEventListener('load', function() {
-        if (localStorage.getItem('ageVerified') === 'true') {
-            document.getElementById('ageVerificationOverlay').style.display = 'none';
-            document.body.classList.remove('overlay-active');
-        }
-    });
-</script>

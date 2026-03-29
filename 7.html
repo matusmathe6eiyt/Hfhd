@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>chamei o banheiro - VIDEO WEB BLACK</title>
+    
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="favicon.webp" type="image/webp">
+
+    <!-- Ícones (FontAwesome) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Meta Tags -->
+    <meta name="robots" content="noindex, nofollow">
+    <meta name="theme-color" content="#000000">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self' https: 'unsafe-inline';">
+
+    <style>
+        /* --- VARIÁVEIS GLOBAIS --- */
+        :root {
+            --bg-color: #1a1a1a;
+            --text-color: #e0e0e0;
+            --header-bg: #000000;
+            --gold: #FFD700;
+            --red: #ff3b3b;
+            --white: #ffffff;
+            --card-bg: #252525;
+            --badge-demo: #ff6b6b;
+            --badge-vip: linear-gradient(135deg, #FFD700, #FFA500);
+            --mega-green: #00b44c;
+            --preview-border: 2px dashed rgba(255, 107, 107, 0.6);
+        }
+
+        body.light-mode {
+            --bg-color: #f0f0f0;
+            --text-color: #111;
+            --card-bg: #fff;
+        }
+
+        * {
+            margin: 0; padding: 0; box-sizing: border-box;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            transition: background-color 0.3s ease, color 0.3s ease;
+            overflow-x: hidden;
+            padding-bottom: 30px;
+        }
+
+        /* --- CABEÇALHO --- */
+        header {
+            background-color: var(--header-bg);
+            height: 70px;
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            padding: 0 15px;
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.5);
+            gap: 15px;
+        }
+
+        .back-btn {
+            background: none; border: none; color: var(--white);
+            font-size: 22px; cursor: pointer; padding: 8px;
+            border-radius: 50%; transition: background 0.2s;
+        }
+        .back-btn:active { background: rgba(255,255,255,0.1); }
+
+        .page-title {
+            font-weight: 700; font-size: 1.1rem;
+            white-space: nowrap; overflow: hidden;
+            text-overflow: ellipsis; max-width: 70%;
+        }
+
+        .logo-mini { font-size: 0.9rem; font-weight: 800; }
+        .c-red { color: var(--red); }
+        .c-white { color: var(--white); }
+        .c-gold { color: var(--gold); }
+
+        /* --- CONTEÚDO PRINCIPAL --- */
+        main {
+            margin-top: 70px;
+            padding: 20px 15px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* Card do Vídeo */
+        .video-card {
+            background: var(--card-bg);
+            border-radius: 16px;
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+            border: 1px solid rgba(255,255,255,0.05);
+        }
+
+        .video-title {
+            font-size: 1.4rem; font-weight: 700;
+            margin-bottom: 12px; line-height: 1.3; color: var(--white);
+            word-wrap: break-word;
+        }
+
+        /* Badge DEMO */
+        .demo-badge {
+            display: inline-flex; align-items: center; gap: 6px;
+            background: var(--badge-demo); color: #fff;
+            padding: 6px 14px; border-radius: 20px;
+            font-size: 0.8rem; font-weight: 700;
+            margin-bottom: 12px; text-transform: uppercase;
+            letter-spacing: 0.5px; animation: pulse-red 2s infinite;
+        }
+        .demo-badge i { font-size: 0.9rem; }
+
+        @keyframes pulse-red {
+            0%, 100% { box-shadow: 0 0 0 0 rgba(255, 107, 107, 0.6); }
+            50% { box-shadow: 0 0 0 10px rgba(255, 107, 107, 0); }
+        }
+
+        /* Preview Box */
+        .preview-box {
+            background: rgba(255, 107, 107, 0.1);
+            border: var(--preview-border);
+            border-radius: 12px;
+            padding: 15px;
+            margin: 15px 0;
+            text-align: center;
+        }
+        .preview-box i {
+            font-size: 2rem; color: var(--red);
+            margin-bottom: 8px;
+        }
+        .preview-box p {
+            font-size: 0.9rem; margin-bottom: 0;
+        }
+        .preview-box strong { color: var(--red); }
+
+        /* Info do Arquivo */
+        .file-info {
+            display: grid; grid-template-columns: 1fr 1fr;
+            gap: 12px; margin: 15px 0;
+        }
+        .info-item {
+            display: flex; align-items: center; gap: 8px;
+            font-size: 0.9rem;
+        }
+        .info-item i { color: var(--gold); width: 20px; text-align: center; }
+
+        /* Badge Qualidade */
+        .quality-badge {
+            display: inline-flex; align-items: center; gap: 5px;
+            background: rgba(136, 136, 136, 0.3);
+            color: #aaa; padding: 5px 12px;
+            border-radius: 16px; font-size: 0.75rem;
+            font-weight: 600; margin-bottom: 10px;
+        }
+
+        /* Botão MEGA */
+        .mega-btn {
+            display: flex; align-items: center; justify-content: center;
+            gap: 10px; width: 100%; padding: 16px 20px;
+            background: var(--mega-green); color: #fff;
+            border: none; border-radius: 12px;
+            font-size: 1rem; font-weight: 700;
+            cursor: pointer; text-decoration: none;
+            transition: all 0.2s ease;
+            box-shadow: 0 4px 15px rgba(0, 180, 76, 0.4);
+            margin: 10px 0;
+        }
+        .mega-btn:active { transform: scale(0.98); }
+        .mega-btn i { font-size: 1.2rem; }
+
+        /* Aviso ZIP */
+        .zip-notice {
+            background: rgba(255, 215, 0, 0.15);
+            border: 1px solid rgba(255, 215, 0, 0.4);
+            border-radius: 10px; padding: 12px 15px;
+            display: flex; align-items: flex-start; gap: 10px;
+            font-size: 0.85rem; margin-top: 10px;
+        }
+        .zip-notice i { color: var(--gold); font-size: 1.1rem; margin-top: 2px; }
+
+        /* Separador */
+        .separator {
+            display: flex; align-items: center; gap: 12px;
+            margin: 25px 0; color: #666; font-size: 0.85rem;
+        }
+        .separator::before, .separator::after {
+            content: ""; flex: 1; height: 1px;
+            background: rgba(255,255,255,0.1);
+        }
+
+        /* Seção VIP - Comprar Completo */
+        .vip-section {
+            background: var(--card-bg);
+            border-radius: 16px; padding: 20px;
+            border: 2px solid var(--gold);
+            margin-top: 5px;
+        }
+        .vip-header {
+            display: flex; align-items: center; gap: 10px;
+            margin-bottom: 15px; padding-bottom: 12px;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+        .vip-header i {
+            background: var(--badge-vip); color: #000;
+            width: 32px; height: 32px; border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 1rem; font-weight: 800;
+        }
+        .vip-title {
+            font-weight: 800; font-size: 1.15rem;
+            background: var(--badge-vip);
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .vip-subtitle {
+            font-size: 0.85rem; color: #888; margin-top: 2px;
+        }
+
+        .vip-feature {
+            display: flex; align-items: center; justify-content: space-between;
+            padding: 12px 0; border-bottom: 1px solid rgba(255,255,255,0.05);
+        }
+        .vip-feature:last-child { border-bottom: none; }
+
+        .vip-left { display: flex; align-items: center; gap: 12px; }
+        .vip-left i { color: var(--gold); font-size: 1.1rem; width: 24px; text-align: center; }
+        .vip-text { font-size: 0.95rem; }
+        .vip-text span { display: block; font-size: 0.75rem; color: #777; margin-top: 2px; }
+
+        .vip-value {
+            font-weight: 800; color: var(--gold);
+            font-size: 1.1rem;
+        }
+
+        /* Botão Comprar */
+        .buy-btn {
+            display: block; width: 100%;
+            padding: 16px; margin-top: 18px;
+            background: var(--badge-vip); color: #000;
+            border: none; border-radius: 12px;
+            font-weight: 800; font-size: 1rem;
+            cursor: pointer; text-decoration: none;
+            text-align: center; transition: transform 0.2s, box-shadow 0.2s;
+            display: flex; align-items: center; justify-content: center; gap: 8px;
+        }
+        .buy-btn:active { transform: scale(0.98); }
+        .buy-btn:hover { box-shadow: 0 6px 25px rgba(255, 215, 0, 0.5); }
+
+        /* Garantia */
+        .guarantee {
+            text-align: center; margin-top: 15px;
+            font-size: 0.8rem; color: #777;
+            display: flex; align-items: center; justify-content: center; gap: 5px;
+        }
+        .guarantee i { color: var(--gold); }
+
+        /* Rodapé */
+        footer {
+            text-align: center; padding: 25px 15px 40px;
+            font-size: 0.85rem; color: #777;
+        }
+        footer i { color: var(--red); margin: 0 3px; }
+
+        /* Responsive */
+        @media (max-width: 480px) {
+            .video-title { font-size: 1.25rem; }
+            .file-info { grid-template-columns: 1fr; gap: 10px; }
+            .mega-btn, .buy-btn { padding: 14px 16px; font-size: 0.95rem; }
+            .vip-value { font-size: 1rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Cabeçalho -->
+    <header>
+        <button class="back-btn" onclick="history.back()">
+            <i class="fa-solid fa-arrow-left"></i>
+        </button>
+        <div class="page-title">chamei o banheiro</div>
+        <div class="logo-mini">
+            <span class="c-red">VIDEO</span><span class="c-gold">WEB</span>
+        </div>
+    </header>
+
+    <!-- Conteúdo Principal -->
+    <main>
+        
+        <!-- Card do Vídeo (DEMO) -->
+        <article class="video-card">
+            <h1 class="video-title">chamei o banheiro</h1>
+            
+            <!-- Badge DEMO -->
+            <div class="demo-badge">
+                <i class="fa-solid fa-eye"></i>
+                PRÉVIA GRATUITA
+            </div>
+
+            <!-- Box de Preview -->
+            <div class="preview-box">
+                <i class="fa-solid fa-film"></i>
+                <p>Vídeo de demonstração • <strong>10 segundos</strong><br>
+                <span style="color:#888;font-size:0.85rem">Qualidade reduzida para visualização</span></p>
+            </div>
+
+            <!-- Badge Qualidade -->
+            <div style="text-align:center;margin:10px 0;">
+                <span class="quality-badge">
+                    <i class="fa-solid fa-tv"></i> Preview • 240p
+                </span>
+            </div>
+
+            <!-- Informações do Arquivo -->
+            <div class="file-info">
+                <div class="info-item">
+                    <i class="fa-solid fa-file-zipper"></i>
+                    <span>Formato: ZIP</span>
+                </div>
+                <div class="info-item">
+                    <i class="fa-solid fa-weight-hanging"></i>
+                    <span>Tamanho: 10,23 MB</span>
+                </div>
+                <div class="info-item">
+                    <i class="fa-solid fa-stopwatch"></i>
+                    <span>Duração: 00:10 (Demo)</span>
+                </div>
+                <div class="info-item">
+                    <i class="fa-solid fa-calendar"></i>
+                    <span>Adicionado: Hoje</span>
+                </div>
+            </div>
+
+            <!-- Botão Download MEGA (Demo) -->
+            <a href="https://mega.nz/file/6XwSzBSZ#PSOkwS2At2zFJnqAl7BCITdtk3nCjtPurP4P0xIIXVI" 
+               class="mega-btn" 
+               target="_blank" 
+               rel="noopener noreferrer">
+                <i class="fa-brands fa-mega"></i>
+                BAIXAR DEMO - MEGA
+            </a>
+
+            <!-- Aviso ZIP -->
+            <div class="zip-notice">
+                <i class="fa-solid fa-circle-info"></i>
+                <div>
+                    <strong>Atenção:</strong> Arquivo ZIP. Descompacte com WinRAR, 7-Zip ou ZArchiver antes de abrir.
+                </div>
+            </div>
+        </article>
+
+        <!-- Separador -->
+        <div class="separator">OU</div>
+
+        <!-- Seção VIP - Comprar Vídeo Completo -->
+        <section class="vip-section">
+            <div class="vip-header">
+                <i class="fa-solid fa-crown"></i>
+                <div>
+                    <div class="vip-title">Desbloquear Vídeo Completo</div>
+                    <div class="vip-subtitle">Adquira a versão integral com máxima qualidade</div>
+                </div>
+            </div>
+
+            <div class="vip-feature">
+                <div class="vip-left">
+                    <i class="fa-solid fa-clock"></i>
+                    <div class="vip-text">
+                        Duração Completa
+                        <span>Vídeo original sem cortes</span>
+                    </div>
+                </div>
+                <div class="vip-value">~4:30 min</div>
+            </div>
+
+            <div class="vip-feature">
+                <div class="vip-left">
+                    <i class="fa-solid fa-video"></i>
+                    <div class="vip-text">
+                        Qualidade HD / Full HD
+                        <span>720p ou 1080p disponível</span>
+                    </div>
+                </div>
+                <div class="vip-value"><i class="fa-solid fa-check" style="color:var(--gold)"></i></div>
+            </div>
+
+            <div class="vip-feature">
+                <div class="vip-left">
+                    <i class="fa-solid fa-music"></i>
+                    <div class="vip-text">
+                        Áudio Original
+                        <span>Sem compressão de som</span>
+                    </div>
+                </div>
+                <div class="vip-value"><i class="fa-solid fa-check" style="color:var(--gold)"></i></div>
+            </div>
+
+            <div class="vip-feature">
+                <div class="vip-left">
+                    <i class="fa-solid fa-download"></i>
+                    <div class="vip-text">
+                        Download Ilimitado
+                        <span>Acesso vitalício ao arquivo</span>
+                    </div>
+                </div>
+                <div class="vip-value"><i class="fa-solid fa-check" style="color:var(--gold)"></i></div>
+            </div>
+
+            <!-- Botão Comprar -->
+            <a href="vip.html" class="buy-btn">
+                <i class="fa-solid fa-bolt"></i>
+                COMPRAR AGORA - R$ 10
+            </a>
+
+            <!-- Garantia -->
+            <div class="guarantee">
+                <i class="fa-solid fa-shield-halved"></i>
+                Pagamento seguro • Entrega imediata • Suporte 24h
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Rodapé -->
+    <footer>
+        <p><i class="fa-solid fa-heart"></i> VIDEO WEB BLACK CPN ET LOI <i class="fa-solid fa-heart"></i></p>
+        <p style="margin-top: 8px; font-size: 0.8rem; color: #555;">
+            © 2026 - Todos os direitos reservados
+        </p>
+    </footer>
+
+    <!-- Scripts -->
+    <script>
+        // Suporte ao tema (herdado do index)
+        function updateTheme() {
+            const savedTheme = localStorage.getItem('theme') || 'dark';
+            if (savedTheme === 'light') {
+                document.body.classList.add('light-mode');
+            }
+        }
+        window.addEventListener('load', updateTheme);
+
+        // Tracking de cliques (opcional)
+        document.querySelectorAll('.mega-btn, .buy-btn').forEach(btn => {
+            btn.addEventListener('click', function(e) {
+                const type = this.classList.contains('mega-btn') ? 'demo' : 'full';
+                console.log(`Clique registrado: ${type} - chamei o banheiro`);
+            });
+        });
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,487 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Mais Vídeos Grátis - VIDEO WEB BLACK</title>
+    
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="favicon.webp" type="image/webp">
+
+    <!-- Ícones (FontAwesome) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Meta Tags -->
+    <meta name="robots" content="noindex, nofollow">
+    <meta name="theme-color" content="#000000">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self' https: 'unsafe-inline';">
+
+    <style>
+        /* --- VARIÁVEIS GLOBAIS --- */
+        :root {
+            --bg-color: #1a1a1a;
+            --text-color: #e0e0e0;
+            --header-bg: #000000;
+            --gold: #FFD700;
+            --red: #ff3b3b;
+            --white: #ffffff;
+            --card-bg: #252525;
+            --telegram-blue: #0088cc;
+            --telegram-hover: #0099e6;
+            --badge-free: #00b44c;
+        }
+
+        body.light-mode {
+            --bg-color: #f0f0f0;
+            --text-color: #111;
+            --card-bg: #fff;
+        }
+
+        * {
+            margin: 0; padding: 0; box-sizing: border-box;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            transition: background-color 0.3s ease, color 0.3s ease;
+            overflow-x: hidden;
+            padding-bottom: 30px;
+        }
+
+        /* --- CABEÇALHO --- */
+        header {
+            background-color: var(--header-bg);
+            height: 70px;
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            padding: 0 15px;
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.5);
+            gap: 15px;
+        }
+
+        .back-btn {
+            background: none; border: none; color: var(--white);
+            font-size: 22px; cursor: pointer; padding: 8px;
+            border-radius: 50%; transition: background 0.2s;
+        }
+        .back-btn:active { background: rgba(255,255,255,0.1); }
+
+        .page-title {
+            font-weight: 700; font-size: 1.1rem;
+            white-space: nowrap; overflow: hidden;
+            text-overflow: ellipsis; max-width: 70%;
+        }
+
+        .logo-mini { font-size: 0.9rem; font-weight: 800; }
+        .c-red { color: var(--red); }
+        .c-white { color: var(--white); }
+        .c-gold { color: var(--gold); }
+
+        /* --- CONTEÚDO PRINCIPAL --- */
+        main {
+            margin-top: 70px;
+            padding: 20px 15px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* Card Principal */
+        .main-card {
+            background: var(--card-bg);
+            border-radius: 16px;
+            padding: 25px 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+            border: 1px solid rgba(255,255,255,0.05);
+            text-align: center;
+        }
+
+        /* Ícone Telegram Animado */
+        .telegram-icon-container {
+            width: 100px;
+            height: 100px;
+            margin: 0 auto 20px;
+            background: linear-gradient(135deg, var(--telegram-blue), #0066aa);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            animation: pulse-telegram 2s infinite;
+        }
+        .telegram-icon-container i {
+            font-size: 50px;
+            color: #fff;
+        }
+
+        @keyframes pulse-telegram {
+            0%, 100% { 
+                box-shadow: 0 0 0 0 rgba(0, 136, 204, 0.6);
+                transform: scale(1);
+            }
+            50% { 
+                box-shadow: 0 0 0 20px rgba(0, 136, 204, 0);
+                transform: scale(1.05);
+            }
+        }
+
+        /* Título */
+        .main-title {
+            font-size: 1.5rem;
+            font-weight: 800;
+            margin-bottom: 10px;
+            color: var(--white);
+        }
+
+        /* Badge FREE */
+        .free-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            background: var(--badge-free);
+            color: #fff;
+            padding: 6px 16px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        /* Descrição */
+        .description {
+            font-size: 1rem;
+            line-height: 1.6;
+            color: var(--text-color);
+            margin-bottom: 25px;
+            opacity: 0.9;
+        }
+
+        /* Lista de Benefícios */
+        .benefits-list {
+            text-align: left;
+            margin: 20px 0;
+            padding: 0 10px;
+        }
+        .benefit-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            padding: 10px 0;
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+        }
+        .benefit-item:last-child { border-bottom: none; }
+        .benefit-item i {
+            color: var(--badge-free);
+            font-size: 1.1rem;
+            margin-top: 2px;
+            width: 20px;
+            text-align: center;
+        }
+        .benefit-text {
+            font-size: 0.95rem;
+            line-height: 1.4;
+        }
+
+        /* Botão Telegram */
+        .telegram-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            width: 100%;
+            padding: 18px 25px;
+            background: linear-gradient(135deg, var(--telegram-blue), #0066aa);
+            color: #fff;
+            border: none;
+            border-radius: 14px;
+            font-size: 1.1rem;
+            font-weight: 700;
+            cursor: pointer;
+            text-decoration: none;
+            transition: all 0.2s ease;
+            box-shadow: 0 4px 20px rgba(0, 136, 204, 0.4);
+            margin: 20px 0;
+        }
+        .telegram-btn:active { transform: scale(0.98); }
+        .telegram-btn:hover { 
+            background: linear-gradient(135deg, var(--telegram-hover), #0077cc);
+            box-shadow: 0 6px 25px rgba(0, 136, 204, 0.6);
+        }
+        .telegram-btn i { font-size: 1.4rem; }
+
+        /* Info do Bot */
+        .bot-info {
+            background: rgba(0, 136, 204, 0.15);
+            border: 1px solid rgba(0, 136, 204, 0.4);
+            border-radius: 12px;
+            padding: 15px;
+            margin: 20px 0;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        .bot-info i {
+            color: var(--telegram-blue);
+            font-size: 1.5rem;
+        }
+        .bot-info-text {
+            flex: 1;
+        }
+        .bot-info-text strong {
+            display: block;
+            color: var(--telegram-blue);
+            margin-bottom: 4px;
+        }
+        .bot-info-text span {
+            font-size: 0.85rem;
+            opacity: 0.8;
+        }
+
+        /* Card Secundário - VIP */
+        .vip-card {
+            background: var(--card-bg);
+            border-radius: 16px;
+            padding: 20px;
+            margin-top: 20px;
+            border: 2px solid var(--gold);
+        }
+        .vip-card-header {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 15px;
+        }
+        .vip-card-header i {
+            background: linear-gradient(135deg, #FFD700, #FFA500);
+            color: #000;
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1rem;
+            font-weight: 800;
+        }
+        .vip-card-title {
+            font-weight: 800;
+            font-size: 1.1rem;
+            background: linear-gradient(135deg, #FFD700, #FFA500);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .vip-card-text {
+            font-size: 0.9rem;
+            opacity: 0.9;
+            margin-bottom: 15px;
+        }
+        .vip-btn {
+            display: block;
+            width: 100%;
+            padding: 14px;
+            background: linear-gradient(135deg, #FFD700, #FFA500);
+            color: #000;
+            border: none;
+            border-radius: 10px;
+            font-weight: 700;
+            font-size: 0.95rem;
+            cursor: pointer;
+            text-decoration: none;
+            text-align: center;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        .vip-btn:active { transform: scale(0.98); }
+        .vip-btn:hover { box-shadow: 0 4px 20px rgba(255, 215, 0, 0.4); }
+
+        /* Contador de Usuários */
+        .user-counter {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            margin-top: 15px;
+            font-size: 0.85rem;
+            opacity: 0.7;
+        }
+        .user-counter i { color: var(--badge-free); }
+
+        /* Rodapé */
+        footer {
+            text-align: center;
+            padding: 25px 15px 40px;
+            font-size: 0.85rem;
+            color: #777;
+        }
+        footer i { color: var(--red); margin: 0 3px; }
+
+        /* Responsive */
+        @media (max-width: 480px) {
+            .main-title { font-size: 1.3rem; }
+            .telegram-btn { padding: 16px 20px; font-size: 1rem; }
+            .telegram-icon-container { width: 90px; height: 90px; }
+            .telegram-icon-container i { font-size: 45px; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Cabeçalho -->
+    <header>
+        <button class="back-btn" onclick="history.back()">
+            <i class="fa-solid fa-arrow-left"></i>
+        </button>
+        <div class="page-title">Mais Vídeos Grátis</div>
+        <div class="logo-mini">
+            <span class="c-red">VIDEO</span><span class="c-gold">WEB</span>
+        </div>
+    </header>
+
+    <!-- Conteúdo Principal -->
+    <main>
+        
+        <!-- Card Principal -->
+        <article class="main-card">
+            
+            <!-- Ícone Telegram -->
+            <div class="telegram-icon-container">
+                <i class="fa-brands fa-telegram"></i>
+            </div>
+
+            <!-- Badge FREE -->
+            <div class="free-badge">
+                <i class="fa-solid fa-gift"></i>
+                100% GRATUITO
+            </div>
+
+            <!-- Título -->
+            <h1 class="main-title">Quer Mais Vídeos Grátis?</h1>
+
+            <!-- Descrição -->
+            <p class="description">
+                Para acessar nossa coleção completa de vídeos gratuitos, 
+                você precisa se cadastrar no nosso bot oficial do Telegram. 
+                É rápido, seguro e totalmente grátis!
+            </p>
+
+            <!-- Lista de Benefícios -->
+            <div class="benefits-list">
+                <div class="benefit-item">
+                    <i class="fa-solid fa-circle-check"></i>
+                    <div class="benefit-text">
+                        <strong>Acesso ilimitado</strong> a centenas de vídeos grátis
+                    </div>
+                </div>
+                <div class="benefit-item">
+                    <i class="fa-solid fa-circle-check"></i>
+                    <div class="benefit-text">
+                        <strong>Atualizações diárias</strong> com novo conteúdo
+                    </div>
+                </div>
+                <div class="benefit-item">
+                    <i class="fa-solid fa-circle-check"></i>
+                    <div class="benefit-text">
+                        <strong>Download direto</strong> sem limitações
+                    </div>
+                </div>
+                <div class="benefit-item">
+                    <i class="fa-solid fa-circle-check"></i>
+                    <div class="benefit-text">
+                        <strong>Sem anúncios</strong> irritantes durante o acesso
+                    </div>
+                </div>
+                <div class="benefit-item">
+                    <i class="fa-solid fa-circle-check"></i>
+                    <div class="benefit-text">
+                        <strong>Comunidade exclusiva</strong> no Telegram
+                    </div>
+                </div>
+            </div>
+
+            <!-- Info do Bot -->
+            <div class="bot-info">
+                <i class="fa-solid fa-robot"></i>
+                <div class="bot-info-text">
+                    <strong>@Lolbb1977_bot</strong>
+                    <span>Bot oficial • Resposta automática • 24h</span>
+                </div>
+            </div>
+
+            <!-- Botão Telegram -->
+            <a href="https://t.me/Lolbb1977_bot" 
+               class="telegram-btn" 
+               target="_blank" 
+               rel="noopener noreferrer">
+                <i class="fa-brands fa-telegram"></i>
+                ACESSAR BOT AGORA
+            </a>
+
+            <!-- Contador de Usuários -->
+            <div class="user-counter">
+                <i class="fa-solid fa-users"></i>
+                <span>+15.000 usuários ativos</span>
+            </div>
+
+        </article>
+
+        <!-- Card VIP -->
+        <section class="vip-card">
+            <div class="vip-card-header">
+                <i class="fa-solid fa-crown"></i>
+                <span class="vip-card-title">Conteúdo Premium</span>
+            </div>
+            <p class="vip-card-text">
+                Quer acesso completo a todos os vídeos em qualidade máxima? 
+                Assine o VIP e desbloqueie tudo!
+            </p>
+            <a href="vip.html" class="vip-btn">
+                <i class="fa-solid fa-star" style="margin-right: 6px;"></i>
+                VER PLANOS VIP
+            </a>
+        </section>
+
+    </main>
+
+    <!-- Rodapé -->
+    <footer>
+        <p><i class="fa-solid fa-heart"></i> VIDEO WEB BLACK CPN ET LOI <i class="fa-solid fa-heart"></i></p>
+        <p style="margin-top: 8px; font-size: 0.8rem; color: #555;">
+            © 2026 - Todos os direitos reservados
+        </p>
+    </footer>
+
+    <!-- Scripts -->
+    <script>
+        // Suporte ao tema (herdado do index)
+        function updateTheme() {
+            const savedTheme = localStorage.getItem('theme') || 'dark';
+            if (savedTheme === 'light') {
+                document.body.classList.add('light-mode');
+            }
+        }
+        window.addEventListener('load', updateTheme);
+
+        // Tracking de cliques no botão Telegram
+        document.querySelector('.telegram-btn')?.addEventListener('click', function() {
+            console.log('Redirecionamento para Telegram: @Lolbb1977_bot');
+            // Pode adicionar analytics aqui se desejar
+        });
+
+        // Redirecionamento automático opcional (descomente se quiser)
+        // setTimeout(() => {
+        //     window.location.href = 'https://t.me/Lolbb1977_bot';
+        // }, 5000); // Redireciona após 5 segundos
+    </script>
+
+</body>
+</html>

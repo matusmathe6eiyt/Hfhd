@@ -1,0 +1,906 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Mais Vídeos Grátis - VIDEO WEB BLACK</title>
+    
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="favicon.webp" type="image/webp">
+
+    <!-- Ícones (FontAwesome) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Meta Tags -->
+    <meta name="robots" content="noindex, nofollow">
+    <meta name="theme-color" content="#000000">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self' https: 'unsafe-inline';">
+
+    <style>
+        /* --- VARIÁVEIS GLOBAIS --- */
+        :root {
+            --bg-color: #1a1a1a;
+            --text-color: #e0e0e0;
+            --header-bg: #000000;
+            --gold: #FFD700;
+            --red: #ff3b3b;
+            --white: #ffffff;
+            --card-bg: #252525;
+            --telegram-blue: #0088cc;
+            --telegram-hover: #0099e6;
+            --badge-free: #00b44c;
+            --placeholder-bg: #1a1a1a;
+            --placeholder-border: #333;
+        }
+
+        body.light-mode {
+            --bg-color: #f0f0f0;
+            --text-color: #111;
+            --card-bg: #fff;
+            --placeholder-bg: #e5e5e5;
+            --placeholder-border: #ccc;
+        }
+
+        * {
+            margin: 0; padding: 0; box-sizing: border-box;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            transition: background-color 0.3s ease, color 0.3s ease;
+            overflow-x: hidden;
+            padding-bottom: 30px;
+        }
+
+        /* --- CABEÇALHO --- */
+        header {
+            background-color: var(--header-bg);
+            height: 70px;
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            padding: 0 15px;
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.5);
+            gap: 15px;
+        }
+
+        .back-btn {
+            background: none; border: none; color: var(--white);
+            font-size: 22px; cursor: pointer; padding: 8px;
+            border-radius: 50%; transition: background 0.2s;
+        }
+        .back-btn:active { background: rgba(255,255,255,0.1); }
+
+        .page-title {
+            font-weight: 700; font-size: 1.1rem;
+            white-space: nowrap; overflow: hidden;
+            text-overflow: ellipsis; max-width: 70%;
+        }
+
+        .logo-mini { font-size: 0.9rem; font-weight: 800; }
+        .c-red { color: var(--red); }
+        .c-white { color: var(--white); }
+        .c-gold { color: var(--gold); }
+
+        /* --- CONTEÚDO PRINCIPAL --- */
+        main {
+            margin-top: 70px;
+            padding: 20px 15px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* Card Principal */
+        .main-card {
+            background: var(--card-bg);
+            border-radius: 16px;
+            padding: 25px 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+            border: 1px solid rgba(255,255,255,0.05);
+            text-align: center;
+        }
+
+        /* Ícone Telegram Animado */
+        .telegram-icon-container {
+            width: 100px;
+            height: 100px;
+            margin: 0 auto 20px;
+            background: linear-gradient(135deg, var(--telegram-blue), #0066aa);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            animation: pulse-telegram 2s infinite;
+        }
+        .telegram-icon-container i {
+            font-size: 50px;
+            color: #fff;
+        }
+
+        @keyframes pulse-telegram {
+            0%, 100% { 
+                box-shadow: 0 0 0 0 rgba(0, 136, 204, 0.6);
+                transform: scale(1);
+            }
+            50% { 
+                box-shadow: 0 0 0 20px rgba(0, 136, 204, 0);
+                transform: scale(1.05);
+            }
+        }
+
+        /* Título */
+        .main-title {
+            font-size: 1.5rem;
+            font-weight: 800;
+            margin-bottom: 10px;
+            color: var(--white);
+        }
+
+        /* Badge FREE */
+        .free-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            background: var(--badge-free);
+            color: #fff;
+            padding: 6px 16px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        /* Descrição */
+        .description {
+            font-size: 1rem;
+            line-height: 1.6;
+            color: var(--text-color);
+            margin-bottom: 25px;
+            opacity: 0.9;
+        }
+
+        /* Lista de Benefícios */
+        .benefits-list {
+            text-align: left;
+            margin: 20px 0;
+            padding: 0 10px;
+        }
+        .benefit-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            padding: 10px 0;
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+        }
+        .benefit-item:last-child { border-bottom: none; }
+        .benefit-item i {
+            color: var(--badge-free);
+            font-size: 1.1rem;
+            margin-top: 2px;
+            width: 20px;
+            text-align: center;
+        }
+        .benefit-text {
+            font-size: 0.95rem;
+            line-height: 1.4;
+        }
+
+        /* Botão Telegram */
+        .telegram-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            width: 100%;
+            padding: 18px 25px;
+            background: linear-gradient(135deg, var(--telegram-blue), #0066aa);
+            color: #fff;
+            border: none;
+            border-radius: 14px;
+            font-size: 1.1rem;
+            font-weight: 700;
+            cursor: pointer;
+            text-decoration: none;
+            transition: all 0.2s ease;
+            box-shadow: 0 4px 20px rgba(0, 136, 204, 0.4);
+            margin: 20px 0;
+        }
+        .telegram-btn:active { transform: scale(0.98); }
+        .telegram-btn:hover { 
+            background: linear-gradient(135deg, var(--telegram-hover), #0077cc);
+            box-shadow: 0 6px 25px rgba(0, 136, 204, 0.6);
+        }
+        .telegram-btn i { font-size: 1.4rem; }
+
+        /* Info do Bot */
+        .bot-info {
+            background: rgba(0, 136, 204, 0.15);
+            border: 1px solid rgba(0, 136, 204, 0.4);
+            border-radius: 12px;
+            padding: 15px;
+            margin: 20px 0;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        .bot-info i {
+            color: var(--telegram-blue);
+            font-size: 1.5rem;
+        }
+        .bot-info-text {
+            flex: 1;
+        }
+        .bot-info-text strong {
+            display: block;
+            color: var(--telegram-blue);
+            margin-bottom: 4px;
+        }
+        .bot-info-text span {
+            font-size: 0.85rem;
+            opacity: 0.8;
+        }
+
+        /* --- GALERIA DE IMAGENS --- */
+        .gallery-section {
+            background: var(--card-bg);
+            border-radius: 16px;
+            padding: 20px;
+            margin: 20px 0;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+            border: 1px solid rgba(255,255,255,0.05);
+        }
+
+        .gallery-header {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+        .gallery-header i {
+            color: var(--gold);
+            font-size: 1.3rem;
+        }
+        .gallery-title {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: var(--white);
+        }
+
+        /* Grid de Imagens */
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 12px;
+            margin-bottom: 20px;
+        }
+
+        /* Placeholder de Imagem */
+        .image-placeholder {
+            background: var(--placeholder-bg);
+            border: 2px dashed var(--placeholder-border);
+            border-radius: 12px;
+            aspect-ratio: 16/9;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 15px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .image-placeholder i {
+            font-size: 2.5rem;
+            color: var(--gold);
+            margin-bottom: 10px;
+            opacity: 0.7;
+        }
+
+        .image-placeholder span {
+            font-size: 0.85rem;
+            color: #888;
+            line-height: 1.3;
+        }
+
+        /* Badge de Atualização */
+        .update-badge {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: linear-gradient(135deg, var(--gold), #FFA500);
+            color: #000;
+            padding: 4px 10px;
+            border-radius: 20px;
+            font-size: 0.7rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+        .update-badge i {
+            font-size: 0.75rem;
+            animation: spin 2s linear infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        /* Aviso de Atualização */
+        .update-notice {
+            background: rgba(255, 215, 0, 0.15);
+            border: 1px solid rgba(255, 215, 0, 0.4);
+            border-radius: 12px;
+            padding: 15px;
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            margin-top: 15px;
+        }
+        .update-notice i {
+            color: var(--gold);
+            font-size: 1.3rem;
+            margin-top: 2px;
+        }
+        .update-notice-text {
+            flex: 1;
+        }
+        .update-notice-text strong {
+            display: block;
+            color: var(--gold);
+            margin-bottom: 5px;
+            font-size: 0.95rem;
+        }
+        .update-notice-text p {
+            font-size: 0.85rem;
+            color: var(--text-color);
+            opacity: 0.9;
+            line-height: 1.5;
+            margin: 0;
+        }
+
+        /* Barra de Progresso */
+        .progress-container {
+            margin-top: 15px;
+        }
+        .progress-label {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.8rem;
+            color: #888;
+            margin-bottom: 8px;
+        }
+        .progress-bar {
+            width: 100%;
+            height: 8px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 10px;
+            overflow: hidden;
+        }
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, var(--gold), #FFA500);
+            border-radius: 10px;
+            width: 35%;
+            animation: progress-pulse 2s ease-in-out infinite;
+        }
+
+        @keyframes progress-pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.7; }
+        }
+
+        /* --- SEÇÃO DE CONTATOS --- */
+        .contact-section {
+            background: var(--card-bg);
+            border-radius: 16px;
+            padding: 20px;
+            margin: 20px 0;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+            border: 1px solid rgba(255,255,255,0.05);
+        }
+
+        .contact-header {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+        .contact-header i {
+            color: var(--telegram-blue);
+            font-size: 1.3rem;
+        }
+        .contact-title {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: var(--white);
+        }
+        .contact-subtitle {
+            font-size: 0.85rem;
+            color: #888;
+            margin-top: 3px;
+        }
+
+        .contact-grid {
+            display: grid;
+            gap: 12px;
+        }
+
+        .contact-card {
+            background: rgba(0, 136, 204, 0.1);
+            border: 1px solid rgba(0, 136, 204, 0.3);
+            border-radius: 12px;
+            padding: 15px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            transition: all 0.2s ease;
+        }
+        .contact-card:hover {
+            background: rgba(0, 136, 204, 0.15);
+            transform: translateX(5px);
+        }
+
+        .contact-icon {
+            width: 45px;
+            height: 45px;
+            background: linear-gradient(135deg, var(--telegram-blue), #0066aa);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+        .contact-icon i {
+            color: #fff;
+            font-size: 1.2rem;
+        }
+
+        .contact-info {
+            flex: 1;
+        }
+        .contact-label {
+            font-size: 0.8rem;
+            color: #888;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 3px;
+        }
+        .contact-value {
+            font-size: 0.95rem;
+            font-weight: 600;
+            color: var(--white);
+        }
+        .contact-value a {
+            color: var(--telegram-blue);
+            text-decoration: none;
+        }
+        .contact-value a:hover {
+            text-decoration: underline;
+        }
+
+        .contact-btn {
+            background: linear-gradient(135deg, var(--telegram-blue), #0066aa);
+            color: #fff;
+            border: none;
+            border-radius: 8px;
+            padding: 8px 15px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            transition: all 0.2s ease;
+        }
+        .contact-btn:hover {
+            background: linear-gradient(135deg, var(--telegram-hover), #0077cc);
+            transform: scale(1.05);
+        }
+
+        /* Card Secundário - VIP */
+        .vip-card {
+            background: var(--card-bg);
+            border-radius: 16px;
+            padding: 20px;
+            margin-top: 20px;
+            border: 2px solid var(--gold);
+        }
+        .vip-card-header {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 15px;
+        }
+        .vip-card-header i {
+            background: linear-gradient(135deg, #FFD700, #FFA500);
+            color: #000;
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1rem;
+            font-weight: 800;
+        }
+        .vip-card-title {
+            font-weight: 800;
+            font-size: 1.1rem;
+            background: linear-gradient(135deg, #FFD700, #FFA500);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .vip-card-text {
+            font-size: 0.9rem;
+            opacity: 0.9;
+            margin-bottom: 15px;
+        }
+        .vip-btn {
+            display: block;
+            width: 100%;
+            padding: 14px;
+            background: linear-gradient(135deg, #FFD700, #FFA500);
+            color: #000;
+            border: none;
+            border-radius: 10px;
+            font-weight: 700;
+            font-size: 0.95rem;
+            cursor: pointer;
+            text-decoration: none;
+            text-align: center;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        .vip-btn:active { transform: scale(0.98); }
+        .vip-btn:hover { box-shadow: 0 4px 20px rgba(255, 215, 0, 0.4); }
+
+        /* Contador de Usuários */
+        .user-counter {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            margin-top: 15px;
+            font-size: 0.85rem;
+            opacity: 0.7;
+        }
+        .user-counter i { color: var(--badge-free); }
+
+        /* Rodapé */
+        footer {
+            text-align: center;
+            padding: 25px 15px 40px;
+            font-size: 0.85rem;
+            color: #777;
+        }
+        footer i { color: var(--red); margin: 0 3px; }
+
+        /* Responsive */
+        @media (max-width: 480px) {
+            .main-title { font-size: 1.3rem; }
+            .telegram-btn { padding: 16px 20px; font-size: 1rem; }
+            .telegram-icon-container { width: 90px; height: 90px; }
+            .telegram-icon-container i { font-size: 45px; }
+            .gallery-grid { grid-template-columns: 1fr; }
+            .contact-card { flex-wrap: wrap; }
+            .contact-btn { width: 100%; justify-content: center; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Cabeçalho -->
+    <header>
+        <button class="back-btn" onclick="history.back()">
+            <i class="fa-solid fa-arrow-left"></i>
+        </button>
+        <div class="page-title">Mais Vídeos Grátis</div>
+        <div class="logo-mini">
+            <span class="c-red">VIDEO</span><span class="c-gold">WEB</span>
+        </div>
+    </header>
+
+    <!-- Conteúdo Principal -->
+    <main>
+        
+        <!-- Card Principal -->
+        <article class="main-card">
+            
+            <!-- Ícone Telegram -->
+            <div class="telegram-icon-container">
+                <i class="fa-brands fa-telegram"></i>
+            </div>
+
+            <!-- Badge FREE -->
+            <div class="free-badge">
+                <i class="fa-solid fa-gift"></i>
+                100% GRATUITO
+            </div>
+
+            <!-- Título -->
+            <h1 class="main-title">Quer Mais Vídeos Grátis?</h1>
+
+            <!-- Descrição -->
+            <p class="description">
+                Para acessar nossa coleção completa de vídeos gratuitos, 
+                você precisa se cadastrar no nosso bot oficial do Telegram. 
+                É rápido, seguro e totalmente grátis!
+            </p>
+
+            <!-- Lista de Benefícios -->
+            <div class="benefits-list">
+                <div class="benefit-item">
+                    <i class="fa-solid fa-circle-check"></i>
+                    <div class="benefit-text">
+                        <strong>Acesso ilimitado</strong> a centenas de vídeos grátis
+                    </div>
+                </div>
+                <div class="benefit-item">
+                    <i class="fa-solid fa-circle-check"></i>
+                    <div class="benefit-text">
+                        <strong>Atualizações diárias</strong> com novo conteúdo
+                    </div>
+                </div>
+                <div class="benefit-item">
+                    <i class="fa-solid fa-circle-check"></i>
+                    <div class="benefit-text">
+                        <strong>Download direto</strong> sem limitações
+                    </div>                </div>
+                <div class="benefit-item">
+                    <i class="fa-solid fa-circle-check"></i>
+                    <div class="benefit-text">
+                        <strong>Sem anúncios</strong> irritantes durante o acesso
+                    </div>
+                </div>
+                <div class="benefit-item">
+                    <i class="fa-solid fa-circle-check"></i>
+                    <div class="benefit-text">
+                        <strong>Comunidade exclusiva</strong> no Telegram
+                    </div>
+                </div>
+            </div>
+
+            <!-- Info do Bot -->
+            <div class="bot-info">
+                <i class="fa-solid fa-robot"></i>
+                <div class="bot-info-text">
+                    <strong>@Lolbb1977_bot</strong>
+                    <span>Bot oficial • Resposta automática • 24h</span>
+                </div>
+            </div>
+
+            <!-- Botão Telegram -->
+            <a href="https://t.me/Lolbb1977_bot" 
+               class="telegram-btn" 
+               target="_blank" 
+               rel="noopener noreferrer">
+                <i class="fa-brands fa-telegram"></i>
+                ACESSAR BOT AGORA
+            </a>
+
+            <!-- Contador de Usuários -->
+            <div class="user-counter">
+                <i class="fa-solid fa-users"></i>
+                <span>+15.000 usuários ativos</span>
+            </div>
+
+        </article>
+
+        <!-- Galeria de Imagens (EM ATUALIZAÇÃO) -->
+        <section class="gallery-section">
+            <div class="gallery-header">
+                <i class="fa-solid fa-images"></i>
+                <span class="gallery-title">Galeria de Imagens</span>
+            </div>
+
+            <!-- Grid de Placeholders -->
+            <div class="gallery-grid">
+                <div class="image-placeholder">
+                    <div class="update-badge">
+                        <i class="fa-solid fa-spinner"></i>
+                        EM BREVE
+                    </div>
+                    <i class="fa-solid fa-image"></i>
+                    <span>Imagem 1<br>Em atualização</span>
+                </div>
+                <div class="image-placeholder">
+                    <div class="update-badge">
+                        <i class="fa-solid fa-spinner"></i>
+                        EM BREVE
+                    </div>
+                    <i class="fa-solid fa-image"></i>
+                    <span>Imagem 2<br>Em atualização</span>
+                </div>
+                <div class="image-placeholder">
+                    <div class="update-badge">
+                        <i class="fa-solid fa-spinner"></i>
+                        EM BREVE
+                    </div>
+                    <i class="fa-solid fa-image"></i>
+                    <span>Imagem 3<br>Em atualização</span>
+                </div>
+                <div class="image-placeholder">
+                    <div class="update-badge">
+                        <i class="fa-solid fa-spinner"></i>
+                        EM BREVE
+                    </div>
+                    <i class="fa-solid fa-image"></i>
+                    <span>Imagem 4<br>Em atualização</span>
+                </div>
+            </div>
+
+            <!-- Aviso de Atualização -->
+            <div class="update-notice">
+                <i class="fa-solid fa-circle-info"></i>
+                <div class="update-notice-text">
+                    <strong>📢 Imagens em Atualização</strong>
+                    <p>
+                        Devido à alta demanda de conteúdo, estamos atualizando nossa galeria de imagens. 
+                        Este processo pode levar alguns dias. Volte em breve para conferir as novidades!
+                    </p>
+                </div>
+            </div>
+
+            <!-- Barra de Progresso -->
+            <div class="progress-container">
+                <div class="progress-label">
+                    <span>Progresso da atualização</span>
+                    <span>35%</span>
+                </div>
+                <div class="progress-bar">
+                    <div class="progress-fill"></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SEÇÃO DE CONTATOS -->
+        <section class="contact-section">
+            <div class="contact-header">
+                <i class="fa-solid fa-address-book"></i>
+                <div>
+                    <div class="contact-title">Canais de Contato</div>
+                    <div class="contact-subtitle">Estamos aqui para ajudar!</div>
+                </div>
+            </div>
+
+            <div class="contact-grid">
+                <!-- Contato 1 - Bot do Telegram -->
+                <div class="contact-card">
+                    <div class="contact-icon">
+                        <i class="fa-solid fa-robot"></i>
+                    </div>
+                    <div class="contact-info">
+                        <div class="contact-label">Bot Automático</div>
+                        <div class="contact-value">
+                            <a href="https://t.me/Lolbb1977_bot" target="_blank">@Lolbb1977_bot</a>
+                        </div>
+                    </div>
+                    <a href="https://t.me/Lolbb1977_bot" class="contact-btn" target="_blank">
+                        <i class="fa-brands fa-telegram"></i>
+                        Acessar
+                    </a>
+                </div>
+
+                <!-- Contato 2 - Suporte Pessoal -->
+                <div class="contact-card">
+                    <div class="contact-icon">
+                        <i class="fa-solid fa-headset"></i>
+                    </div>
+                    <div class="contact-info">
+                        <div class="contact-label">Suporte Pessoal</div>
+                        <div class="contact-value">
+                            <a href="https://t.me/Linbb1997" target="_blank">@Linbb1997</a>
+                        </div>
+                    </div>
+                    <a href="https://t.me/Linbb1997" class="contact-btn" target="_blank">
+                        <i class="fa-brands fa-telegram"></i>
+                        Contatar
+                    </a>
+                </div>
+
+                <!-- Contato 3 - Canal Alternativo -->
+                <div class="contact-card">
+                    <div class="contact-icon">
+                        <i class="fa-solid fa-broadcast-tower"></i>
+                    </div>
+                    <div class="contact-info">
+                        <div class="contact-label">Canal Alternativo</div>
+                        <div class="contact-value">
+                            <a href="https://t.me/Alinanikina8532" target="_blank">Clique aqui</a>
+                        </div>
+                    </div>
+                    <a href="https://t.me/Alinanikina8532" class="contact-btn" target="_blank">
+                        <i class="fa-brands fa-telegram"></i>
+                        Acessar
+                    </a>
+                </div>
+            </div>
+
+            <!-- Dica de Contato -->
+            <div style="margin-top: 15px; padding: 12px; background: rgba(255, 215, 0, 0.1); border-radius: 8px; font-size: 0.85rem; color: var(--text-color); opacity: 0.9;">
+                <i class="fa-solid fa-lightbulb" style="color: var(--gold); margin-right: 6px;"></i>
+                <strong>Dica:</strong> Para acesso rápido aos vídeos grátis, use o bot @Lolbb1977_bot. 
+                Para dúvidas ou suporte, entre em contato com @Linbb1997.
+            </div>
+        </section>
+
+        <!-- Card VIP -->
+        <section class="vip-card">
+            <div class="vip-card-header">
+                <i class="fa-solid fa-crown"></i>
+                <span class="vip-card-title">Conteúdo Premium</span>
+            </div>
+            <p class="vip-card-text">
+                Quer acesso completo a todos os vídeos em qualidade máxima? 
+                Assine o VIP e desbloqueie tudo!
+            </p>
+            <a href="vip.html" class="vip-btn">
+                <i class="fa-solid fa-star" style="margin-right: 6px;"></i>
+                VER PLANOS VIP
+            </a>
+        </section>
+
+    </main>
+
+    <!-- Rodapé -->
+    <footer>
+        <p><i class="fa-solid fa-heart"></i> VIDEO WEB BLACK CPN ET LOI <i class="fa-solid fa-heart"></i></p>
+        <p style="margin-top: 8px; font-size: 0.8rem; color: #555;">
+            © 2026 - Todos os direitos reservados
+        </p>
+    </footer>
+
+    <!-- Scripts -->
+    <script>
+        // Suporte ao tema (herdado do index)
+        function updateTheme() {
+            const savedTheme = localStorage.getItem('theme') || 'dark';
+            if (savedTheme === 'light') {
+                document.body.classList.add('light-mode');
+            }
+        }
+        window.addEventListener('load', updateTheme);
+
+        // Tracking de cliques
+        document.querySelectorAll('.telegram-btn, .contact-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                console.log('Redirecionamento para Telegram');
+            });
+        });
+
+        // Animação suave dos placeholders
+        document.querySelectorAll('.image-placeholder, .contact-card').forEach((el, index) => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(20px)';
+            setTimeout(() => {
+                el.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+                el.style.opacity = '1';
+                el.style.transform = 'translateY(0)';
+            }, index * 100);
+        });
+    </script>
+
+</body>
+</html>
+             
