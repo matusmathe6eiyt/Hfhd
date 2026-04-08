@@ -3,459 +3,344 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>só tem 8 anos - VIDEO WEB BLACK</title>
-    
-    <!-- Favicon -->
+    <title>Plano Grátis - VIDEO WEB BLACK CPN</title>
     <link rel="shortcut icon" href="favicon.webp" type="image/webp">
 
-    <!-- Ícones (FontAwesome) -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-
-    <!-- Meta Tags -->
-    <meta name="robots" content="noindex, nofollow">
-    <meta name="theme-color" content="#000000">
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self' https: 'unsafe-inline';">
-
     <style>
-        /* --- VARIÁVEIS GLOBAIS --- */
+        /* ========== VARIÁVEIS ========== */
         :root {
-            --bg-color: #1a1a1a;
-            --text-color: #e0e0e0;
-            --header-bg: #000000;
-            --gold: #FFD700;
-            --red: #ff3b3b;
-            --white: #ffffff;
-            --card-bg: #252525;
-            --badge-demo: #ff6b6b;
-            --badge-vip: linear-gradient(135deg, #FFD700, #FFA500);
-            --mega-green: #00b44c;
-            --preview-border: 2px dashed rgba(255, 107, 107, 0.6);
+            --bg-site: #0f0f12;
+            --bg-surface: #18181f;
+            --bg-elevated: #1e1e28;
+            --border-subtle: #2a2a38;
+            --text-primary: #f4f4f7;
+            --text-secondary: #a1a1aa;
+            --text-tertiary: #71717a;
+            --accent-gold: #d4af37;
+            --accent-gold-light: #f0d670;
+            --shadow-md: 0 4px 20px rgba(0, 0, 0, 0.35);
+            --radius: 14px;
+            --transition: all 0.2s ease;
         }
 
-        body.light-mode {
-            --bg-color: #f0f0f0;
-            --text-color: #111;
-            --card-bg: #fff;
-        }
-
-        * {
-            margin: 0; padding: 0; box-sizing: border-box;
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-            -webkit-tap-highlight-color: transparent;
-        }
-
+        * { margin: 0; padding: 0; box-sizing: border-box; }
         body {
-            background-color: var(--bg-color);
-            color: var(--text-color);
-            transition: background-color 0.3s ease, color 0.3s ease;
-            overflow-x: hidden;
-            padding-bottom: 30px;
+            background: var(--bg-site);
+            color: var(--text-primary);
+            font-family: system-ui, -apple-system, sans-serif;
+            min-height: 100vh;
+            -webkit-font-smoothing: antialiased;
+            display: flex; flex-direction: column;
         }
 
-        /* --- CABEÇALHO --- */
+        /* ========== HEADER ========== */
         header {
-            background-color: var(--header-bg);
-            height: 70px;
+            position: sticky; top: 0; width: 100%; height: 56px;
+            background: #0a0a0d; border-bottom: 1px solid var(--border-subtle);
+            display: flex; align-items: center; justify-content: space-between;
+            padding: 0 16px; z-index: 100;
+        }
+        .header-left { display: flex; align-items: center; gap: 12px; }
+        .back-btn {
+            background: var(--bg-elevated); border: 1px solid var(--border-subtle);
+            color: #fff; width: 34px; height: 34px; border-radius: 8px;
+            display: flex; align-items: center; justify-content: center; cursor: pointer;
+        }
+        .back-btn svg { width: 18px; height: 18px; }
+        .site-name { font-size: 16px; font-weight: 800; }
+        .c-red { color: #ff4d4d; } .c-gold { color: var(--accent-gold); } .c-white { color: #fff; }
+
+        /* ========== MAIN ========== */
+        main { flex: 1; padding: 24px 16px 40px; max-width: 520px; margin: 0 auto; width: 100%; }
+        
+        .page-header { text-align: center; margin-bottom: 28px; }
+        .page-title { font-size: 1.5rem; font-weight: 800; margin-bottom: 6px; }
+        .page-subtitle { color: var(--text-secondary); font-size: 0.9rem; }
+
+        /* ========== SENHA REDESIGNADA (Discreta) ========== */
+        .pwd-container {
+            background: var(--bg-surface);
+            border: 1px solid var(--border-subtle);
+            border-radius: 12px;
+            padding: 14px 16px;
+            margin-bottom: 28px;
             display: flex;
             align-items: center;
-            justify-content: flex-start;
-            padding: 0 15px;
-            position: fixed;
-            top: 0;
-            width: 100%;
-            z-index: 1000;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.5);
-            gap: 15px;
+            gap: 12px;
+        }
+        
+        .pwd-icon {
+            color: var(--text-tertiary);
+            display: flex; align-items: center;
+        }
+        .pwd-icon svg { width: 20px; height: 20px; stroke: var(--text-tertiary); }
+
+        .pwd-content { flex: 1; display: flex; align-items: center; justify-content: space-between; gap: 10px; }
+        
+        .pwd-text {
+            font-family: monospace;
+            font-size: 1.05rem;
+            font-weight: 700;
+            color: var(--accent-gold-light);
+            letter-spacing: 0.5px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
         }
 
-        .back-btn {
-            background: none; border: none; color: var(--white);
-            font-size: 22px; cursor: pointer; padding: 8px;
-            border-radius: 50%; transition: background 0.2s;
+        .copy-btn {
+            background: transparent;
+            border: 1px solid var(--border-subtle);
+            color: var(--text-secondary);
+            padding: 6px 10px;
+            border-radius: 8px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            cursor: pointer;
+            display: flex; align-items: center; gap: 6px;
+            transition: var(--transition);
+            white-space: nowrap;
         }
-        .back-btn:active { background: rgba(255,255,255,0.1); }
+        .copy-btn:hover { border-color: var(--accent-gold); color: var(--accent-gold); }
+        .copy-btn svg { width: 14px; height: 14px; }
 
-        .page-title {
-            font-weight: 700; font-size: 1.1rem;
-            white-space: nowrap; overflow: hidden;
-            text-overflow: ellipsis; max-width: 70%;
-        }
-
-        .logo-mini { font-size: 0.9rem; font-weight: 800; }
-        .c-red { color: var(--red); }
-        .c-white { color: var(--white); }
-        .c-gold { color: var(--gold); }
-
-        /* --- CONTEÚDO PRINCIPAL --- */
-        main {
-            margin-top: 70px;
-            padding: 20px 15px;
-            max-width: 600px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-
-        /* Card do Vídeo */
-        .video-card {
-            background: var(--card-bg);
+        /* ========== LISTA DE CATEGORIAS ========== */
+        .cat-list { display: flex; flex-direction: column; gap: 12px; margin-bottom: 30px; }
+        
+        .cat-card {
+            background: var(--bg-surface);
+            border: 1px solid var(--border-subtle);
             border-radius: 16px;
-            padding: 20px;
-            margin-bottom: 20px;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.3);
-            border: 1px solid rgba(255,255,255,0.05);
-        }
-
-        .video-title {
-            font-size: 1.4rem; font-weight: 700;
-            margin-bottom: 12px; line-height: 1.3; color: var(--white);
-        }
-
-        /* Badge DEMO */
-        .demo-badge {
-            display: inline-flex; align-items: center; gap: 6px;
-            background: var(--badge-demo); color: #fff;
-            padding: 6px 14px; border-radius: 20px;
-            font-size: 0.8rem; font-weight: 700;
-            margin-bottom: 12px; text-transform: uppercase;
-            letter-spacing: 0.5px; animation: pulse-red 2s infinite;
-        }
-        .demo-badge i { font-size: 0.9rem; }
-
-        @keyframes pulse-red {
-            0%, 100% { box-shadow: 0 0 0 0 rgba(255, 107, 107, 0.6); }
-            50% { box-shadow: 0 0 0 10px rgba(255, 107, 107, 0); }
-        }
-
-        /* Preview Box */
-        .preview-box {
-            background: rgba(255, 107, 107, 0.1);
-            border: var(--preview-border);
-            border-radius: 12px;
-            padding: 15px;
-            margin: 15px 0;
-            text-align: center;
-        }
-        .preview-box i {
-            font-size: 2rem; color: var(--red);
-            margin-bottom: 8px;
-        }
-        .preview-box p {
-            font-size: 0.9rem; margin-bottom: 0;
-        }
-        .preview-box strong { color: var(--red); }
-
-        /* Info do Arquivo */
-        .file-info {
-            display: grid; grid-template-columns: 1fr 1fr;
-            gap: 12px; margin: 15px 0;
-        }
-        .info-item {
-            display: flex; align-items: center; gap: 8px;
-            font-size: 0.9rem;
-        }
-        .info-item i { color: var(--gold); width: 20px; text-align: center; }
-
-        /* Badge Qualidade */
-        .quality-badge {
-            display: inline-flex; align-items: center; gap: 5px;
-            background: rgba(136, 136, 136, 0.3);
-            color: #aaa; padding: 5px 12px;
-            border-radius: 16px; font-size: 0.75rem;
-            font-weight: 600; margin-bottom: 10px;
-        }
-
-        /* Botão MEGA */
-        .mega-btn {
-            display: flex; align-items: center; justify-content: center;
-            gap: 10px; width: 100%; padding: 16px 20px;
-            background: var(--mega-green); color: #fff;
-            border: none; border-radius: 12px;
-            font-size: 1rem; font-weight: 700;
-            cursor: pointer; text-decoration: none;
-            transition: all 0.2s ease;
-            box-shadow: 0 4px 15px rgba(0, 180, 76, 0.4);
-            margin: 10px 0;
-        }
-        .mega-btn:active { transform: scale(0.98); }
-        .mega-btn i { font-size: 1.2rem; }
-
-        /* Aviso ZIP */
-        .zip-notice {
-            background: rgba(255, 215, 0, 0.15);
-            border: 1px solid rgba(255, 215, 0, 0.4);
-            border-radius: 10px; padding: 12px 15px;
-            display: flex; align-items: flex-start; gap: 10px;
-            font-size: 0.85rem; margin-top: 10px;
-        }
-        .zip-notice i { color: var(--gold); font-size: 1.1rem; margin-top: 2px; }
-
-        /* Separador */
-        .separator {
-            display: flex; align-items: center; gap: 12px;
-            margin: 25px 0; color: #666; font-size: 0.85rem;
-        }
-        .separator::before, .separator::after {
-            content: ""; flex: 1; height: 1px;
-            background: rgba(255,255,255,0.1);
-        }
-
-        /* Seção VIP - Comprar Completo */
-        .vip-section {
-            background: var(--card-bg);
-            border-radius: 16px; padding: 20px;
-            border: 2px solid var(--gold);
-            margin-top: 5px;
-        }
-        .vip-header {
-            display: flex; align-items: center; gap: 10px;
-            margin-bottom: 15px; padding-bottom: 12px;
-            border-bottom: 1px solid rgba(255,255,255,0.1);
-        }
-        .vip-header i {
-            background: var(--badge-vip); color: #000;
-            width: 32px; height: 32px; border-radius: 50%;
-            display: flex; align-items: center; justify-content: center;
-            font-size: 1rem; font-weight: 800;
-        }
-        .vip-title {
-            font-weight: 800; font-size: 1.15rem;
-            background: var(--badge-vip);
-            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-        .vip-subtitle {
-            font-size: 0.85rem; color: #888; margin-top: 2px;
-        }
-
-        .vip-feature {
+            padding: 14px 16px;
             display: flex; align-items: center; justify-content: space-between;
-            padding: 12px 0; border-bottom: 1px solid rgba(255,255,255,0.05);
+            transition: var(--transition);
         }
-        .vip-feature:last-child { border-bottom: none; }
+        .cat-card:hover { border-color: #3a3a4a; background: var(--bg-elevated); }
 
-        .vip-left { display: flex; align-items: center; gap: 12px; }
-        .vip-left i { color: var(--gold); font-size: 1.1rem; width: 24px; text-align: center; }
-        .vip-text { font-size: 0.95rem; }
-        .vip-text span { display: block; font-size: 0.75rem; color: #777; margin-top: 2px; }
-
-        .vip-value {
-            font-weight: 800; color: var(--gold);
-            font-size: 1.1rem;
+        .cat-left { display: flex; align-items: center; gap: 14px; min-width: 0; flex: 1; }
+        
+        /* Estilo dos Ícones Coloridos */
+        .cat-icon {
+            width: 44px; height: 44px; border-radius: 12px;
+            display: flex; align-items: center; justify-content: center;
+            flex-shrink: 0;
+        }
+        .cat-icon svg {
+            width: 22px; height: 22px; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round;
+            fill: none;
         }
 
-        /* Botão Comprar */
-        .buy-btn {
-            display: block; width: 100%;
-            padding: 16px; margin-top: 18px;
-            background: var(--badge-vip); color: #000;
-            border: none; border-radius: 12px;
-            font-weight: 800; font-size: 1rem;
-            cursor: pointer; text-decoration: none;
-            text-align: center; transition: transform 0.2s, box-shadow 0.2s;
-            display: flex; align-items: center; justify-content: center; gap: 8px;
-        }
-        .buy-btn:active { transform: scale(0.98); }
-        .buy-btn:hover { box-shadow: 0 6px 25px rgba(255, 215, 0, 0.5); }
+        /* Cores Específicas */
+        .cat-icon.blue   { background: rgba(59, 130, 246, 0.15); color: #60a5fa; }
+        .cat-icon.pink   { background: rgba(236, 72, 153, 0.15); color: #f472b6; }
+        .cat-icon.green  { background: rgba(34, 197, 94, 0.15);  color: #4ade80; }
+        .cat-icon.red    { background: rgba(239, 68, 68, 0.15);  color: #f87171; }
+        .cat-icon.purple { background: rgba(168, 85, 247, 0.15); color: #c084fc; }
 
-        /* Garantia */
-        .guarantee {
-            text-align: center; margin-top: 15px;
-            font-size: 0.8rem; color: #777;
-            display: flex; align-items: center; justify-content: center; gap: 5px;
-        }
-        .guarantee i { color: var(--gold); }
+        .cat-text h3 { font-size: 1rem; font-weight: 700; margin-bottom: 2px; }
+        .cat-text p  { font-size: 0.8rem; color: var(--text-tertiary); }
 
-        /* Rodapé */
-        footer {
-            text-align: center; padding: 25px 15px 40px;
-            font-size: 0.85rem; color: #777;
+        /* Botão de Download Corrigido */
+        .dl-btn {
+            background: var(--accent-gold);
+            width: 42px; height: 42px; border-radius: 10px;
+            display: flex; align-items: center; justify-content: center;
+            text-decoration: none; flex-shrink: 0;
+            transition: var(--transition);
+            border: none; cursor: pointer;
         }
-        footer i { color: var(--red); margin: 0 3px; }
+        .dl-btn:hover { background: var(--accent-gold-light); transform: scale(1.05); }
+        .dl-btn:active { transform: scale(0.95); }
+        
+        /* SVG do botão PRETO para contraste com o fundo dourado */
+        .dl-btn svg { width: 20px; height: 20px; stroke: #0f0f12; stroke-width: 2.5; stroke-linecap: round; stroke-linejoin: round; fill: none; }
 
-        /* Responsive */
-        @media (max-width: 480px) {
-            .video-title { font-size: 1.25rem; }
-            .file-info { grid-template-columns: 1fr; gap: 10px; }
-            .mega-btn, .buy-btn { padding: 14px 16px; font-size: 0.95rem; }
-            .vip-value { font-size: 1rem; }
+        /* ========== INSTRUÇÕES ========== */
+        .info-box {
+            background: rgba(38, 165, 228, 0.05); border: 1px solid rgba(38, 165, 228, 0.2);
+            border-radius: 12px; padding: 16px; text-align: center;
         }
+        .info-box p { color: var(--text-secondary); font-size: 0.85rem; line-height: 1.5; }
+        .info-box strong { color: #38bdf8; }
+
+        /* ========== TOAST ========== */
+        .toast {
+            position: fixed; bottom: 24px; left: 50%; transform: translateX(-50%) translateY(20px);
+            background: var(--accent-gold); color: #000; padding: 10px 20px;
+            border-radius: 30px; font-size: 0.9rem; font-weight: 700; opacity: 0; visibility: hidden;
+            transition: all 0.3s ease; z-index: 1000;
+        }
+        .toast.show { opacity: 1; visibility: visible; transform: translateX(-50%) translateY(0); }
+
+        footer { text-align: center; padding: 20px; color: var(--text-tertiary); font-size: 0.75rem; border-top: 1px solid var(--border-subtle); }
+
     </style>
 </head>
 <body>
 
-    <!-- Cabeçalho -->
     <header>
-        <button class="back-btn" onclick="history.back()">
-            <i class="fa-solid fa-arrow-left"></i>
-        </button>
-        <div class="page-title">só tem 8 anos</div>
-        <div class="logo-mini">
-            <span class="c-red">VIDEO</span><span class="c-gold">WEB</span>
+        <div class="header-left">
+            <button class="back-btn" onclick="history.back()">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+            </button>
+            <div class="site-name">
+                <span class="c-red">VIDEO</span><span class="c-gold"> WEB BLACK</span><span class="c-white"> CPN</span>
+            </div>
         </div>
+        <!-- SSL Badge omitido para limpar o header -->
     </header>
 
-    <!-- Conteúdo Principal -->
     <main>
-        
-        <!-- Card do Vídeo (DEMO) -->
-        <article class="video-card">
-            <h1 class="video-title">só tem 8 anos</h1>
+        <div class="page-header">
+            <h1 class="page-title">Plano Grátis</h1>
+            <p class="page-subtitle">Selecione a categoria e baixe o pacote</p>
+        </div>
+
+        <!-- SENHA DISCRETA E ELEGANTE -->
+        <div class="pwd-container">
+            <div class="pwd-icon">
+                <!-- Ícone de Chave -->
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="8" cy="15" r="4"/><line x1="18" y1="6" x2="21" y2="9"/><path d="M17.7 6.3A5 5 0 0 0 10 10.3V14"/>
+                </svg>
+            </div>
+            <div class="pwd-content">
+                <span class="pwd-text" id="passwordText">@Lolbb1977_bot</span>
+                <button class="copy-btn" id="copyBtn" type="button">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+                    Copiar
+                </button>
+            </div>
+        </div>
+
+        <!-- LISTA DE CATEGORIAS COM ÍCONES SVG VISÍVEIS -->
+        <div class="cat-list">
             
-            <!-- Badge DEMO -->
-            <div class="demo-badge">
-                <i class="fa-solid fa-eye"></i>
-                PRÉVIA GRATUITA
-            </div>
-
-            <!-- Box de Preview -->
-            <div class="preview-box">
-                <i class="fa-solid fa-film"></i>
-                <p>Vídeo de demonstração • <strong>10 segundos</strong><br>
-                <span style="color:#888;font-size:0.85rem">Qualidade reduzida para visualização</span></p>
-            </div>
-
-            <!-- Badge Qualidade -->
-            <div style="text-align:center;margin:10px 0;">
-                <span class="quality-badge">
-                    <i class="fa-solid fa-tv"></i> Preview • 240p
-                </span>
-            </div>
-
-            <!-- Informações do Arquivo -->
-            <div class="file-info">
-                <div class="info-item">
-                    <i class="fa-solid fa-file-zipper"></i>
-                    <span>Formato: ZIP</span>
-                </div>
-                <div class="info-item">
-                    <i class="fa-solid fa-weight-hanging"></i>
-                    <span>Tamanho: 6,88 MB</span>
-                </div>
-                <div class="info-item">
-                    <i class="fa-solid fa-stopwatch"></i>
-                    <span>Duração: 00:10 (Demo)</span>
-                </div>
-                <div class="info-item">
-                    <i class="fa-solid fa-calendar"></i>
-                    <span>Adicionado: Hoje</span>
-                </div>
-            </div>
-
-            <!-- Botão Download MEGA (Demo) -->
-            <a href="https://mega.nz/file/fOpkxTbK#lyNUHRLvxaFw5naUqABSh6Wv_P44Ts3JGfr6p4nT18w" 
-               class="mega-btn" 
-               target="_blank" 
-               rel="noopener noreferrer">
-                <i class="fa-brands fa-mega"></i>
-                BAIXAR DEMO - MEGA
-            </a>
-
-            <!-- Aviso ZIP -->
-            <div class="zip-notice">
-                <i class="fa-solid fa-circle-info"></i>
-                <div>
-                    <strong>Atenção:</strong> Arquivo ZIP. Descompacte com WinRAR, 7-Zip ou ZArchiver antes de abrir.
-                </div>
-            </div>
-        </article>
-
-        <!-- Separador -->
-        <div class="separator">OU</div>
-
-        <!-- Seção VIP - Comprar Vídeo Completo -->
-        <section class="vip-section">
-            <div class="vip-header">
-                <i class="fa-solid fa-crown"></i>
-                <div>
-                    <div class="vip-title">Desbloquear Vídeo Completo</div>
-                    <div class="vip-subtitle">Adquira a versão integral com máxima qualidade</div>
-                </div>
-            </div>
-
-            <div class="vip-feature">
-                <div class="vip-left">
-                    <i class="fa-solid fa-clock"></i>
-                    <div class="vip-text">
-                        Duração Completa
-                        <span>Vídeo original sem cortes</span>
+            <!-- 1. Masculino -->
+            <div class="cat-card">
+                <div class="cat-left">
+                    <div class="cat-icon blue">
+                        <!-- Símbolo Masculino -->
+                        <svg viewBox="0 0 24 24" stroke="currentColor"><circle cx="10" cy="10" r="5"/><path d="M16 4l4 4M20 4v4M15 9l5-5"/></svg>
+                    </div>
+                    <div class="cat-text">
+                        <h3>Masculino</h3>
+                        <p>Arquivo ZIP protegido</p>
                     </div>
                 </div>
-                <div class="vip-value">~4:30 min</div>
+                <a href="1.zip" class="dl-btn" download="1.zip" aria-label="Baixar">
+                    <!-- Ícone Download -->
+                    <svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                </a>
             </div>
 
-            <div class="vip-feature">
-                <div class="vip-left">
-                    <i class="fa-solid fa-video"></i>
-                    <div class="vip-text">
-                        Qualidade HD / Full HD
-                        <span>720p ou 1080p disponível</span>
+            <!-- 2. Feminino -->
+            <div class="cat-card">
+                <div class="cat-left">
+                    <div class="cat-icon pink">
+                        <!-- Símbolo Feminino -->
+                        <svg viewBox="0 0 24 24" stroke="currentColor"><circle cx="12" cy="9" r="5"/><path d="M12 14v6M9 17h6"/></svg>
+                    </div>
+                    <div class="cat-text">
+                        <h3>Feminino</h3>
+                        <p>Arquivo ZIP protegido</p>
                     </div>
                 </div>
-                <div class="vip-value"><i class="fa-solid fa-check" style="color:var(--gold)"></i></div>
+                <a href="2.zip" class="dl-btn" download="2.zip" aria-label="Baixar">
+                    <svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                </a>
             </div>
 
-            <div class="vip-feature">
-                <div class="vip-left">
-                    <i class="fa-solid fa-music"></i>
-                    <div class="vip-text">
-                        Áudio Original
-                        <span>Sem compressão de som</span>
+            <!-- 3. Zoo -->
+            <div class="cat-card">
+                <div class="cat-left">
+                    <div class="cat-icon green">
+                        <!-- Pegada -->
+                        <svg viewBox="0 0 24 24" stroke="currentColor"><ellipse cx="8" cy="6" rx="2" ry="3"/><ellipse cx="16" cy="6" rx="2" ry="3"/><ellipse cx="5" cy="12" rx="2" ry="3"/><ellipse cx="19" cy="12" rx="2" ry="3"/><path d="M12 22c-3 0-6-3-6-6s3-5 6-5 6 2 6 5-3 6-6 6z"/></svg>
+                    </div>
+                    <div class="cat-text">
+                        <h3>Zoo</h3>
+                        <p>Arquivo ZIP protegido</p>
                     </div>
                 </div>
-                <div class="vip-value"><i class="fa-solid fa-check" style="color:var(--gold)"></i></div>
+                <a href="3.zip" class="dl-btn" download="3.zip" aria-label="Baixar">
+                    <svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                </a>
             </div>
 
-            <div class="vip-feature">
-                <div class="vip-left">
-                    <i class="fa-solid fa-download"></i>
-                    <div class="vip-text">
-                        Download Ilimitado
-                        <span>Acesso vitalício ao arquivo</span>
+            <!-- 4. Live -->
+            <div class="cat-card">
+                <div class="cat-left">
+                    <div class="cat-icon red">
+                        <!-- Câmera -->
+                        <svg viewBox="0 0 24 24" stroke="currentColor"><polygon points="23 7 16 12 23 17 23 7"/><rect x="1" y="5" width="15" height="14" rx="2" ry="2"/></svg>
+                    </div>
+                    <div class="cat-text">
+                        <h3>Live</h3>
+                        <p>Arquivo ZIP protegido</p>
                     </div>
                 </div>
-                <div class="vip-value"><i class="fa-solid fa-check" style="color:var(--gold)"></i></div>
+                <a href="4.zip" class="dl-btn" download="4.zip" aria-label="Baixar">
+                    <svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                </a>
             </div>
 
-            <!-- Botão Comprar -->
-            <a href="vip.html" class="buy-btn">
-                <i class="fa-solid fa-bolt"></i>
-                COMPRAR AGORA - R$ 10,00
-            </a>
-
-            <!-- Garantia -->
-            <div class="guarantee">
-                <i class="fa-solid fa-shield-halved"></i>
-                Pagamento seguro • Entrega imediata • Suporte 24h
+            <!-- 5. Família -->
+            <div class="cat-card">
+                <div class="cat-left">
+                    <div class="cat-icon purple">
+                        <!-- Grupo -->
+                        <svg viewBox="0 0 24 24" stroke="currentColor"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+                    </div>
+                    <div class="cat-text">
+                        <h3>Família</h3>
+                        <p>Arquivo ZIP protegido</p>
+                    </div>
+                </div>
+                <a href="5.zip" class="dl-btn" download="5.zip" aria-label="Baixar">
+                    <svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                </a>
             </div>
-        </section>
 
+        </div>
+
+        <div class="info-box">
+            <p><strong>Instruções:</strong> Baixe o arquivo, abra com ZArchiver ou WinRAR e use a senha acima para extrair.</p>
+        </div>
     </main>
 
-    <!-- Rodapé -->
     <footer>
-        <p><i class="fa-solid fa-heart"></i> VIDEO WEB BLACK CPN ET LOI <i class="fa-solid fa-heart"></i></p>
-        <p style="margin-top: 8px; font-size: 0.8rem; color: #555;">
-            © 2026 - Todos os direitos reservados
-        </p>
+        <p>&copy; 2026 VIDEO WEB BLACK CPN • Entrega automática</p>
     </footer>
 
-    <!-- Scripts -->
-    <script>
-        // Suporte ao tema (herdado do index)
-        function updateTheme() {
-            const savedTheme = localStorage.getItem('theme') || 'dark';
-            if (savedTheme === 'light') {
-                document.body.classList.add('light-mode');
-            }
-        }
-        window.addEventListener('load', updateTheme);
+    <!-- TOAST DE COPIADO -->
+    <div class="toast" id="toast">Senha copiada!</div>
 
-        // Tracking de cliques (opcional)
-        document.querySelectorAll('.mega-btn, .buy-btn').forEach(btn => {
-            btn.addEventListener('click', function(e) {
-                const type = this.classList.contains('mega-btn') ? 'demo' : 'full';
-                console.log(`Clique registrado: ${type} - só tem 8 anos`);
-            });
+    <script>
+        const copyBtn = document.getElementById('copyBtn');
+        const toast = document.getElementById('toast');
+        const pwdText = document.getElementById('passwordText').innerText;
+
+        copyBtn.addEventListener('click', async () => {
+            try {
+                await navigator.clipboard.writeText(pwdText);
+                toast.classList.add('show');
+                copyBtn.style.color = '#4ade80'; // Verde feedback
+                setTimeout(() => {
+                    toast.classList.remove('show');
+                    copyBtn.style.color = '';
+                }, 2000);
+            } catch (err) {
+                // Fallback
+                const ta = document.createElement('textarea');
+                ta.value = pwdText;
+                document.body.appendChild(ta);
+                ta.select();
+                document.execCommand('copy');
+                document.body.removeChild(ta);
+                toast.classList.add('show');
+                setTimeout(() => toast.classList.remove('show'), 2000);
+            }
         });
     </script>
 

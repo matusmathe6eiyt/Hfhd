@@ -3,719 +3,552 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>VIDEO WEB BLACK CPN ET LOI</title>
-    
-    <!-- Favicon -->
+    <title>VIDEO WEB BLACK CPN</title>
     <link rel="shortcut icon" href="favicon.webp" type="image/webp">
 
-    <!-- Ícones (FontAwesome) -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-
-    <!-- Meta Tags de Segurança e SEO -->
-    <meta name="description" content="Plataforma premium de vídeos e conteúdos exclusivos.">
-    <meta name="robots" content="index, follow">
-    <meta name="theme-color" content="#000000">
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self' https: 'unsafe-inline';">
-
     <style>
-        /* --- RESET E VARIÁVEIS --- */
+        /* ========== VARIÁVEIS E RESET ========== */
         :root {
-            --bg-color: #1a1a1a; /* Cinza Escuro Padrão */
-            --text-color: #e0e0e0;
-            --header-bg: #000000;
-            --gold: #FFD700;
-            --red: #ff3b3b;
-            --white: #ffffff;
-            --sidebar-bg: #111;
-            --hover-color: #333;
-            --theme-btn-bg: #2a2a2a;
-            --theme-btn-active: #FFD700;
+            --bg-site: #18181b;
+            --bg-card: #1e1e24;
+            --bg-card-hover: #25252d;
+            --border-card: #2a2a32;
+            --text-main: #e5e5e7;
+            --text-muted: #9ca3af;
+            --gold: #d4af37;
+            --gold-light: #f0d670;
+            --blue-dark: #1e40af;
+            --blue-icon: #3b82f6;
+            --telegram: #26A5E4;
+            --telegram-dark: #1a8bc7;
+            --shadow: 0 4px 16px rgba(0, 0, 0, 0.3);
+            --radius: 14px;
+            --transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
-        /* Classe para o Tema Claro */
-        body.light-mode {
-            --bg-color: #f0f0f0; /* Cinza Claro */
-            --text-color: #111;
-            --sidebar-bg: #fff;
-            --hover-color: #ddd;
-            --theme-btn-bg: #e0e0e0;
-        }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body {
+            background-color: var(--bg-site);
+            color: var(--text-main);
+            font-family: system-ui, -apple-system, 'Segoe UI', Roboto, Arial, sans-serif;
+            min-height: 100vh;
+            line-height: 1.5;
             -webkit-tap-highlight-color: transparent;
         }
 
-        body {
-            background-color: var(--bg-color);
-            color: var(--text-color);
-            transition: background-color 0.3s ease, color 0.3s ease;
-            overflow-x: hidden;
-        }
-
-        /* --- CABEÇALHO (MAIOR) --- */
+        /* ========== CABEÇALHO ========== */
         header {
-            background-color: var(--header-bg);
-            height: 80px;
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%;
+            height: 56px;
+            background-color: #0a0a0c;
             display: flex;
             align-items: center;
-            justify-content: flex-start;
-            padding: 0 20px;
-            position: fixed;
-            top: 0;
-            width: 100%;
+            justify-content: space-between;
+            padding: 0 12px;
             z-index: 1000;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.5);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.6);
         }
+        .header-left { display: flex; align-items: center; gap: 10px; min-width: 0; }
+        .menu-btn {
+            background: none; border: none; cursor: pointer; padding: 8px;
+            display: flex; flex-direction: column; justify-content: center; gap: 5px;
+            flex-shrink: 0; touch-action: manipulation;
+        }
+        .menu-btn span {
+            display: block; width: 24px; height: 3px; background: #fff;
+            border-radius: 2px; transition: var(--transition);
+        }
+        .menu-btn.active span:nth-child(1) { transform: rotate(45deg) translate(5px, 6px); }
+        .menu-btn.active span:nth-child(2) { opacity: 0; }
+        .menu-btn.active span:nth-child(3) { transform: rotate(-45deg) translate(5px, -6px); }
 
-        .header-left {
-            display: flex;
-            align-items: center;
-            gap: 20px;
-            width: 100%;
+        .site-name {
+            font-size: clamp(13px, 4.5vw, 20px); font-weight: 800;
+            letter-spacing: 0.5px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
         }
+        .c-red   { color: #ff3b3b; }
+        .c-gold  { color: var(--gold); }
+        .c-white { color: #f5f5f5; }
 
-        #menu-btn {
-            background: none;
-            border: none;
-            color: var(--white);
-            font-size: 28px;
-            cursor: pointer;
-            padding: 5px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+        .ssl-badge {
+            display: flex; align-items: center; gap: 5px;
+            background: rgba(34, 197, 94, 0.12); color: #4ade80;
+            padding: 6px 10px; border-radius: 20px; font-size: 12px; font-weight: 600;
+            flex-shrink: 0; border: 1px solid rgba(74, 222, 128, 0.25);
         }
+        .ssl-badge svg { flex-shrink: 0; }
 
-        .logo-container {
-            font-weight: 900;
-            font-size: 1.4rem;
-            letter-spacing: 1px;
-            text-transform: uppercase;
-            white-space: nowrap;
-            overflow: hidden;
-            text-overflow: ellipsis;
-            line-height: 1.2;
-        }
-
-        .c-red { color: var(--red); }
-        .c-white { color: var(--white); }
-        .c-gold { color: var(--gold); }
-
-        /* --- MENU LATERAL (SIDEBAR) --- */
-        .sidebar {
-            position: fixed;
-            top: 0;
-            left: -300px;
-            width: 300px;
-            height: 100vh;
-            background-color: var(--sidebar-bg);
-            z-index: 999;
-            padding-top: 20px;
-            transition: left 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            box-shadow: 2px 0 15px rgba(0,0,0,0.7);
-            overflow-y: auto;
-            border-right: 1px solid #333;
-            scrollbar-width: thin;
-            scrollbar-color: #444 transparent;
-        }
-
-        .sidebar::-webkit-scrollbar {
-            width: 6px;
-        }
-        .sidebar::-webkit-scrollbar-track {
-            background: transparent;
-        }
-        .sidebar::-webkit-scrollbar-thumb {
-            background-color: #444;
-            border-radius: 3px;
-        }
-
-        .sidebar.active {
-            left: 0;
-        }
-
+        /* ========== OVERLAY & SIDEBAR ========== */
         .overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0,0,0,0.8);
-            z-index: 998;
-            display: none;
-            opacity: 0;
-            transition: opacity 0.3s ease;
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0, 0, 0, 0.7); z-index: 998;
+            opacity: 0; visibility: hidden; transition: var(--transition);
+            backdrop-filter: blur(3px);
         }
-        .overlay.active { 
-            display: block; 
-            opacity: 1;
+        .overlay.active { opacity: 1; visibility: visible; }
+
+        .sidebar {
+            position: fixed; top: 0; left: -300px; width: 300px; max-width: 85vw; height: 100%;
+            background: #111115; z-index: 999; transition: left 0.3s ease;
+            padding-top: 56px; overflow-y: auto; box-shadow: 4px 0 20px rgba(0,0,0,0.5);
+        }
+        .sidebar.active { left: 0; }
+
+        /* ---- SEÇÃO TELEGRAM ---- */
+        .sidebar-telegram {
+            display: flex; align-items: center; gap: 12px;
+            padding: 18px 20px; margin: 14px 14px 0 14px;
+            background: linear-gradient(135deg, var(--telegram), var(--telegram-dark));
+            border-radius: 12px; text-decoration: none; color: #fff;
+            font-weight: 700; font-size: 15px; transition: var(--transition);
+            box-shadow: 0 3px 12px rgba(38, 165, 228, 0.3);
+        }
+        .sidebar-telegram:hover { transform: scale(1.03); box-shadow: 0 6px 20px rgba(38, 165, 228, 0.45); }
+        .sidebar-telegram svg { flex-shrink: 0; fill: #fff; }
+        .sidebar-telegram span { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+
+        /* ---- DIVISOR ---- */
+        .sidebar-divider { height: 1px; background: linear-gradient(90deg, transparent, #2a2a32, transparent); margin: 18px 20px; }
+        .sidebar-title { padding: 0 20px 10px 20px; font-size: 11px; font-weight: 800; text-transform: uppercase; letter-spacing: 1.5px; color: var(--text-muted); }
+
+        /* ---- LISTA DE CATEGORIAS ---- */
+        .sidebar-list { list-style: none; padding: 0 10px 20px 10px; }
+        .sidebar-list li { border-radius: 10px; margin-bottom: 6px; overflow: hidden; }
+        .sidebar-list li a {
+            display: flex; justify-content: space-between; align-items: center;
+            padding: 14px 16px; color: #c4c4cc; text-decoration: none; font-size: 14px;
+            font-weight: 500; border-radius: 10px; transition: var(--transition); background: transparent;
+        }
+        .sidebar-list li a:hover { background: rgba(212, 175, 55, 0.08); color: var(--gold); padding-left: 22px; }
+        .sidebar-list li a .cat-name { display: flex; flex-direction: column; gap: 2px; }
+        .sidebar-list li a .cat-name small { font-size: 11px; color: var(--text-muted); font-weight: 400; }
+        .sidebar-list li a:hover .cat-name small { color: var(--gold-light); }
+        .sidebar-list li a .cat-price {
+            background: rgba(212, 175, 55, 0.1); color: var(--gold); padding: 4px 10px;
+            border-radius: 14px; font-size: 12px; font-weight: 700; border: 1px solid rgba(212, 175, 55, 0.2); flex-shrink: 0;
         }
 
-        .menu-list {
-            list-style: none;
-            padding-bottom: 80px;
-        }
-
-        .menu-item {
-            border-bottom: 1px solid rgba(255,255,255,0.05);
-        }
-
-        .menu-link {
-            display: flex;
-            align-items: center;
-            padding: 18px 25px;
-            color: var(--text-color);
-            text-decoration: none;
-            font-size: 16px;
-            transition: background 0.2s, padding-left 0.2s;
-            cursor: pointer;
-        }
-
-        .menu-link:active {
-            background-color: rgba(255,255,255,0.1);
-        }
-
-        .menu-link i {
-            width: 35px;
-            font-size: 20px;
-            text-align: center;
-            margin-right: 10px;
-        }
-
-        .theme-top-item,
-        .theme-footer-item {
-            background: rgba(255, 255, 255, 0.05);
-            border-bottom: 1px solid rgba(255,255,255,0.1);
-        }
-        .theme-top-item i.fa-palette,
-        .theme-footer-item i.fa-palette {
-            color: var(--gold);
-        }
-
-        .theme-selector-container {
-            padding: 15px 25px;
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
-        }
-        
-        .theme-selector-title {
-            font-size: 13px;
-            text-transform: uppercase;
-            color: #888;
-            font-weight: 700;
-            letter-spacing: 1px;
-            margin-bottom: 5px;
-        }
-
-        .theme-buttons {
-            display: flex;
-            gap: 8px;
-        }
-
-        .theme-btn {
-            flex: 1;
-            padding: 10px 8px;
-            border: 2px solid transparent;
-            border-radius: 6px;
-            background-color: var(--theme-btn-bg);
-            color: var(--text-color);
-            font-size: 12px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.2s ease;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 5px;
-        }
-
-        .theme-btn:hover {
-            transform: translateY(-2px);
-            opacity: 0.9;
-        }
-
-        .theme-btn.active {
-            border-color: var(--gold);
-            box-shadow: 0 0 0 2px rgba(255, 215, 0, 0.3);
-        }
-
-        .theme-btn-dark {
-            background-color: #1a1a1a;
-            color: #fff;
-        }
-
-        .theme-btn-light {
-            background-color: #f0f0f0;
-            color: #111;
-        }
-
+        /* ========== SEÇÃO DE PLANOS ========== */
+        .plans-section { padding: 76px 16px 40px; max-width: 1280px; margin: 0 auto; }
         .section-title {
-            padding: 25px 25px 15px;
-            font-size: 12px;
-            text-transform: uppercase;
-            color: #888;
-            font-weight: 700;
-            letter-spacing: 1.5px;
+            text-align: center; font-size: clamp(1.6rem, 4vw, 2.2rem);
+            font-weight: 800; color: var(--gold); margin-bottom: 32px;
+            text-transform: uppercase; letter-spacing: 1.5px;
+            text-shadow: 0 2px 8px rgba(212, 175, 55, 0.15);
         }
 
-        .vip-link i {
-            color: var(--gold);
+        .plans-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(290px, 1fr)); gap: 22px; }
+
+        /* CARD */
+        .plan-card {
+            background: var(--bg-card); border: 1px solid var(--border-card); border-radius: var(--radius);
+            overflow: hidden; box-shadow: var(--shadow); transition: var(--transition);
+            cursor: pointer; display: flex; flex-direction: column; position: relative;
+        }
+        .plan-card:hover {
+            transform: translateY(-6px); background: var(--bg-card-hover);
+            border-color: var(--gold); box-shadow: 0 12px 28px rgba(212, 175, 55, 0.12);
         }
 
-        .telegram-link i {
-            color: #0088cc;
+        .plan-img { width: 100%; height: 190px; object-fit: cover; display: block; border-bottom: 1px solid var(--border-card); }
+        .plan-content { padding: 20px; flex: 1; display: flex; flex-direction: column; }
+        .plan-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px; flex-wrap: wrap; gap: 8px; }
+        .plan-title { font-size: 1.25rem; font-weight: 700; color: var(--gold); }
+        .plan-price {
+            font-size: 1.1rem; font-weight: 800; color: var(--gold);
+            background: rgba(212, 175, 55, 0.12); padding: 5px 12px;
+            border-radius: 20px; border: 1px solid rgba(212, 175, 55, 0.3);
+        }
+        .plan-desc { font-size: 0.9rem; color: var(--text-muted); margin-bottom: 14px; line-height: 1.4; }
+
+        /* FEATURES COM ÍCONES */
+        .plan-features { list-style: none; padding: 0; margin: 0 0 16px 0; flex: 1; }
+        .plan-features li {
+            display: flex; align-items: center; font-size: 0.88rem;
+            color: var(--text-main); padding: 8px 0; border-bottom: 1px solid #2a2a30; gap: 12px;
+        }
+        .plan-features li:last-child { border-bottom: none; }
+        .feat-icon {
+            width: 20px; height: 20px; flex-shrink: 0; fill: none; stroke: var(--blue-icon);
+            stroke-width: 2.5; stroke-linecap: round; stroke-linejoin: round;
+            filter: drop-shadow(0 0 3px rgba(59, 130, 246, 0.4));
         }
 
-        /* --- CONTEÚDO PRINCIPAL --- */
-        main {
-            margin-top: 80px;
-            width: 100%;
-            min-height: calc(100vh - 80px);
-            background-color: var(--bg-color);
-            padding: 15px;
+        /* BOTÃO */
+        .plan-btn {
+            display: flex; align-items: center; justify-content: center; gap: 6px;
+            width: 100%; padding: 14px; margin-top: 8px;
+            background: linear-gradient(135deg, var(--gold), #b8942e);
+            color: #111; font-weight: 700; font-size: 0.95rem;
+            text-align: center; text-decoration: none; text-transform: uppercase;
+            letter-spacing: 0.8px; border-radius: 10px; border: none; transition: var(--transition);
         }
+        .plan-btn:hover { background: linear-gradient(135deg, var(--gold-light), var(--gold)); transform: scale(1.02); box-shadow: 0 4px 14px rgba(212, 175, 55, 0.35); }
 
-        /* --- VPN NOTICE --- */
-        .vpn-notice {
-            background: linear-gradient(135deg, rgba(255,59,59,0.15), rgba(255,215,0,0.1));
-            border: 1px solid var(--red);
-            border-radius: 10px;
-            padding: 15px 20px;
-            margin: 15px 0 20px;
-            text-align: center;
-            box-shadow: 0 4px 15px rgba(255,59,59,0.2);
+        /* ========== RODAPÉ ========== */
+        .site-footer {
+            background: #0a0a0c;
+            border-top: 1px solid var(--border-card);
+            padding: 40px 16px 24px;
+            margin-top: 40px;
         }
-
-        .vpn-notice p {
-            font-size: 14px;
-            color: var(--text-color);
-            margin-bottom: 8px;
-            line-height: 1.4;
-        }
-
-        .vpn-notice a {
-            color: var(--gold);
-            text-decoration: none;
-            font-weight: 700;
-            font-size: 15px;
-            display: inline-flex;
-            align-items: center;
-            gap: 6px;
-            transition: opacity 0.2s;
-        }
-
-        .vpn-notice a:hover {
-            opacity: 0.85;
-            text-decoration: underline;
-        }
-
-        .vpn-notice a i {
-            font-size: 16px;
-        }
-
-        /* --- TÍTULO CONTEÚDOS --- */
-        .content-title {
-            text-align: center;
-            padding: 10px 0 20px;
-            font-size: 1.3rem;
-            font-weight: 800;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            background: linear-gradient(90deg, var(--red), var(--gold));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-
-        /* --- GRID DE VÍDEOS --- */
-        .video-grid {
+        .footer-grid {
+            max-width: 1280px;
+            margin: 0 auto;
             display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 12px;
-            margin-bottom: 25px;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 24px;
+            margin-bottom: 28px;
         }
-
-        .video-card {
-            background: rgba(255,255,255,0.03);
+        .footer-block {
+            background: var(--bg-card);
+            border: 1px solid var(--border-card);
             border-radius: 12px;
-            overflow: hidden;
-            border: 1px solid rgba(255,255,255,0.08);
-            transition: transform 0.2s, box-shadow 0.2s;
-            cursor: pointer;
-            text-decoration: none;
-            display: block;
+            padding: 24px;
+            transition: var(--transition);
         }
-
-        .video-card:active {
-            transform: scale(0.98);
-        }
-
-        .video-card:hover {
-            box-shadow: 0 8px 25px rgba(255,215,0,0.15);
-            border-color: var(--gold);
-        }
-
-        .video-card img {
-            width: 100%;
-            aspect-ratio: 16/9;
-            object-fit: cover;
-            display: block;
-            background: #000;
-        }
-
-        .video-card .card-title {
-            padding: 12px 10px;
-            font-size: 13px;
-            font-weight: 600;
-            text-align: center;
-            color: var(--text-color);
-            background: rgba(0,0,0,0.2);
-            white-space: nowrap;
-            overflow: hidden;
-            text-overflow: ellipsis;
-        }
-
-        /* --- PAGINAÇÃO --- */
-        .pagination {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 6px;
-            padding: 20px 10px 40px;
-        }
-
-        .pagination a {
+        .footer-block:hover { border-color: rgba(212, 175, 55, 0.3); }
+        .footer-block h3 {
+            color: var(--gold);
+            font-size: 1rem;
+            font-weight: 700;
+            margin-bottom: 10px;
             display: flex;
             align-items: center;
-            justify-content: center;
-            min-width: 36px;
-            height: 36px;
-            padding: 0 8px;
-            background: rgba(255,255,255,0.08);
-            color: var(--text-color);
-            text-decoration: none;
-            border-radius: 8px;
-            font-size: 14px;
-            font-weight: 600;
-            transition: all 0.2s;
-            border: 1px solid transparent;
+            gap: 8px;
+            letter-spacing: 0.3px;
+        }
+        .footer-block p {
+            color: var(--text-muted);
+            font-size: 0.88rem;
+            line-height: 1.6;
+        }
+        .footer-bottom {
+            max-width: 1280px;
+            margin: 0 auto;
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid #1e1e24;
+            color: #52525b;
+            font-size: 0.82rem;
         }
 
-        .pagination a:hover,
-        .pagination a:active {
-            background: var(--gold);
-            color: #000;
-            border-color: var(--gold);
-            transform: translateY(-2px);
-        }
-
-        .pagination a.plus {
-            background: linear-gradient(135deg, var(--red), #cc0000);
-            color: #fff;
-        }
-
-        .pagination a.plus:hover {
-            opacity: 0.9;
-        }
-
-        /* Ajustes para Mobile */
-        @media (max-width: 767px) {
-            .sidebar {
-                width: 280px;
-            }
-            .menu-link {
-                padding: 16px 20px;
-                font-size: 15px;
-            }
-            .menu-link i {
-                width: 30px;
-                font-size: 18px;
-            }
-            .menu-list {
-                padding-bottom: 90px;
-            }
-            .video-grid {
-                gap: 10px;
-            }
-            .content-title {
-                font-size: 1.15rem;
-                padding: 5px 0 15px;
-            }
-        }
-
+        /* ========== RESPONSIVIDADE ========== */
         @media (min-width: 768px) {
-            .logo-container {
-                font-size: 1.6rem;
-            }
-            .video-grid {
-                gap: 15px;
-                max-width: 900px;
-                margin: 0 auto 25px;
-            }
-            .content-title {
-                font-size: 1.5rem;
-            }
+            header { height: 64px; padding: 0 24px; }
+            .plans-section { padding: 84px 32px 50px; }
+            .plans-grid { gap: 26px; }
+            .plan-img { height: 210px; }
+            .plan-content { padding: 22px; }
+            .site-footer { padding: 50px 32px 28px; }
+        }
+        @media (min-width: 1024px) {
+            .site-name { font-size: 22px; }
+            .plans-grid { grid-template-columns: repeat(3, 1fr); }
+        }
+        @media (max-width: 400px) {
+            .plans-grid { grid-template-columns: 1fr; }
+            .plan-img { height: 160px; }
+            .plan-title { font-size: 1.15rem; }
+            .feat-icon { width: 18px; height: 18px; }
         }
     </style>
 </head>
 <body>
 
-    <!-- Overlay Escuro -->
-    <div class="overlay" id="overlay" onclick="toggleMenu()"></div>
-
-    <!-- Cabeçalho -->
+    <!-- ===== CABEÇALHO ===== -->
     <header>
         <div class="header-left">
-            <button id="menu-btn" onclick="toggleMenu()">
-                <i class="fa-solid fa-bars"></i>
+            <button class="menu-btn" id="menuBtn" aria-label="Abrir menu">
+                <span></span><span></span><span></span>
             </button>
-            <div class="logo-container">
-                <span class="c-red">VIDEO</span> <span class="c-white">WEB</span> <span class="c-gold">BLACK</span> 
-                <span class="c-white">CPN</span> <span class="c-red">ET</span> <span class="c-gold">LOI</span>
+            <div class="site-name">
+                <span class="c-red">VIDEO</span>
+                <span class="c-gold"> WEB BLACK</span>
+                <span class="c-white"> CPN</span>
             </div>
+        </div>
+        <div class="ssl-badge">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+                <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+            </svg>
+            <span>SSL</span>
         </div>
     </header>
 
-    <!-- Menu Lateral Flutuante -->
+    <!-- ===== OVERLAY & SIDEBAR ===== -->
+    <div class="overlay" id="overlay"></div>
     <nav class="sidebar" id="sidebar">
-        <ul class="menu-list">
-            
-            <!-- OPÇÃO DE TEMA NO TOPO -->
-            <li class="menu-item theme-top-item">
-                <div class="menu-link" onclick="toggleTheme()">
-                    <i class="fa-solid fa-palette"></i> 
-                    <span>Alterar Cor de Fundo</span>
-                </div>
-            </li>
-
-            <!-- Canal Telegram -->
-            <li class="menu-item">
-                <a href="Telegram.html" class="menu-link telegram-link">
-                    <i class="fa-brands fa-telegram"></i> Canal Telegram
-                </a>
-            </li>
-
-            <!-- Categorias Grátis -->
-            <li class="section-title">Categorias Grátis</li>
-            
-            <li class="menu-item">
-                <a href="v.html" class="menu-link">
-                    <i class="fa-solid fa-video"></i> Vídeos Grátis
-                </a>
-            </li>
-            <li class="menu-item">
-                <a href="f.html" class="menu-link">
-                    <i class="fa-solid fa-images"></i> Fotos Grátis
-                </a>
-            </li>
-
-            <!-- Categoria Premium -->
-            <li class="section-title">Categoria Premium</li>
-
-            <li class="menu-item">
-                <a href="vip.html" class="menu-link vip-link">
-                    <i class="fa-solid fa-download"></i> Download 4 GB
-                </a>
-            </li>
-            <li class="menu-item">
-                <a href="vip.html" class="menu-link vip-link">
-                    <i class="fa-solid fa-hard-drive"></i> Download 1TB
-                </a>
-            </li>
-            <li class="menu-item">
-                <a href="vip.html" class="menu-link vip-link">
-                    <i class="fa-solid fa-broadcast-tower"></i> Download LIVE 973K
-                </a>
-            </li>
-            <li class="menu-item">
-                <a href="vip.html" class="menu-link vip-link">
-                    <i class="fa-solid fa-eye-slash"></i> Fotos sem censura
-                </a>
-            </li>
-
-            <!-- VIPS com Cadeado -->
-            <li class="menu-item"><a href="vip.html" class="menu-link vip-link"><i class="fa-solid fa-lock"></i>lives de bb </a></li>
-            <li class="menu-item"><a href="vip.html" class="menu-link vip-link"><i class="fa-solid fa-lock"></i>animais bb </a></li>
-            <li class="menu-item"><a href="vip.html" class="menu-link vip-link"><i class="fa-solid fa-lock"></i>garotas </a></li>
-            <li class="menu-item"><a href="vip.html" class="menu-link vip-link"><i class="fa-solid fa-lock"></i>A força</a></li>
-            <li class="menu-item"><a href="vip.html" class="menu-link vip-link"><i class="fa-solid fa-lock"></i>familiares</a></li>
-            <li class="menu-item"><a href="vip.html" class="menu-link vip-link"><i class="fa-solid fa-lock"></i>cenas reais</a></li>
-            
-            <li class="menu-item">
-                <a href="vip.html" class="menu-link vip-link">
-                    <i class="fa-solid fa-list"></i> Veja mais 78+
-                </a>
-            </li>
-
-            <!-- SELETOR DE TEMA NO FINAL DA SIDEBAR -->
-            <li class="menu-item theme-footer-item">
-                <div class="theme-selector-container">
-                    <div class="theme-selector-title">
-                        <i class="fa-solid fa-palette" style="color: var(--gold); margin-right: 5px;"></i>
-                        Cor de Fundo
-                    </div>
-                    <div class="theme-buttons">
-                        <button class="theme-btn theme-btn-dark" id="btn-dark" onclick="setTheme('dark')">
-                            <i class="fa-solid fa-moon"></i> Escuro
-                        </button>
-                        <button class="theme-btn theme-btn-light" id="btn-light" onclick="setTheme('light')">
-                            <i class="fa-solid fa-sun"></i> Claro
-                        </button>
-                    </div>
-                </div>
-            </li>
-
+        <a href="telegram.html" class="sidebar-telegram" target="_self">
+            <svg width="26" height="26" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.894 8.221l-1.97 9.28c-.145.658-.537.818-1.084.508l-3-2.211-1.447 1.394c-.16.16-.295.295-.605.295l.213-3.054 5.56-5.022c.242-.213-.054-.334-.373-.121l-6.869 4.326-2.96-.924c-.64-.203-.658-.64.135-.954l11.566-4.458c.538-.196 1.006.128.834.941z"/>
+            </svg>
+            <span>Telegram</span>
+        </a>
+        <div class="sidebar-divider"></div>
+        <div class="sidebar-title">Categorias &amp; Planos</div>
+        <ul class="sidebar-list">
+            <li><a href="1.html"><div class="cat-name"><span>Plano Grátis</span><small>05 Categorias • 05 Vídeos</small></div><span class="cat-price">Grátis</span></a></li>
+            <li><a href="2.html"><div class="cat-name"><span>Plano Básico</span><small>Masculino, Feminino, Diversas</small></div><span class="cat-price">R$ 15,00</span></a></li>
+            <li><a href="3.html"><div class="cat-name"><span>Categoria Gold</span><small>Vídeos até 1h • Webcam</small></div><span class="cat-price">R$ 20,00</span></a></li>
+            <li><a href="4.html"><div class="cat-name"><span>Categoria Premium</span><small>+600 vídeos • Feminino, Masc.</small></div><span class="cat-price">R$ 45,00</span></a></li>
+            <li><a href="5.html"><div class="cat-name"><span>Plano Plus</span><small>23 Categorias • Atualizações diárias</small></div><span class="cat-price">R$ 100,00</span></a></li>
         </ul>
     </nav>
 
-    <!-- Conteúdo Principal -->
-    <main id="main-content">
-        
-        <!-- Aviso VPN -->
-        <div class="vpn-notice">
-            <p>🔐 Para sua segurança, é recomendável usar uma VPN ao fazer download.</p>
-            <a href="vpn.html" target="_blank">
-                <i class="fa-solid fa-shield-halved"></i>
-                Clique aqui para baixar VPN
-            </a>
+    <!-- ===== SEÇÃO DE PLANOS ===== -->
+    <main class="plans-section">
+        <h2 class="section-title">Escolha seu Plano</h2>
+        <div class="plans-grid">
+            <!-- PLANO 1 -->
+            <article class="plan-card" onclick="location.href='1.html'">
+                <img src="1.webp" alt="Plano Grátis" class="plan-img" loading="lazy">
+                <div class="plan-content">
+                    <div class="plan-header"><h3 class="plan-title">Plano Grátis</h3><span class="plan-price">R$ 0,00</span></div>
+                    <p class="plan-desc">Acesse categorias básicas do nosso plano inicial.</p>
+                    <ul class="plan-features">
+                        <li><svg class="feat-icon" viewBox="0 0 24 24"><path d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-6l-2-2H5a2 2 0 00-2 2z"/></svg><span>Categorias: 05</span></li>
+                        <li><svg class="feat-icon" viewBox="0 0 24 24"><polygon points="5 3 19 12 5 21 5 3"/></svg><span>Vídeos: 05</span></li>
+                        <li><svg class="feat-icon" viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg><span>Masculino / Feminino / Zoo / Live / Família</span></li>
+                        <li><svg class="feat-icon" viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 00.33 1.82l.06.06a2 2 0 010 2.83 2 2 0 01-2.83 0l-.06-.06a1.65 1.65 0 00-1.82-.33 1.65 1.65 0 00-1 1.51V21a2 2 0 01-4 0v-.09a1.65 1.65 0 00-1.08-1.51 1.65 1.65 0 00-1.82.33l-.06.06a2 2 0 01-2.83 0 2 2 0 010-2.83l.06-.06a1.65 1.65 0 00.33-1.82 1.65 1.65 0 00-1.51-1H3a2 2 0 010-4h.09a1.65 1.65 0 001.51-1.08 1.65 1.65 0 00-.33-1.82l-.06-.06a2 2 0 012.83-2.83l.06.06a1.65 1.65 0 001.82.33H9a1.65 1.65 0 001-1.51V3a2 2 0 014 0v.09a1.65 1.65 0 001 1.51 1.65 1.65 0 001.82-.33l.06-.06a2 2 0 012.83 2.83l-.06.06a1.65 1.65 0 00-.33 1.82V9a1.65 1.65 0 001.51 1H21a2 2 0 010 4h-.09a1.65 1.65 0 00-1.51 1z"/></svg><span>Qualidade: SD/HD</span></li>
+                    </ul>
+                    <a href="1.html" class="plan-btn">Acessar Plano</a>
+                </div>
+            </article>
+
+            <!-- PLANO 2 -->
+            <article class="plan-card" onclick="location.href='2.html'">
+                <img src="2.webp" alt="Plano Básico" class="plan-img" loading="lazy">
+                <div class="plan-content">
+                    <div class="plan-header"><h3 class="plan-title">Plano Básico</h3><span class="plan-price">R$ 15,00</span></div>
+                    <p class="plan-desc">Estilo TikTok: vídeos curtos de alta qualidade.</p>
+                    <ul class="plan-features">
+                        <li><svg class="feat-icon" viewBox="0 0 24 24"><path d="M21 16V8a2 2 0 00-1-1.73l-7-4a2 2 0 00-2 0l-7 4A2 2 0 003 8v8a2 2 0 001 1.73l7 4a2 2 0 002 0l7-4A2 2 0 0021 16z"/><polyline points="3.27 6.96 12 12.01 20.73 6.96"/><line x1="12" y1="22.08" x2="12" y2="12"/></svg><span>Armazenamento: 1 GB</span></li>
+                        <li><svg class="feat-icon" viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg><span>Masculino, Feminino, Diversas</span></li>
+                        <li><svg class="feat-icon" viewBox="0 0 24 24"><polygon points="5 3 19 12 5 21 5 3"/></svg><span>100 vídeos + 100 fotos</span></li>
+                        <li><svg class="feat-icon" viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg><span>Entrega automática via link MEGA</span></li>
+                    </ul>
+                    <a href="2.html" class="plan-btn">Acessar Plano</a>
+                </div>
+            </article>
+
+            <!-- PLANO 3 -->
+            <article class="plan-card" onclick="location.href='3.html'">
+                <img src="3.webp" alt="Categoria Gold" class="plan-img" loading="lazy">
+                <div class="plan-content">
+                    <div class="plan-header"><h3 class="plan-title">Categoria Gold</h3><span class="plan-price">R$ 20,00</span></div>
+                    <p class="plan-desc">Vídeos mais longos de até 1 hora. Estilo webcam.</p>
+                    <ul class="plan-features">
+                        <li><svg class="feat-icon" viewBox="0 0 24 24"><path d="M21 16V8a2 2 0 00-1-1.73l-7-4a2 2 0 00-2 0l-7 4A2 2 0 003 8v8a2 2 0 001 1.73l7 4a2 2 0 002 0l7-4A2 2 0 0021 16z"/><polyline points="3.27 6.96 12 12.01 20.73 6.96"/><line x1="12" y1="22.08" x2="12" y2="12"/></svg><span>Armazenamento: 6 GB</span></li>
+                        <li><svg class="feat-icon" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg><span>Duração: 3min a 1h</span></li>
+                        <li><svg class="feat-icon" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg><span>Inclusos 4 packs de imagem</span></li>
+                        <li><svg class="feat-icon" viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg><span>Entrega automática via link MEGA</span></li>
+                    </ul>
+                    <a href="3.html" class="plan-btn">Acessar Plano</a>
+                </div>
+            </article>
+
+            <!-- PLANO 4 -->
+            <article class="plan-card" onclick="location.href='4.html'">
+                <img src="4.webp" alt="Categoria Premium" class="plan-img" loading="lazy">
+                <div class="plan-content">
+                    <div class="plan-header"><h3 class="plan-title">Categoria Premium</h3><span class="plan-price">R$ 45,00</span></div>
+                    <p class="plan-desc">Categoria completa com mais de 600 vídeos.</p>
+                    <ul class="plan-features">
+                        <li><svg class="feat-icon" viewBox="0 0 24 24"><polygon points="5 3 19 12 5 21 5 3"/></svg><span>700 vídeos + 259 imagens</span></li>
+                        <li><svg class="feat-icon" viewBox="0 0 24 24"><path d="M21 16V8a2 2 0 00-1-1.73l-7-4a2 2 0 00-2 0l-7 4A2 2 0 003 8v8a2 2 0 001 1.73l7 4a2 2 0 002 0l7-4A2 2 0 0021 16z"/><polyline points="3.27 6.96 12 12.01 20.73 6.96"/><line x1="12" y1="22.08" x2="12" y2="12"/></svg><span>Categorias: Feminino, Masculino, Diversas</span></li>
+                        <li><svg class="feat-icon" viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 00.33 1.82l.06.06a2 2 0 010 2.83 2 2 0 01-2.83 0l-.06-.06a1.65 1.65 0 00-1.82-.33 1.65 1.65 0 00-1 1.51V21a2 2 0 01-4 0v-.09a1.65 1.65 0 00-1.08-1.51 1.65 1.65 0 00-1.82.33l-.06.06a2 2 0 01-2.83 0 2 2 0 010-2.83l.06-.06a1.65 1.65 0 00.33-1.82 1.65 1.65 0 00-1.51-1H3a2 2 0 010-4h.09a1.65 1.65 0 001.51-1.08 1.65 1.65 0 00-.33-1.82l-.06-.06a2 2 0 012.83-2.83l.06.06a1.65 1.65 0 001.82.33H9a1.65 1.65 0 001-1.51V3a2 2 0 014 0v.09a1.65 1.65 0 001 1.51 1.65 1.65 0 001.82-.33l.06-.06a2 2 0 012.83 2.83l-.06.06a1.65 1.65 0 00-.33 1.82V9a1.65 1.65 0 001.51 1H21a2 2 0 010 4h-.09a1.65 1.65 0 00-1.51 1z"/></svg><span>Qualidade: SD / HD</span></li>
+                        <li><svg class="feat-icon" viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg><span>Entrega automática via link MEGA</span></li>
+                    </ul>
+                    <a href="4.html" class="plan-btn">Acessar Plano</a>
+                </div>
+            </article>
+
+            <!-- PLANO 5 -->
+            <article class="plan-card" onclick="location.href='5.html'">
+                <img src="5.webp" alt="Plano Plus" class="plan-img" loading="lazy">
+                <div class="plan-content">
+                    <div class="plan-header"><h3 class="plan-title">Plano Plus</h3><span class="plan-price">R$ 100,00</span></div>
+                    <p class="plan-desc">Acesso completo, atualizações diárias e grupos VIP.</p>
+                    <ul class="plan-features">
+                        <li><svg class="feat-icon" viewBox="0 0 24 24"><path d="M21 16V8a2 2 0 00-1-1.73l-7-4a2 2 0 00-2 0l-7 4A2 2 0 003 8v8a2 2 0 001 1.73l7 4a2 2 0 002 0l7-4A2 2 0 0021 16z"/><polyline points="3.27 6.96 12 12.01 20.73 6.96"/><line x1="12" y1="22.08" x2="12" y2="12"/></svg><span>Armazenamento: 46 TB</span></li>
+                        <li><svg class="feat-icon" viewBox="0 0 24 24"><polyline points="23 4 23 10 17 10"/><polyline points="1 20 1 14 7 14"/><path d="M3.51 9a9 9 0 0114.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0020.49 15"/></svg><span>23 Categorias + Atualizações diárias</span></li>
+                        <li><svg class="feat-icon" viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/></svg><span>Acesso a 18 Grupos</span></li>
+                        <li><svg class="feat-icon" viewBox="0 0 24 24"><path d="M18 10h-1.26A8 8 0 109 20h9a5 5 0 000-10z"/></svg><span>Acesso a 32 MEGA</span></li>
+                        <li><svg class="feat-icon" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg><span>+900 mil vídeos / +3 milhões de fotos</span></li>
+                    </ul>
+                    <a href="5.html" class="plan-btn">Acessar Plano</a>
+                </div>
+            </article>
         </div>
-
-        <!-- Título -->
-        <h1 class="content-title">CONTEÚDOS GRÁTIS Free Download</h1>
-
-        <!-- Grid de Vídeos (10 itens em 2 colunas) -->
-        <div class="video-grid">
-            <!-- Item 1 -->
-            <a href="1.html" class="video-card">
-                <img src="https://i.postimg.cc/kMVt2ky4/1.jpg" alt="Vídeo 1" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22225%22 viewBox=%220 0 400 225%22%3E%3Crect fill=%22%231a1a1a%22 width=%22400%22 height=%22225%22/%3E%3Ctext fill=%22%23666%22 font-family=%22sans-serif%22 font-size=%2218%22 x=%2250%25%22 y=%2250%25%22 text-anchor=%22middle%22 dominant-baseline=%22middle%22%3E1.jpg%3C/text%3E%3C/svg%3E'">
-                <div class="card-title">só tem 8 anos</div>
-            </a>
-            <!-- Item 2 -->
-            <a href="2.html" class="video-card">
-                <img src="https://i.postimg.cc/CLsM5N9R/2.jpg" alt="Vídeo 2" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22225%22 viewBox=%220 0 400 225%22%3E%3Crect fill=%22%231a1a1a%22 width=%22400%22 height=%22225%22/%3E%3Ctext fill=%22%23666%22 font-family=%22sans-serif%22 font-size=%2218%22 x=%2250%25%22 y=%2250%25%22 text-anchor=%22middle%22 dominant-baseline=%22middle%22%3E2.jpg%3C/text%3E%3C/svg%3E'">
-                <div class="card-title">a faxineira pega na banana</div>
-            </a>
-            <!-- Item 3 -->
-            <a href="3.html" class="video-card">
-                <img src="https://i.postimg.cc/3NH7J4By/3.jpg" alt="Vídeo 3" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22225%22 viewBox=%220 0 400 225%22%3E%3Crect fill=%22%231a1a1a%22 width=%22400%22 height=%22225%22/%3E%3Ctext fill=%22%23666%22 font-family=%22sans-serif%22 font-size=%2218%22 x=%2250%25%22 y=%2250%25%22 text-anchor=%22middle%22 dominant-baseline=%22middle%22%3E3.jpg%3C/text%3E%3C/svg%3E'">
-                <div class="card-title">ela só tem 3 anos mas já tá assim</div>
-            </a>
-            <!-- Item 4 -->
-            <a href="4.html" class="video-card">
-                <img src="https://i.postimg.cc/HsdHqMn2/4.jpg" alt="Vídeo 4" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22225%22 viewBox=%220 0 400 225%22%3E%3Crect fill=%22%231a1a1a%22 width=%22400%22 height=%22225%22/%3E%3Ctext fill=%22%23666%22 font-family=%22sans-serif%22 font-size=%2218%22 x=%2250%25%22 y=%2250%25%22 text-anchor=%22middle%22 dominant-baseline=%22middle%22%3E4.jpg%3C/text%3E%3C/svg%3E'">
-                <div class="card-title">padrasto chama ela</div>
-            </a>
-            <!-- Item 5 -->
-            <a href="5.html" class="video-card">
-                <img src="https://i.postimg.cc/wBCY0ySg/5.jpg" alt="Vídeo 5" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22225%22 viewBox=%220 0 400 225%22%3E%3Crect fill=%22%231a1a1a%22 width=%22400%22 height=%22225%22/%3E%3Ctext fill=%22%23666%22 font-family=%22sans-serif%22 font-size=%2218%22 x=%2250%25%22 y=%2250%25%22 text-anchor=%22middle%22 dominant-baseline=%22middle%22%3E5.jpg%3C/text%3E%3C/svg%3E'">
-                <div class="card-title">dois meninos de 10 anos</div>
-            </a>
-            <!-- Item 6 -->
-            <a href="6.html" class="video-card">
-                <img src="https://i.postimg.cc/jdx0grkL/6.jpg" alt="Vídeo 6" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22225%22 viewBox=%220 0 400 225%22%3E%3Crect fill=%22%231a1a1a%22 width=%22400%22 height=%22225%22/%3E%3Ctext fill=%22%23666%22 font-family=%22sans-serif%22 font-size=%2218%22 x=%2250%25%22 y=%2250%25%22 text-anchor=%22middle%22 dominant-baseline=%22middle%22%3E6.jpg%3C/text%3E%3C/svg%3E'">
-                <div class="card-title">pensei que ela não ia aguenta</div>
-            </a>
-            <!-- Item 7 -->
-            <a href="7.html" class="video-card">
-                <img src="https://i.postimg.cc/DZkRqVXk/7.jpg" alt="Vídeo 7" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22225%22 viewBox=%220 0 400 225%22%3E%3Crect fill=%22%231a1a1a%22 width=%22400%22 height=%22225%22/%3E%3Ctext fill=%22%23666%22 font-family=%22sans-serif%22 font-size=%2218%22 x=%2250%25%22 y=%2250%25%22 text-anchor=%22middle%22 dominant-baseline=%22middle%22%3E7.jpg%3C/text%3E%3C/svg%3E'">
-                <div class="card-title">chamei o banheiro</div>
-            </a>
-            <!-- Item 8 -->
-            <a href="8.html" class="video-card">
-                <img src="https://i.postimg.cc/nhXWgVKn/8.jpg" alt="Vídeo 8" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22225%22 viewBox=%220 0 400 225%22%3E%3Crect fill=%22%231a1a1a%22 width=%22400%22 height=%22225%22/%3E%3Ctext fill=%22%23666%22 font-family=%22sans-serif%22 font-size=%2218%22 x=%2250%25%22 y=%2250%25%22 text-anchor=%22middle%22 dominant-baseline=%22middle%22%3E8.jpg%3C/text%3E%3C/svg%3E'">
-                <div class="card-title">tem 14 mas dança bem</div>
-            </a>
-            <!-- Item 9 -->
-            <a href="9.html" class="video-card">
-                <img src="https://i.postimg.cc/85mXM7GK/9.jpg" alt="Vídeo 9" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22225%22 viewBox=%220 0 400 225%22%3E%3Crect fill=%22%231a1a1a%22 width=%22400%22 height=%22225%22/%3E%3Ctext fill=%22%23666%22 font-family=%22sans-serif%22 font-size=%2218%22 x=%2250%25%22 y=%2250%25%22 text-anchor=%22middle%22 dominant-baseline=%22middle%22%3E9.jpg%3C/text%3E%3C/svg%3E'">
-                <div class="card-title">na beirada do Rio</div>
-            </a>
-            <!-- Item 10 -->
-            <a href="10.html" class="video-card">
-                <img src="https://i.postimg.cc/PxyKN0bY/10.jpg" alt="Vídeo 10" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22225%22 viewBox=%220 0 400 225%22%3E%3Crect fill=%22%231a1a1a%22 width=%22400%22 height=%22225%22/%3E%3Ctext fill=%22%23666%22 font-family=%22sans-serif%22 font-size=%2218%22 x=%2250%25%22 y=%2250%25%22 text-anchor=%22middle%22 dominant-baseline=%22middle%22%3E10.jpg%3C/text%3E%3C/svg%3E'">
-                <div class="card-title">ela chorou não aguentou</div>
-            </a>
-        </div>
-
-        <!-- Paginação -->
-        <div class="pagination">
-            <a href="vip.html">1</a>
-            <a href="vip.html">2</a>
-            <a href="vip.html">3</a>
-            <a href="vip.html">4</a>
-            <a href="vip.html">5</a>
-            <a href="vip.html">6</a>
-            <a href="vip.html">7</a>
-            <a href="vip.html">8</a>
-            <a href="vip.html">9</a>
-            <a href="vip.html">10</a>
-            <a href="vip.html">11</a>
-            <a href="vip.html" class="plus">873+</a>
-        </div>
-
     </main>
 
-    <!-- Scripts de Funcionalidade -->
+    <!-- ===== RODAPÉ ===== -->
+    <footer class="site-footer">
+        <div class="footer-grid">
+            <div class="footer-block">
+                <h3>🔒 Verificação & Segurança</h3>
+                <p>Todos os arquivos passam por uma rigorosa verificação de integridade antes da liberação. Utilizamos criptografia SSL, escaneamento antivírus em múltiplas camadas e validação de hash para garantir que seus downloads estejam 100% livres de malware, intactos e seguros.</p>
+            </div>
+            <div class="footer-block">
+                <h3>📥 Entrega Automática</h3>
+                <p>Após a confirmação do pagamento, os links de download são enviados automaticamente para o e-mail utilizado na compra. Todo o processo é 100% automatizado: você não precisa esperar ou solicitar manualmente. Em poucos segundos, seu acesso estará disponível na sua caixa de entrada.</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 VIDEO WEB BLACK CPN. Todos os direitos reservados. Entrega digital segura e imediata.</p>
+        </div>
+    </footer>
+
+    <!-- ===== JAVASCRIPT ===== -->
     <script>
-        // Função para abrir/fechar o menu lateral
+        const menuBtn = document.getElementById('menuBtn');
+        const sidebar = document.getElementById('sidebar');
+        const overlay = document.getElementById('overlay');
+
         function toggleMenu() {
-            const sidebar = document.getElementById('sidebar');
-            const overlay = document.getElementById('overlay');
+            const isOpen = sidebar.classList.contains('active');
             sidebar.classList.toggle('active');
             overlay.classList.toggle('active');
+            menuBtn.classList.toggle('active');
+            menuBtn.setAttribute('aria-expanded', !isOpen);
         }
 
-        // Função para definir o tema explicitamente
-        function setTheme(theme) {
-            const body = document.body;
-            const btnDark = document.getElementById('btn-dark');
-            const btnLight = document.getElementById('btn-light');
-            
-            if (theme === 'light') {
-                body.classList.add('light-mode');
-                btnLight.classList.add('active');
-                btnDark.classList.remove('active');
-            } else {
-                body.classList.remove('light-mode');
-                btnDark.classList.add('active');
-                btnLight.classList.remove('active');
-            }
-            
-            // Salvar preferência
-            localStorage.setItem('theme', theme);
-        }
+        menuBtn.addEventListener('click', toggleMenu);
+        overlay.addEventListener('click', toggleMenu);
 
-        // Função de toggle (mantida para compatibilidade com o botão do topo)
-        function toggleTheme() {
-            const isLight = document.body.classList.contains('light-mode');
-            setTheme(isLight ? 'dark' : 'light');
-        }
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && sidebar.classList.contains('active')) toggleMenu();
+        });
 
-        // Atualizar botões ao carregar a página
-        function updateThemeButtons() {
-            const savedTheme = localStorage.getItem('theme') || 'dark';
-            const btnDark = document.getElementById('btn-dark');
-            const btnLight = document.getElementById('btn-light');
-            
-            if (savedTheme === 'light') {
-                document.body.classList.add('light-mode');
-                btnLight?.classList.add('active');
-                btnDark?.classList.remove('active');
-            } else {
-                document.body.classList.remove('light-mode');
-                btnDark?.classList.add('active');
-                btnLight?.classList.remove('active');
-            }
-        }
-
-        // Carregar tema salvo ao iniciar
-        window.addEventListener('load', updateThemeButtons);
+        window.addEventListener('resize', () => {
+            if (window.innerWidth > 1024 && sidebar.classList.contains('active')) toggleMenu();
+        });
     </script>
 
 </body>
 </html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<style>
+  #ageModalOverlay {
+    position: fixed; inset: 0; z-index: 999999;
+    background: rgba(12, 12, 12, 0.85);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    display: flex; align-items: center; justify-content: center;
+    opacity: 0; animation: fadeIn 0.4s forwards;
+  }
+  @keyframes fadeIn { to { opacity: 1; } }
+
+  .age-modal-card {
+    background: linear-gradient(145deg, #1e1e1e, #141414);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 22px;
+    padding: 38px 32px;
+    width: 92%; max-width: 450px;
+    box-shadow: 0 35px 70px rgba(0, 0, 0, 0.7);
+    text-align: center;
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    color: #e8e8e8;
+  }
+  .age-modal-card img {
+    max-width: 220px; /* Largura aumentada */
+    width: 88%;
+    height: auto;
+    margin: 0 auto 24px;
+    border-radius: 14px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.45);
+    display: block;
+  }
+  .age-modal-card h2 {
+    margin: 0 0 10px; font-size: 24px; font-weight: 700; color: #ffffff; letter-spacing: 0.3px;
+  }
+  .age-modal-card p {
+    margin: 0 0 28px; font-size: 15px; line-height: 1.65; color: #b5b5b5;
+  }
+  .age-btn-group {
+    display: flex; gap: 14px; justify-content: space-between;
+  }
+  .age-btn {
+    flex: 1; padding: 15px 0; border: none; border-radius: 13px;
+    font-size: 15px; font-weight: 600; cursor: pointer;
+    transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1); font-family: inherit;
+  }
+  /* BOTÃO NÃO - Fundo Vermelho */
+  .age-btn.no {
+    background: #EF4444; color: #fff;
+    box-shadow: 0 4px 12px rgba(239, 68, 68, 0.25);
+  }
+  .age-btn.no:hover { background: #DC2626; transform: translateY(-2px); box-shadow: 0 8px 20px rgba(239, 68, 68, 0.35); }
+  
+  /* BOTÃO SIM - Verde Vibrante */
+  .age-btn.yes {
+    background: linear-gradient(135deg, #00E676, #00C853); color: #003311;
+    box-shadow: 0 4px 15px rgba(0, 230, 118, 0.35);
+  }
+  .age-btn.yes:hover { transform: translateY(-2px); box-shadow: 0 8px 25px rgba(0, 230, 118, 0.45); }
+
+  @media (max-width: 480px) {
+    .age-modal-card { padding: 28px 20px; }
+    .age-btn { padding: 14px 0; font-size: 14px; }
+    .age-modal-card img { max-width: 190px; }
+  }
+</style>
+
+<div id="ageModalOverlay">
+  <div class="age-modal-card">
+    <img src="logo.webp" alt="Logo">
+    <h2>Verificação de Idade</h2>
+    <p> Este site contém material exclusivo para maiores de 18 anos. Confirme sua idade para liberar o acesso.<br>Confirme sua idade para liberar o acesso.</p>
+    
+    <div class="age-btn-group">
+      <button class="age-btn no" onclick="handleAgeResponse(false)">Não</button>
+      <button class="age-btn yes" onclick="handleAgeResponse(true)">Sim, tenho +18</button>
+    </div>
+  </div>
+</div>
+
+<script>
+  // 🔒 Bloqueia scroll e cliques no fundo enquanto o modal está ativo
+  document.addEventListener('DOMContentLoaded', () => {
+    document.documentElement.style.overflow = 'hidden';
+    document.body.style.overflow = 'hidden';
+    document.body.style.pointerEvents = 'none';
+    document.getElementById('ageModalOverlay').style.pointerEvents = 'auto';
+  });
+
+  function handleAgeResponse(isAdult) {
+    const overlay = document.getElementById('ageModalOverlay');
+    
+    if (isAdult) {
+      // ✅ Confirmação: remove modal e libera a página
+      overlay.style.transition = 'opacity 0.5s ease';
+      overlay.style.opacity = '0';
+      setTimeout(() => {
+        overlay.style.display = 'none';
+        document.documentElement.style.overflow = '';
+        document.body.style.overflow = '';
+        document.body.style.pointerEvents = '';
+      }, 500);
+    } else {
+      // ❌ Negação: redireciona para o Google
+      window.location.href = 'https://www.google.com';
+    }
+  }
+</script>
