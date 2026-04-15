@@ -255,6 +255,68 @@
             .plan-title { font-size: 1.15rem; }
             .feat-icon { width: 18px; height: 18px; }
         }
+
+        /* ========== MODAL DE IDADE ========== */
+        #ageModalOverlay {
+            position: fixed; inset: 0; z-index: 999999;
+            background: rgba(12, 12, 12, 0.85);
+            backdrop-filter: blur(14px);
+            -webkit-backdrop-filter: blur(14px);
+            display: flex; align-items: center; justify-content: center;
+            opacity: 0; animation: fadeIn 0.4s forwards;
+        }
+        @keyframes fadeIn { to { opacity: 1; } }
+
+        .age-modal-card {
+            background: linear-gradient(145deg, #1e1e1e, #141414);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 22px;
+            padding: 38px 32px;
+            width: 92%; max-width: 450px;
+            box-shadow: 0 35px 70px rgba(0, 0, 0, 0.7);
+            text-align: center;
+            font-family: 'Inter', system-ui, -apple-system, sans-serif;
+            color: #e8e8e8;
+        }
+        .age-modal-card img {
+            max-width: 220px;
+            width: 88%;
+            height: auto;
+            margin: 0 auto 24px;
+            border-radius: 14px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.45);
+            display: block;
+        }
+        .age-modal-card h2 {
+            margin: 0 0 10px; font-size: 24px; font-weight: 700; color: #ffffff; letter-spacing: 0.3px;
+        }
+        .age-modal-card p {
+            margin: 0 0 28px; font-size: 15px; line-height: 1.65; color: #b5b5b5;
+        }
+        .age-btn-group {
+            display: flex; gap: 14px; justify-content: space-between;
+        }
+        .age-btn {
+            flex: 1; padding: 15px 0; border: none; border-radius: 13px;
+            font-size: 15px; font-weight: 600; cursor: pointer;
+            transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1); font-family: inherit;
+        }
+        .age-btn.no {
+            background: #EF4444; color: #fff;
+            box-shadow: 0 4px 12px rgba(239, 68, 68, 0.25);
+        }
+        .age-btn.no:hover { background: #DC2626; transform: translateY(-2px); box-shadow: 0 8px 20px rgba(239, 68, 68, 0.35); }
+        .age-btn.yes {
+            background: linear-gradient(135deg, #00E676, #00C853); color: #003311;
+            box-shadow: 0 4px 15px rgba(0, 230, 118, 0.35);
+        }
+        .age-btn.yes:hover { transform: translateY(-2px); box-shadow: 0 8px 25px rgba(0, 230, 118, 0.45); }
+
+        @media (max-width: 480px) {
+            .age-modal-card { padding: 28px 20px; }
+            .age-btn { padding: 14px 0; font-size: 14px; }
+            .age-modal-card img { max-width: 190px; }
+        }
     </style>
 </head>
 <body>
@@ -293,10 +355,10 @@
         <div class="sidebar-title">Categorias &amp; Planos</div>
         <ul class="sidebar-list">
             <li><a href="1.html"><div class="cat-name"><span>Plano Grátis</span><small>05 Categorias • 05 Vídeos</small></div><span class="cat-price">Grátis</span></a></li>
-            <li><a href="2.html"><div class="cat-name"><span>Plano Básico</span><small>Masculino, Feminino, Diversas</small></div><span class="cat-price">R$ 15,00</span></a></li>
-            <li><a href="3.html"><div class="cat-name"><span>Categoria Gold</span><small>Vídeos até 1h • Webcam</small></div><span class="cat-price">R$ 20,00</span></a></li>
-            <li><a href="4.html"><div class="cat-name"><span>Categoria Premium</span><small>+600 vídeos • Feminino, Masc.</small></div><span class="cat-price">R$ 45,00</span></a></li>
-            <li><a href="5.html"><div class="cat-name"><span>Plano Plus</span><small>23 Categorias • Atualizações diárias</small></div><span class="cat-price">R$ 100,00</span></a></li>
+            <li><a href="telegram.html"><div class="cat-name"><span>Plano Básico</span><small>Masculino, Feminino, Diversas</small></div><span class="cat-price">R$ 15,00</span></a></li>
+            <li><a href="telegram.html"><div class="cat-name"><span>Categoria Gold</span><small>Vídeos até 1h • Webcam</small></div><span class="cat-price">R$ 20,00</span></a></li>
+            <li><a href="telegram.html"><div class="cat-name"><span>Categoria Premium</span><small>+600 vídeos • Feminino, Masc.</small></div><span class="cat-price">R$ 45,00</span></a></li>
+            <li><a href="telegram.html"><div class="cat-name"><span>Plano Plus</span><small>23 Categorias • Atualizações diárias</small></div><span class="cat-price">R$ 100,00</span></a></li>
         </ul>
     </nav>
 
@@ -304,7 +366,7 @@
     <main class="plans-section">
         <h2 class="section-title">Escolha seu Plano</h2>
         <div class="plans-grid">
-            <!-- PLANO 1 -->
+            <!-- PLANO 1 - GRÁTIS (mantém 1.html) -->
             <article class="plan-card" onclick="location.href='1.html'">
                 <img src="1.webp" alt="Plano Grátis" class="plan-img" loading="lazy">
                 <div class="plan-content">
@@ -320,8 +382,8 @@
                 </div>
             </article>
 
-            <!-- PLANO 2 -->
-            <article class="plan-card" onclick="location.href='2.html'">
+            <!-- PLANO 2 - PAGO (redireciona para telegram.html) -->
+            <article class="plan-card" onclick="location.href='telegram.html'">
                 <img src="2.webp" alt="Plano Básico" class="plan-img" loading="lazy">
                 <div class="plan-content">
                     <div class="plan-header"><h3 class="plan-title">Plano Básico</h3><span class="plan-price">R$ 15,00</span></div>
@@ -332,12 +394,12 @@
                         <li><svg class="feat-icon" viewBox="0 0 24 24"><polygon points="5 3 19 12 5 21 5 3"/></svg><span>100 vídeos + 100 fotos</span></li>
                         <li><svg class="feat-icon" viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg><span>Entrega automática via link MEGA</span></li>
                     </ul>
-                    <a href="2.html" class="plan-btn">Acessar Plano</a>
+                    <a href="telegram.html" class="plan-btn">Acessar Plano</a>
                 </div>
             </article>
 
-            <!-- PLANO 3 -->
-            <article class="plan-card" onclick="location.href='3.html'">
+            <!-- PLANO 3 - PAGO (redireciona para telegram.html) -->
+            <article class="plan-card" onclick="location.href='telegram.html'">
                 <img src="3.webp" alt="Categoria Gold" class="plan-img" loading="lazy">
                 <div class="plan-content">
                     <div class="plan-header"><h3 class="plan-title">Categoria Gold</h3><span class="plan-price">R$ 20,00</span></div>
@@ -348,12 +410,12 @@
                         <li><svg class="feat-icon" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg><span>Inclusos 4 packs de imagem</span></li>
                         <li><svg class="feat-icon" viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg><span>Entrega automática via link MEGA</span></li>
                     </ul>
-                    <a href="3.html" class="plan-btn">Acessar Plano</a>
+                    <a href="telegram.html" class="plan-btn">Acessar Plano</a>
                 </div>
             </article>
 
-            <!-- PLANO 4 -->
-            <article class="plan-card" onclick="location.href='4.html'">
+            <!-- PLANO 4 - PAGO (redireciona para telegram.html) -->
+            <article class="plan-card" onclick="location.href='telegram.html'">
                 <img src="4.webp" alt="Categoria Premium" class="plan-img" loading="lazy">
                 <div class="plan-content">
                     <div class="plan-header"><h3 class="plan-title">Categoria Premium</h3><span class="plan-price">R$ 45,00</span></div>
@@ -364,12 +426,12 @@
                         <li><svg class="feat-icon" viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 00.33 1.82l.06.06a2 2 0 010 2.83 2 2 0 01-2.83 0l-.06-.06a1.65 1.65 0 00-1.82-.33 1.65 1.65 0 00-1 1.51V21a2 2 0 01-4 0v-.09a1.65 1.65 0 00-1.08-1.51 1.65 1.65 0 00-1.82.33l-.06.06a2 2 0 01-2.83 0 2 2 0 010-2.83l.06-.06a1.65 1.65 0 00.33-1.82 1.65 1.65 0 00-1.51-1H3a2 2 0 010-4h.09a1.65 1.65 0 001.51-1.08 1.65 1.65 0 00-.33-1.82l-.06-.06a2 2 0 012.83-2.83l.06.06a1.65 1.65 0 001.82.33H9a1.65 1.65 0 001-1.51V3a2 2 0 014 0v.09a1.65 1.65 0 001 1.51 1.65 1.65 0 001.82-.33l.06-.06a2 2 0 012.83 2.83l-.06.06a1.65 1.65 0 00-.33 1.82V9a1.65 1.65 0 001.51 1H21a2 2 0 010 4h-.09a1.65 1.65 0 00-1.51 1z"/></svg><span>Qualidade: SD / HD</span></li>
                         <li><svg class="feat-icon" viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg><span>Entrega automática via link MEGA</span></li>
                     </ul>
-                    <a href="4.html" class="plan-btn">Acessar Plano</a>
+                    <a href="telegram.html" class="plan-btn">Acessar Plano</a>
                 </div>
             </article>
 
-            <!-- PLANO 5 -->
-            <article class="plan-card" onclick="location.href='5.html'">
+            <!-- PLANO 5 - PAGO (redireciona para telegram.html) -->
+            <article class="plan-card" onclick="location.href='telegram.html'">
                 <img src="5.webp" alt="Plano Plus" class="plan-img" loading="lazy">
                 <div class="plan-content">
                     <div class="plan-header"><h3 class="plan-title">Plano Plus</h3><span class="plan-price">R$ 100,00</span></div>
@@ -381,7 +443,7 @@
                         <li><svg class="feat-icon" viewBox="0 0 24 24"><path d="M18 10h-1.26A8 8 0 109 20h9a5 5 0 000-10z"/></svg><span>Acesso a 32 MEGA</span></li>
                         <li><svg class="feat-icon" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg><span>+900 mil vídeos / +3 milhões de fotos</span></li>
                     </ul>
-                    <a href="5.html" class="plan-btn">Acessar Plano</a>
+                    <a href="telegram.html" class="plan-btn">Acessar Plano</a>
                 </div>
             </article>
         </div>
@@ -404,8 +466,22 @@
         </div>
     </footer>
 
+    <!-- ===== MODAL DE VERIFICAÇÃO DE IDADE ===== -->
+    <div id="ageModalOverlay">
+        <div class="age-modal-card">
+            <img src="logo.webp" alt="Logo">
+            <h2>Verificação de Idade</h2>
+            <p>Este site contém material exclusivo para maiores de 18 anos. Confirme sua idade para liberar o acesso.<br>Confirme sua idade para liberar o acesso.</p>
+            <div class="age-btn-group">
+                <button class="age-btn no" onclick="handleAgeResponse(false)">Não</button>
+                <button class="age-btn yes" onclick="handleAgeResponse(true)">Sim, tenho +18</button>
+            </div>
+        </div>
+    </div>
+
     <!-- ===== JAVASCRIPT ===== -->
     <script>
+        // ===== MENU SIDEBAR =====
         const menuBtn = document.getElementById('menuBtn');
         const sidebar = document.getElementById('sidebar');
         const overlay = document.getElementById('overlay');
@@ -428,127 +504,31 @@
         window.addEventListener('resize', () => {
             if (window.innerWidth > 1024 && sidebar.classList.contains('active')) toggleMenu();
         });
+
+        // ===== MODAL DE IDADE =====
+        document.addEventListener('DOMContentLoaded', () => {
+            document.documentElement.style.overflow = 'hidden';
+            document.body.style.overflow = 'hidden';
+            document.body.style.pointerEvents = 'none';
+            document.getElementById('ageModalOverlay').style.pointerEvents = 'auto';
+        });
+
+        function handleAgeResponse(isAdult) {
+            const overlay = document.getElementById('ageModalOverlay');
+            if (isAdult) {
+                overlay.style.transition = 'opacity 0.5s ease';
+                overlay.style.opacity = '0';
+                setTimeout(() => {
+                    overlay.style.display = 'none';
+                    document.documentElement.style.overflow = '';
+                    document.body.style.overflow = '';
+                    document.body.style.pointerEvents = '';
+                }, 500);
+            } else {
+                window.location.href = 'https://www.google.com';
+            }
+        }
     </script>
 
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-<style>
-  #ageModalOverlay {
-    position: fixed; inset: 0; z-index: 999999;
-    background: rgba(12, 12, 12, 0.85);
-    backdrop-filter: blur(14px);
-    -webkit-backdrop-filter: blur(14px);
-    display: flex; align-items: center; justify-content: center;
-    opacity: 0; animation: fadeIn 0.4s forwards;
-  }
-  @keyframes fadeIn { to { opacity: 1; } }
-
-  .age-modal-card {
-    background: linear-gradient(145deg, #1e1e1e, #141414);
-    border: 1px solid rgba(255, 255, 255, 0.08);
-    border-radius: 22px;
-    padding: 38px 32px;
-    width: 92%; max-width: 450px;
-    box-shadow: 0 35px 70px rgba(0, 0, 0, 0.7);
-    text-align: center;
-    font-family: 'Inter', system-ui, -apple-system, sans-serif;
-    color: #e8e8e8;
-  }
-  .age-modal-card img {
-    max-width: 220px; /* Largura aumentada */
-    width: 88%;
-    height: auto;
-    margin: 0 auto 24px;
-    border-radius: 14px;
-    box-shadow: 0 10px 25px rgba(0,0,0,0.45);
-    display: block;
-  }
-  .age-modal-card h2 {
-    margin: 0 0 10px; font-size: 24px; font-weight: 700; color: #ffffff; letter-spacing: 0.3px;
-  }
-  .age-modal-card p {
-    margin: 0 0 28px; font-size: 15px; line-height: 1.65; color: #b5b5b5;
-  }
-  .age-btn-group {
-    display: flex; gap: 14px; justify-content: space-between;
-  }
-  .age-btn {
-    flex: 1; padding: 15px 0; border: none; border-radius: 13px;
-    font-size: 15px; font-weight: 600; cursor: pointer;
-    transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1); font-family: inherit;
-  }
-  /* BOTÃO NÃO - Fundo Vermelho */
-  .age-btn.no {
-    background: #EF4444; color: #fff;
-    box-shadow: 0 4px 12px rgba(239, 68, 68, 0.25);
-  }
-  .age-btn.no:hover { background: #DC2626; transform: translateY(-2px); box-shadow: 0 8px 20px rgba(239, 68, 68, 0.35); }
-  
-  /* BOTÃO SIM - Verde Vibrante */
-  .age-btn.yes {
-    background: linear-gradient(135deg, #00E676, #00C853); color: #003311;
-    box-shadow: 0 4px 15px rgba(0, 230, 118, 0.35);
-  }
-  .age-btn.yes:hover { transform: translateY(-2px); box-shadow: 0 8px 25px rgba(0, 230, 118, 0.45); }
-
-  @media (max-width: 480px) {
-    .age-modal-card { padding: 28px 20px; }
-    .age-btn { padding: 14px 0; font-size: 14px; }
-    .age-modal-card img { max-width: 190px; }
-  }
-</style>
-
-<div id="ageModalOverlay">
-  <div class="age-modal-card">
-    <img src="logo.webp" alt="Logo">
-    <h2>Verificação de Idade</h2>
-    <p> Este site contém material exclusivo para maiores de 18 anos. Confirme sua idade para liberar o acesso.<br>Confirme sua idade para liberar o acesso.</p>
-    
-    <div class="age-btn-group">
-      <button class="age-btn no" onclick="handleAgeResponse(false)">Não</button>
-      <button class="age-btn yes" onclick="handleAgeResponse(true)">Sim, tenho +18</button>
-    </div>
-  </div>
-</div>
-
-<script>
-  // 🔒 Bloqueia scroll e cliques no fundo enquanto o modal está ativo
-  document.addEventListener('DOMContentLoaded', () => {
-    document.documentElement.style.overflow = 'hidden';
-    document.body.style.overflow = 'hidden';
-    document.body.style.pointerEvents = 'none';
-    document.getElementById('ageModalOverlay').style.pointerEvents = 'auto';
-  });
-
-  function handleAgeResponse(isAdult) {
-    const overlay = document.getElementById('ageModalOverlay');
-    
-    if (isAdult) {
-      // ✅ Confirmação: remove modal e libera a página
-      overlay.style.transition = 'opacity 0.5s ease';
-      overlay.style.opacity = '0';
-      setTimeout(() => {
-        overlay.style.display = 'none';
-        document.documentElement.style.overflow = '';
-        document.body.style.overflow = '';
-        document.body.style.pointerEvents = '';
-      }, 500);
-    } else {
-      // ❌ Negação: redireciona para o Google
-      window.location.href = 'https://www.google.com';
-    }
-  }
-</script>
