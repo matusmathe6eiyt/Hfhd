@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Entrega do Produto - HELLO VÍDEOS</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { background-color: #121212; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; color: #ffffff; min-height: 100vh; display: flex; align-items: center; justify-content: center; padding: 20px; }
+        .container { max-width: 500px; width: 100%; text-align: center; }
+        .logo { font-size: 2rem; font-weight: 900; margin-bottom: 30px; background: linear-gradient(90deg, #FFD700 50%, #DC143C 50%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .card { background: #1e1e1e; border: 1px solid #333; border-radius: 16px; padding: 30px; box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5); }
+        .loading { color: #FFD700; font-size: 1.1rem; display: flex; align-items: center; justify-content: center; gap: 10px; }
+        .spinner { width: 24px; height: 24px; border: 3px solid rgba(255, 215, 0, 0.2); border-top: 3px solid #FFD700; border-radius: 50%; animation: spin 1s linear infinite; }
+        @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+        
+        .success-box { display: none; }
+        .success-icon { width: 70px; height: 70px; background: #4ade80; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 20px; }
+        .success-icon svg { width: 35px; height: 35px; fill: #000; }
+        
+        /* Caixa de Senha */
+        .password-box { background: #121212; border: 2px dashed #4ade80; border-radius: 12px; padding: 20px; margin: 25px 0; cursor: pointer; transition: transform 0.2s; }
+        .password-box:active { transform: scale(0.98); }
+        .password-label { color: #aaaaaa; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 8px; }
+        .password-value { font-size: 1.6rem; font-weight: 900; color: #4ade80; letter-spacing: 1px; margin-bottom: 8px; }
+        .copy-hint { color: #ffffff; font-size: 0.75rem; background: #333; padding: 4px 12px; border-radius: 20px; display: inline-block; }
+
+        .error-box { display: none; }
+        .error-icon { width: 70px; height: 70px; background: #DC143C; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 20px; }
+        .error-icon svg { width: 35px; height: 35px; fill: #fff; }
+
+        .btn-download { display: inline-block; width: 100%; background: linear-gradient(90deg, #FFD700 50%, #DC143C 50%); color: #000; text-decoration: none; padding: 16px; border-radius: 10px; font-weight: 800; font-size: 1.1rem; margin-top: 10px; text-transform: uppercase; transition: transform 0.2s; }
+        .btn-download:hover { transform: scale(1.02); }
+        .btn-home { display: inline-block; margin-top: 15px; color: #888; text-decoration: none; font-size: 0.9rem; }
+        .btn-home:hover { color: #fff; }
+        .tip-text { color: #888; font-size: 0.8rem; margin-top: 15px; line-height: 1.4; }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <div class="logo">HELLO VÍDEOS</div>
+
+        <div class="card">
+            <!-- Estado 1: Verificando -->
+            <div id="loadingState" class="loading">
+                <div class="spinner"></div>
+                Validando seu pagamento...
+            </div>
+
+            <!-- Estado 2: Sucesso (Link e Senha Liberados) -->
+            <div id="successState" class="success-box">
+                <div class="success-icon">
+                    <svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>
+                </div>
+                <h2 style="color: #4ade80; margin-bottom: 10px;">Pagamento Confirmado!</h2>
+                <p style="color: #aaa; margin-bottom: 10px;">Seu pacote de <strong>250 Imagens</strong> está liberado.</p>
+                
+                <!-- Caixa de Senha -->
+                <div class="password-box" onclick="copiarSenha()">
+                    <div class="password-label">🔒 Senha para descompactar o ZIP:</div>
+                    <div class="password-value" id="senhaText">cezkgdbot</div>
+                    <div class="copy-hint">📋 Toque aqui para copiar a senha</div>
+                </div>
+
+                <!-- Botão de Download -->
+                <!-- 👇👇👇 COLOQUE SEU LINK REAL DO MEDIAFIRE (IMAGENS) AQUI 👇👇 -->
+                <a href="https://mega.nz/file/Q7xw3LKJ#EOBtBgOhOghFvgPAmqrsArhg4RNGEjVBurmzFs8WpP0">
+                    📥 BAIXAR IMAGENS AGORA
+                </a>
+                
+                <p class="tip-text">💡 Dica: Use o app <strong>ZArchiver</strong> (Android) ou <strong>WinRAR</strong> (PC) para abrir o arquivo e digite a senha.</p>
+                
+                <a href="index.html" class="btn-home">← Voltar para o início</a>
+            </div>
+
+            <!-- Estado 3: Erro -->
+            <div id="errorState" class="error-box">
+                <div class="error-icon">
+                    <svg viewBox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+                </div>
+                <h2 style="color: #DC143C; margin-bottom: 10px;">Acesso Negado</h2>
+                <p style="color: #aaa; margin-bottom: 20px;">Não conseguimos validar esta transação. Se você já pagou, aguarde alguns instantes ou entre em contato com o suporte.</p>
+                <a href="index.html" class="btn-download" style="background: #333; color: #fff;">Voltar ao Início</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Notificação Toast -->
+    <div id="toast" style="position: fixed; bottom: 30px; left: 50%; transform: translateX(-50%) translateY(100px); background: #4ade80; color: #000; padding: 12px 24px; border-radius: 50px; font-weight: bold; box-shadow: 0 5px 20px rgba(0,0,0,0.5); transition: transform 0.3s ease; z-index: 3000;">✅ Senha copiada!</div>
+
+    <script>
+        // API do Pacote de R$ 1
+        const WORKER_URL = 'https://api-pix.nm9119713.workers.dev';
+        const urlParams = new URLSearchParams(window.location.search);
+        const transactionId = urlParams.get('tx');
+
+        async function verificarEntrega() {
+            if (!transactionId) { mostrarErro(); return; }
+            try {
+                const response = await fetch(WORKER_URL + '/verificar', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ transactionId: transactionId })
+                });
+                const data = await response.json();
+                if (data.status === 'COMPLETO' || data.status === 'PAID') {
+                    document.getElementById('loadingState').style.display = 'none';
+                    document.getElementById('successState').style.display = 'block';
+                } else { mostrarErro(); }
+            } catch (error) { mostrarErro(); }
+        }
+
+        function mostrarErro() {
+            document.getElementById('loadingState').style.display = 'none';
+            document.getElementById('errorState').style.display = 'block';
+        }
+
+        function copiarSenha() {
+            const senha = document.getElementById('senhaText').innerText;
+            navigator.clipboard.writeText(senha).then(() => {
+                const toast = document.getElementById('toast');
+                toast.style.transform = 'translateX(-50%) translateY(0)';
+                setTimeout(() => { toast.style.transform = 'translateX(-50%) translateY(100px)'; }, 2000);
+            });
+        }
+
+        verificarEntrega();
+    </script>
+</body>
+</html>
