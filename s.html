@@ -1,0 +1,474 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<title>Saiba Mais - Sorteio Acesso VIP</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="referrer" content="no-referrer">
+
+<!-- FAVICON -->
+<link rel="icon" href="fabicon.jpg" type="image/x-icon">
+<link rel="shortcut icon" href="fabicon.jpg" type="image/x-icon">
+
+<!-- Fontes -->
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+    font-family: 'Inter', sans-serif;
+    background: #f0f2f5;
+    color: #111;
+    line-height: 1.5;
+}
+
+/* CABEÇALHO */
+header {
+    background: #fff;
+    border-bottom: 1px solid #e6e6e6;
+    padding: 12px 16px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+.menu {
+    cursor: pointer;
+    padding: 4px;
+    display: flex;
+    align-items: center;
+}
+
+.menu svg {
+    width: 24px;
+    height: 24px;
+    fill: #111;
+}
+
+.logo {
+    flex: 1;
+    text-align: center;
+    cursor: pointer;
+}
+
+.logo img {
+    height: 44px;
+    object-fit: contain;
+}
+
+/* CONTAINER PRINCIPAL */
+.container {
+    max-width: 560px;
+    margin: 16px auto;
+    background: #fff;
+    padding: 24px 20px;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.04);
+    text-align: left;
+}
+
+/* TIPOGRAFIA */
+h1 {
+    font-family: 'Poppins', sans-serif;
+    font-size: 22px;
+    font-weight: 600;
+    margin-bottom: 16px;
+    color: #111;
+    line-height: 1.3;
+}
+
+h2 {
+    font-family: 'Poppins', sans-serif;
+    font-size: 16px;
+    font-weight: 600;
+    margin: 24px 0 12px 0;
+    color: #111;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+h2 svg {
+    width: 20px;
+    height: 20px;
+    fill: #111;
+}
+
+p {
+    font-size: 14px;
+    color: #333;
+    margin-bottom: 12px;
+    line-height: 1.6;
+}
+
+.highlight {
+    color: #e91e63;
+    font-weight: 600;
+}
+
+/* CAIXA DE DESTAQUE (ALERTA) */
+.alert-box {
+    background: #fff5f7;
+    border-left: 3px solid #e91e63;
+    padding: 16px;
+    border-radius: 0 8px 8px 0;
+    margin-bottom: 20px;
+}
+
+.alert-box p {
+    margin-bottom: 8px;
+    font-size: 13px;
+    color: #444;
+}
+
+.alert-box p:last-child {
+    margin-bottom: 0;
+}
+
+/* LISTA COMPACTA */
+ul {
+    list-style: none;
+    margin: 0 0 16px 0;
+    padding: 0;
+    border-top: 1px solid #f0f0f0;
+}
+
+ul li {
+    padding: 12px 0;
+    font-size: 14px;
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    border-bottom: 1px solid #f8f8f8;
+    color: #333;
+}
+
+ul li:last-child {
+    border-bottom: none;
+}
+
+ul li .icon {
+    flex-shrink: 0;
+    width: 20px;
+    height: 20px;
+    margin-top: 2px;
+}
+
+ul li .icon svg {
+    width: 100%;
+    height: 100%;
+    fill: #111;
+}
+
+/* PASSO A PASSO */
+.step {
+    display: flex;
+    gap: 16px;
+    margin-bottom: 16px;
+    padding-bottom: 16px;
+    border-bottom: 1px solid #f0f0f0;
+}
+
+.step:last-child {
+    border-bottom: none;
+    margin-bottom: 0;
+    padding-bottom: 0;
+}
+
+.step-number {
+    flex-shrink: 0;
+    width: 32px;
+    height: 32px;
+    background: #111;
+    color: #fff;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 600;
+    font-size: 14px;
+}
+
+.step-content h3 {
+    font-size: 14px;
+    font-weight: 600;
+    color: #111;
+    margin-bottom: 4px;
+}
+
+.step-content p {
+    font-size: 13px;
+    color: #555;
+    margin: 0;
+}
+
+/* BOTÃO DE AÇÃO */
+.action-button {
+    display: block;
+    width: 100%;
+    padding: 14px;
+    background: #111;
+    color: #fff;
+    font-size: 15px;
+    font-weight: 600;
+    border-radius: 8px;
+    text-decoration: none;
+    text-align: center;
+    border: none;
+    cursor: pointer;
+    transition: opacity 0.2s ease;
+    margin-top: 24px;
+}
+
+.action-button:hover {
+    opacity: 0.9;
+}
+
+/* RODAPÉ */
+footer {
+    background: #f8f9fa;
+    color: #333;
+    padding: 32px 16px 24px;
+    border-top: 1px solid #e6e6e6;
+    margin-top: 24px;
+}
+
+.footer-content {
+    max-width: 560px;
+    margin: 0 auto;
+}
+
+.footer-brand {
+    text-align: left;
+    margin-bottom: 20px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid #e6e6e6;
+}
+
+.footer-brand img {
+    height: 32px;
+    margin-bottom: 8px;
+}
+
+.footer-brand p {
+    font-size: 13px;
+    color: #555;
+    margin: 0;
+}
+
+.footer-security {
+    text-align: left;
+    margin-bottom: 20px;
+    padding: 12px;
+    background: #fff;
+    border-radius: 8px;
+    border: 1px solid #e6e6e6;
+}
+
+.security-title {
+    font-size: 11px;
+    color: #666;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 8px;
+    font-weight: 600;
+}
+
+.security-badges {
+    display: flex;
+    gap: 16px;
+    flex-wrap: wrap;
+}
+
+.security-badge {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 12px;
+    color: #333;
+    font-weight: 500;
+}
+
+.security-badge svg {
+    width: 16px;
+    height: 16px;
+    fill: #4CAF50;
+}
+
+.footer-legal {
+    text-align: left;
+    margin-bottom: 20px;
+    padding-top: 20px;
+    border-top: 1px solid #e6e6e6;
+}
+
+.footer-legal a {
+    color: #555;
+    text-decoration: none;
+    font-size: 12px;
+    margin-right: 12px;
+    font-weight: 500;
+}
+
+.footer-legal a:hover {
+    color: #e91e63;
+}
+
+.footer-company {
+    text-align: left;
+    font-size: 12px;
+    color: #666;
+    line-height: 1.6;
+}
+
+.footer-copyright {
+    text-align: left;
+    font-size: 11px;
+    color: #888;
+    margin-top: 16px;
+    padding-top: 16px;
+    border-top: 1px solid #e6e6e6;
+}
+
+/* RESPONSIVO */
+@media (max-width: 480px) {
+    .container { margin: 12px; padding: 20px 16px; }
+    .logo img { height: 38px; }
+    .footer-legal a { display: block; margin: 6px 0; }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+    <div class="menu" onclick="abrirSite()">
+        <svg viewBox="0 0 24 24"><path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"/></svg>
+    </div>
+    <div class="logo" onclick="abrirSite()">
+        <img src="logo.webp" alt="Logo">
+    </div>
+    <div style="width:24px;"></div>
+</header>
+
+<div class="container">
+
+    <h1>Entenda como funciona o Acesso VIP e os Sorteios</h1>
+
+    <div class="alert-box">
+        <p><strong>Não perca essa oportunidade exclusiva.</strong> Evite restrições e limitações de visibilidade causadas pela falta de acesso premium na plataforma.</p>
+        <p><strong>Atenção:</strong> O selo VIP é diferente da verificação de documentos. O selo VIP é um benefício de status e participação em sorteios, concedido automaticamente ao ativar sua contribuição. A verificação de documentos é um processo separado e obrigatório de segurança da plataforma.</p>
+    </div>
+
+    <h2>
+        <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"/></svg>
+        Como funciona o sorteio
+    </h2>
+    
+    <div class="step">
+        <div class="step-number">1</div>
+        <div class="step-content">
+            <h3>Ativação via PIX</h3>
+            <p>Você realiza uma contribuição única e segura de R$ 5,00 via PIX. O processo é automatizado e leva poucos segundos.</p>
+        </div>
+    </div>
+
+    <div class="step">
+        <div class="step-number">2</div>
+        <div class="step-content">
+            <h3>Recebimento do Selo</h3>
+            <p>Após a confirmação do pagamento, o selo "Verificado VIP" é ativado imediatamente no seu perfil, garantindo mais destaque e credibilidade.</p>
+        </div>
+    </div>
+
+    <div class="step">
+        <div class="step-number">3</div>
+        <div class="step-content">
+            <h3>Participação Automática</h3>
+            <p>Você é inserido automaticamente no sistema de sorteios mensais. Não é necessário realizar nenhuma ação adicional ou renovar a participação todo mês.</p>
+        </div>
+    </div>
+
+    <h2>
+        <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+        Premiações Exclusivas
+    </h2>
+
+    <ul>
+        <li>
+            <span class="icon"><svg viewBox="0 0 24 24"><path d="M20 6h-2.18c.11-.31.18-.65.18-1 0-1.66-1.34-3-3-3-1.05 0-1.96.54-2.5 1.35l-.5.67-.5-.68C10.96 2.54 10.05 2 9 2 7.34 2 6 3.34 6 5c0 .35.07.69.18 1H4c-1.11 0-1.99.89-1.99 2L2 19c0 1.11.89 2 2 2h16c1.11 0 2-.89 2-2V8c0-1.11-.89-2-2-2zm-5-2c.55 0 1 .45 1 1s-.45 1-1 1-1-.45-1-1 .45-1 1-1zM9 4c.55 0 1 .45 1 1s-.45 1-1 1-1-.45-1-1 .45-1 1-1zm11 15H4v-2h16v2zm0-5H4V8h5.08L7 10.83 8.62 12 11 8.76l1-1.36 1 1.36L15.38 12 17 10.83 14.92 8H20v6z"/></svg></span>
+            <span><strong>Pacotes de viagem completos:</strong> Você só precisa fazer as malas. Destinos nacionais e internacionais sorteados periodicamente.</span>
+        </li>
+        <li>
+            <span class="icon"><svg viewBox="0 0 24 24"><path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm-2 16l-4-4 1.41-1.41L10 14.17l6.59-6.59L18 9l-8 8z"/></svg></span>
+            <span><strong>Badge "Verificado VIP":</strong> Mais confiança, autoridade e destaque visual no seu perfil em relação aos demais usuários.</span>
+        </li>
+        <li>
+            <span class="icon"><svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg></span>
+            <span><strong>7 dias em destaque:</strong> Impulsionamento automático do perfil, garantindo até 3x mais visualizações orgânicas.</span>
+        </li>
+        <li>
+            <span class="icon"><svg viewBox="0 0 24 24"><path d="M11.8 10.9c-2.27-.59-3-1.2-3-2.15 0-1.09 1.01-1.85 2.7-1.85 1.78 0 2.44.85 2.5 2.1h2.21c-.07-1.72-1.12-3.3-3.21-3.81V3h-3v2.16c-1.94.42-3.5 1.68-3.5 3.61 0 2.31 1.91 3.46 4.7 4.13 2.5.6 3 1.48 3 2.41 0 .69-.49 1.79-2.7 1.79-2.06 0-2.87-.92-2.98-2.1h-2.2c.12 2.19 1.76 3.42 3.68 3.83V21h3v-2.15c1.95-.37 3.5-1.5 3.5-3.55 0-2.84-2.43-3.81-4.7-4.4z"/></svg></span>
+            <span><strong>Cashback exclusivo:</strong> Créditos diretos na plataforma para impulsionar ainda mais seu perfil ou participar de ações promocionais.</span>
+        </li>
+    </ul>
+
+    <h2>
+        <svg viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
+        Impacto Social
+    </h2>
+    <p>Sua participação vai além dos prêmios. O valor de R$ 5,00 é revertido diretamente para <strong>causas sociais</strong>, como apoio a orfanatos e tratamentos de saúde. Garantimos transparência total, assegurando que sua contribuição faça a diferença real na vida de quem precisa, enquanto você concorre a benefícios exclusivos.</p>
+
+    <a
+
+<footer>
+    <div class="footer-content">
+        <div class="footer-brand">
+            <img src="logo.webp" alt="Logo">
+            <p>Plataforma segura e transparente. Conectando oportunidades e apoiando causas sociais desde 2016.</p>
+        </div>
+
+        <div class="footer-security">
+            <div class="security-title">Ambiente Seguro</div>
+            <div class="security-badges">
+                <div class="security-badge">
+                    <svg viewBox="0 0 24 24"><path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm-2 16l-4-4 1.41-1.41L10 14.17l6.59-6.59L18 9l-8 8z"/></svg>
+                    <span>SSL Criptografado</span>
+                </div>
+                <div class="security-badge">
+                    <svg viewBox="0 0 24 24"><path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm-2 16l-4-4 1.41-1.41L10 14.17l6.59-6.59L18 9l-8 8z"/></svg>
+                    <span>LGPD Compliance</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer-legal">
+            <a href="https://fatalmodel.com/privacidade" target="_blank">Política de Privacidade</a>
+            <a href="https://fatalmodel.com/termos" target="_blank">Termos de Uso</a>
+            <a href="https://fatalmodel.com/seguranca" target="_blank">Segurança</a>
+        </div>
+
+        <div class="footer-company">
+            <p><strong>Plataforma de Conexão e Oportunidades</strong><br>
+            São Paulo - SP | CNPJ: 37.181.811/0001-46</p>
+        </div>
+
+        <div class="footer-copyright">
+            © 2016-2026 Todos os direitos reservados.
+        </div>
+    </div>
+</footer>
+
+<script>
+function abrirSite() {
+    window.location.href = "https://fatalmodel.com/";
+}
+</script>
+
+</body>
+</html>
